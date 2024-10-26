@@ -2,14 +2,16 @@ namespace ShootEmUp
 {
     public class EnemyPool : Pool<Enemy>
     {
-        protected override void OnSpawned(Enemy obj)
+        protected override void OnSpawned(Enemy enemy)
         {
-            obj.OnDestroy += Return;
+            enemy.spaceship.Activate();
+            enemy.OnDestroy += Return;
         }
 
-        protected override void OnDespawned(Enemy obj)
+        protected override void OnDespawned(Enemy enemy)
         {
-            obj.OnDestroy -= Return;
+            enemy.spaceship.Deactivate();
+            enemy.OnDestroy -= Return;
         }
     }
 }

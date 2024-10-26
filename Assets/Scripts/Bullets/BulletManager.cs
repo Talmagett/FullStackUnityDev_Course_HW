@@ -27,13 +27,15 @@ namespace ShootEmUp
             Color color,
             int physicsLayer,
             int damage,
-            bool isPlayer,
             Vector2 velocity
         )
         {
             var bullet = bulletPool.Rent();
-            bullet.Init(position, color, physicsLayer, isPlayer, damage);
+            bullet.transform.position=position;
+            bullet.gameObject.layer = physicsLayer;
             bullet.SetVelocity(velocity);
+            bullet.SetColor(color);
+            bullet.SetDamage(damage);
         }
     }
 }

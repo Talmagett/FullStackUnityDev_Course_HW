@@ -1,34 +1,48 @@
 using System;
 using ShootEmUp;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace ShootEmUp
 {
     public class Spaceship : MonoBehaviour
     {
-        public Action OnHealthEmpty;
-
-        [field: SerializeField] public bool IsPlayer { get; private set; }
-        [field: SerializeField] public Transform FirePoint { get; private set; }
-        [field: SerializeField] public int Health { get; private set; }
-
+        public event Action OnHealthEmpty;
+        [field: SerializeField] public BulletData SpaceshipBulletData { get; private set; }
+        
+        [SerializeField] private int health;
         [SerializeField] private new Rigidbody2D rigidbody2D;
         [SerializeField] public float speed = 5.0f;
+        
+        private int _health;
+
+        private void Awake()
+        {            
+            _health = health;
+        }
+
+        public void Activate()
+        {
+            gameObject.SetActive(true);
+            _health = health;
+        }
+
+        public void Deactivate()
+        {
+            gameObject.SetActive(false);
+        }
 
         public void TakeDamage(int damage)
         {
-            if (Health <= 0)
+            if (_health <= 0)
                 return;
 
             if (damage <= 0)
                 return;
 
-            Health = Mathf.Max(0, Health - damage);
-            if (Health == 0)
+            _health = Mathf.Max(0, _health - damage);
+            if (_health == 0)
                 OnHealthEmpty?.Invoke();
         }
-        
 
         public void Move(Vector2 moveDirection)
         {
@@ -36,10 +50,26 @@ namespace ShootEmUp
             var nextPosition = rigidbody2D.position + moveStep;
             rigidbody2D.MovePosition(nextPosition);
         }
-        
-        public void Fire(Vector2 position, Vector2 direction)
+
+        public void Fire(BulletManager bulletManager, Vector2 direction)
         {
-            
+            bulletManager.SpawnBullet(
+                SpaceshipBulletData.FirePoint.position,
+                SpaceshipBulletData.BulletColor,
+                (int) SpaceshipBulletData.Layer,
+                SpaceshipBulletData.BulletDamage,
+                direction * SpaceshipBulletData.BulletSpeed
+            );
+        }
+
+        [System.Serializable]
+        public class BulletData
+        {
+            [field: SerializeField] public Transform FirePoint { get; private set; }
+            [field: SerializeField] public int BulletDamage {get; private set;}
+            [field: SerializeField] public float BulletSpeed {get; private set;}
+            [field: SerializeField] public Color BulletColor {get; private set;}
+            [field: SerializeField] public PhysicsLayer Layer {get; private set;}
         }
     }
 }

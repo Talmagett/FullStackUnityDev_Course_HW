@@ -16,13 +16,15 @@ namespace ShootEmUp
 
         [SerializeField] private BulletManager bulletSystem;
 
+        [SerializeField] private Vector2Int spawnRange;
+        
         private readonly List<Enemy> shootingEnemies=new();
         
         private IEnumerator Start()
         {
             while (true)
             {
-                yield return new WaitForSeconds(Random.Range(1, 2));
+                yield return new WaitForSeconds(Random.Range(spawnRange.x, spawnRange.y));
 
                 var enemy = enemyPool.Rent();
 
@@ -32,31 +34,26 @@ namespace ShootEmUp
                 var attackPosition = RandomPoint(attackPositions);
                 enemy.SetDestination(attackPosition.position);
 
-                enemy.SetTarget(gameData.Player);
-                enemy.OnDestroy += OnDestroy;
+                enemy.OnDestroy += OnEnemyDestroy;
                 if (shootingEnemies.Count >= 5) continue;
                 enemy.OnFire += OnFire;
                 shootingEnemies.Add(enemy);
             }
         }
 
-        private void OnDestroy(Enemy enemy)
+        private void OnEnemyDestroy(Enemy enemy)
         {
             shootingEnemies.Remove(enemy);
-            enemy.OnDestroy -= OnDestroy;
+            enemy.OnDestroy -= OnEnemyDestroy;
             enemy.OnFire -= OnFire;
         }
 
-        private void OnFire(Vector2 position, Vector2 direction)
+        private void OnFire(Enemy enemy)
         {
-            bulletSystem.SpawnBullet(
-                position,
-                Color.red,
-                (int)PhysicsLayer.ENEMY_BULLET,
-                1,
-                false,
-                direction * 2
-            );
+            Vector2 startPosition = enemy.spaceship.SpaceshipBulletData.FirePoint.position;
+            var vector = (Vector2)gameData.Player.transform.position - startPosition;
+            var direction = vector.normalized;
+            enemy.spaceship.Fire(bulletSystem, direction);
         }
 
         private Transform RandomPoint(Transform[] points)

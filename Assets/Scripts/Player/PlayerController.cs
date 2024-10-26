@@ -7,10 +7,9 @@ namespace ShootEmUp
     public sealed class PlayerController : MonoBehaviour
     {
         [SerializeField] private GameData gameData;
-
         [SerializeField] private BulletManager bulletManager;
-
         [SerializeField] private InputManager inputManager;
+        
 
         private void OnEnable()
         {
@@ -24,14 +23,7 @@ namespace ShootEmUp
 
         private void OnFire()
         {
-            bulletManager.SpawnBullet(
-                gameData.Player.FirePoint.position,
-                Color.blue,
-                (int) PhysicsLayer.PLAYER_BULLET,
-                1,
-                true,
-                gameData.Player.FirePoint.rotation * Vector3.up * 3
-            );
+            gameData.Player.Fire(bulletManager,gameData.Player.SpaceshipBulletData.FirePoint.rotation*Vector3.up);
         }
 
         private void FixedUpdate()

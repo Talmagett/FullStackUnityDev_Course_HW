@@ -2,14 +2,14 @@ namespace ShootEmUp
 {
     public sealed class BulletPool : Pool<Bullet>
     {
-        protected override void OnSpawned(Bullet obj)
+        protected override void OnSpawned(Bullet enemy)
         {
-            obj.OnDestroy += Return;
+            enemy.OnDestroy += Return;
         }
 
-        protected override void OnDespawned(Bullet obj)
+        protected override void OnDespawned(Bullet enemy)
         {
-            obj.OnDestroy -= Return;
+            enemy.OnDestroy -= Return;
         }
     }
 }

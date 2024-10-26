@@ -46,14 +46,14 @@ namespace ShootEmUp
             _pool.Enqueue(obj);
         }
 
-        protected virtual void OnSpawned(T obj)
+        protected virtual void OnSpawned(T enemy)
         {
-            obj.gameObject.SetActive(true);
+            enemy.gameObject.SetActive(true);
         }
 
-        protected virtual void OnDespawned(T obj)
+        protected virtual void OnDespawned(T enemy)
         {
-            obj.gameObject.SetActive(false);
+            enemy.gameObject.SetActive(false);
         }
 
         public List<T> GetAllActiveObjects()
