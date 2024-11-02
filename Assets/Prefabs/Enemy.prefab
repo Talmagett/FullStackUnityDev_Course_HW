@@ -177,16 +177,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6c33fb8c794bb086d085a1616c7b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsPlayer>k__BackingField: 0
-  <SpaceshipBulletData>k__BackingField:
-    <FirePoint>k__BackingField: {fileID: 3195880656587174614}
-    <BulletDamage>k__BackingField: 1
-    <BulletSpeed>k__BackingField: 2
-    <BulletColor>k__BackingField: {r: 1, g: 0, b: 0, a: 1}
-    <Layer>k__BackingField: 13
-  health: 3
-  rigidbody2D: {fileID: 659620479434099170}
-  speed: 3
+  <MoveComponent>k__BackingField:
+    rigidbody2D: {fileID: 659620479434099170}
+    speed: 5
+  <HealthComponent>k__BackingField:
+    health: 3
+  <FireComponent>k__BackingField:
+    _firePoint: {fileID: 3195880656587174614}
+    _bulletDamage: 1
+    _bulletSpeed: 3
+    _bulletColor: {r: 1, g: 0, b: 0, a: 1}
+    _layer: 13
 --- !u!1 &2239154907127902911
 GameObject:
   m_ObjectHideFlags: 0

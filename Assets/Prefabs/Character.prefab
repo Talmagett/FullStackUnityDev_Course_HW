@@ -162,11 +162,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6c33fb8c794bb086d085a1616c7b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsPlayer>k__BackingField: 1
-  <FirePoint>k__BackingField: {fileID: 3926786963072264220}
-  <Health>k__BackingField: 5
-  rigidbody2D: {fileID: 5921868077925736255}
-  speed: 5
+  <MoveComponent>k__BackingField:
+    rigidbody2D: {fileID: 5921868077925736255}
+    speed: 5
+  <HealthComponent>k__BackingField:
+    health: 3
+  <FireComponent>k__BackingField:
+    _firePoint: {fileID: 3926786963072264220}
+    _bulletDamage: 1
+    _bulletSpeed: 1
+    _bulletColor: {r: 1, g: 0, b: 0, a: 1}
+    _layer: 13
 --- !u!1 &3926786963072264211
 GameObject:
   m_ObjectHideFlags: 0

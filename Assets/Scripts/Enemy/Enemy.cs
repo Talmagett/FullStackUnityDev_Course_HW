@@ -6,7 +6,6 @@ namespace ShootEmUp
     public sealed class Enemy : MonoBehaviour
     {
         public event Action<Enemy> OnDestroy;
-        public event Action<Enemy> OnFire;
         
         [field: SerializeField] public Spaceship spaceship { get; private set; }
 
@@ -16,15 +15,21 @@ namespace ShootEmUp
         private float _currentTime;
         private bool _isPointReached;
         private const float _reachDistance = 0.25f;
+        private Spaceship _player;
+
+        public void Init(Spaceship player)
+        {
+            _player = player;
+        }
         
         private void OnEnable()
         {
-            spaceship.OnHealthEmpty += OnHealthEmpty;
+            spaceship.HealthComponent.OnHealthEmpty += OnHealthEmpty;
         }
 
         private void OnDisable()
         {
-            spaceship.OnHealthEmpty -= OnHealthEmpty;
+            spaceship.HealthComponent.OnHealthEmpty -= OnHealthEmpty;
         }
 
         private void OnHealthEmpty()
@@ -52,7 +57,9 @@ namespace ShootEmUp
                 _currentTime -= Time.fixedDeltaTime;
                 if (_currentTime <= 0)
                 {
-                    OnFire?.Invoke(this);
+                    var dir = _player.Position - spaceship.Position;
+                    dir = dir.normalized;
+                    spaceship.FireComponent.Fire(dir);
                     _currentTime += countdown;
                 }
             }
@@ -67,7 +74,7 @@ namespace ShootEmUp
                 }
 
                 var moveDirection = vector.normalized;
-                spaceship.Move(moveDirection);
+                spaceship.MoveComponent.Move(moveDirection);
             }
         }
     }

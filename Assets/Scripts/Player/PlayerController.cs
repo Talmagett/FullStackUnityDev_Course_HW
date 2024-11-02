@@ -8,28 +8,32 @@ namespace ShootEmUp
     {
         [SerializeField] private GameData gameData;
         [SerializeField] private BulletManager bulletManager;
-        [SerializeField] private InputManager inputManager;
+        [SerializeField] private InputAdapter inputAdapter;
         
-
         private void OnEnable()
         {
-            inputManager.OnFire += OnFire;
+            inputAdapter.OnFire += OnFire;
         }
 
         private void OnDisable()
         {
-            inputManager.OnFire -= OnFire;
+            inputAdapter.OnFire -= OnFire;
+        }
+
+        private void Awake()
+        {
+            gameData.Player.Init(bulletManager);
         }
 
         private void OnFire()
         {
-            gameData.Player.Fire(bulletManager,gameData.Player.SpaceshipBulletData.FirePoint.rotation*Vector3.up);
+            gameData.Player.FireComponent.Fire(Vector3.up);
         }
 
         private void FixedUpdate()
         {
-            var moveDirection = new Vector2(inputManager.MoveDirection, 0);
-            gameData.Player.Move(moveDirection);
+            var moveDirection = new Vector2(inputAdapter.MoveDirection, 0);
+            gameData.Player.MoveComponent.Move(moveDirection);
         }
     }
 }

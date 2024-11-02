@@ -9,12 +9,12 @@ namespace ShootEmUp
         
         private void Awake()
         {
-            gameData.Player.OnHealthEmpty += OnGameOver;
+            gameData.Player.HealthComponent.OnHealthEmpty += OnGameOver;
         }
 
         private void OnDestroy()
         {
-            gameData.Player.OnHealthEmpty -= OnGameOver;
+            gameData.Player.HealthComponent.OnHealthEmpty -= OnGameOver;
         }
 
         private void OnGameOver()

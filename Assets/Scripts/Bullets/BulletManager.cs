@@ -18,7 +18,7 @@ namespace ShootEmUp
             for (int i = 0, count = _cache.Count; i < count; i++)
             {
                 var bullet = _cache[i];
-                if (!levelBounds.InBounds(bullet.transform.position)) bulletPool.Return(bullet);
+                if (!levelBounds.InBounds(bullet.Position)) bulletPool.Return(bullet);
             }
         }
 
@@ -31,8 +31,8 @@ namespace ShootEmUp
         )
         {
             var bullet = bulletPool.Rent();
-            bullet.transform.position=position;
-            bullet.gameObject.layer = physicsLayer;
+            bullet.SetPosition(position);
+            bullet.SetLayer(physicsLayer);
             bullet.SetVelocity(velocity);
             bullet.SetColor(color);
             bullet.SetDamage(damage);
