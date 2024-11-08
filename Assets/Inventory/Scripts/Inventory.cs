@@ -98,7 +98,7 @@ namespace Inventories
         {
             if (item == null)
                 return false;
-            CheckItem(item);
+            CheckItemSizeValid(item.Size.x,item.Size.y);
             return CanAddItem(item,position.x,position.y);
         }
 
@@ -131,7 +131,9 @@ namespace Inventories
         /// </summary>
         public bool AddItem(in Item item, in Vector2Int position)
         {
-            CheckItem(item);
+            if(item==null)
+                return false;
+            CheckItemSizeValid(item.Size.x,item.Size.y);
             return AddItem(item, position.x, position.y);
         }
 
@@ -141,7 +143,8 @@ namespace Inventories
             {
                 CheckItem(item);
                 CheckPosition(posX, posY);
-
+                if (!CanAddItem(item, posX, posY))
+                    return false;
                 var position=new Vector2Int(posX, posY);
                 _itemsPosition.Add(item,position);
                 MatrixEdit(item.Size,new Vector2Int(posX, posY),item);
@@ -159,9 +162,15 @@ namespace Inventories
         /// </summary>
         public bool CanAddItem(in Item item)
         {
-            CheckItem(item);
+            if (item == null)
+                return false;
+            
+            CheckItemSizeValid(item.Size.x,item.Size.y);
+
             try
             {
+                if (Contains(item))
+                    return false;
                 return FindFreePosition(item.Size, out var position);
             }
             catch (Exception)
@@ -175,8 +184,12 @@ namespace Inventories
         /// </summary>
         public bool AddItem(in Item item)
         {
-            CheckItem(item);
-
+            if (item == null)
+                return false;
+            CheckItemSizeValid(item.Size.x,item.Size.y);
+            if (Contains(item))
+                return false;
+            
             try
             {
                 if (FindFreePosition(item.Size, out var position))
@@ -203,7 +216,7 @@ namespace Inventories
                 return false;
             }
             
-            CheckItemSize(size.x,size.y);
+            CheckItemSizeValid(size.x,size.y);
             
             try
             {
@@ -291,13 +304,23 @@ namespace Inventories
 
         public bool RemoveItem(in Item item, out Vector2Int position)
         {
-            var result= _itemsPosition.Remove(item, out position);
-            if (result)
+            try
             {
-                MatrixEdit(item.Size,position,null);
-                OnRemoved?.Invoke(item, position);
+                CheckItem(item);
+                var result= _itemsPosition.Remove(item, out position);
+                if (result)
+                {
+                    MatrixEdit(item.Size,position,null);
+                    OnRemoved?.Invoke(item, position);
+                }
+                return result;
             }
-            return result;
+            catch (Exception e)
+            {
+                position = new Vector2Int();
+                return false;
+            }
+            
         }
 
         /// <summary>
@@ -439,7 +462,18 @@ namespace Inventories
         /// </summary>
         public void CopyTo(in Item[,] matrix)
         {
-            
+            if (_matrixItems.GetLength(0) != matrix.GetLength(0) || _matrixItems.GetLength(1) != matrix.GetLength(1))
+            {
+                throw new ArgumentException("Size of matrix are not equal");
+            }
+
+            for (int i = 0; i < _matrixItems.GetLength(0); i++)
+            {
+                for (int j = 0; j < _matrixItems.GetLength(1); j++)
+                {
+                    matrix[i, j] = _matrixItems[i, j];
+                }
+            }
         }
 
         public IEnumerator<Item> GetEnumerator()
@@ -466,10 +500,9 @@ namespace Inventories
         {
             if(item == null)
                 throw new ArgumentNullException("Item is null");
-            CheckItemSize(item.Size.x,item.Size.y);
         }
 
-        private void CheckItemSize(in int x, in int y)
+        private void CheckItemSizeValid(in int x, in int y)
         {
             if(x<=0||y<=0||x>Width||y>Height)
                 throw new ArgumentOutOfRangeException("Item size must be positive integers within the inventory bounds.");
