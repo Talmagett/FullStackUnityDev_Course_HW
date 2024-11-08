@@ -320,7 +320,6 @@ namespace Inventories
                 position = new Vector2Int();
                 return false;
             }
-            
         }
 
         /// <summary>
@@ -434,13 +433,27 @@ namespace Inventories
             {
                 CheckPosition(newPosition.x,newPosition.y);
             
-                if (RemoveItem(item, out var oldPosition))
+                var result= _itemsPosition.Remove(item, out var oldPosition);
+                if (result)
                 {
-                    if (oldPosition == newPosition)
-                        return false;
-                    OnMoved?.Invoke(item,newPosition);
-                    return AddItem(item, newPosition);
+                    MatrixEdit(item.Size, oldPosition, null);
+                    if (oldPosition != newPosition)
+                    {
+                        if (CanAddItem(item, newPosition))
+                        {
+                            _itemsPosition.Add(item,newPosition);
+                            MatrixEdit(item.Size, oldPosition, item);
+                            
+                            OnMoved?.Invoke(item,newPosition);
+                            return true;
+                        }
+                    }
+
+                    _itemsPosition.Add(item,oldPosition);
+                    MatrixEdit(item.Size, oldPosition, item);
+                    return false;
                 }
+
                 return false;
             }
             catch (Exception)
