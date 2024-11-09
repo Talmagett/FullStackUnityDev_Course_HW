@@ -436,21 +436,20 @@ namespace Inventories
                 var result= _itemsPosition.Remove(item, out var oldPosition);
                 if (result)
                 {
-                    MatrixEdit(item.Size, oldPosition, null);
                     if (oldPosition != newPosition)
                     {
+                        MatrixEdit(item.Size, oldPosition, null);
+
                         if (CanAddItem(item, newPosition))
                         {
                             _itemsPosition.Add(item,newPosition);
-                            MatrixEdit(item.Size, oldPosition, item);
+                            MatrixEdit(item.Size, newPosition, item);
                             
                             OnMoved?.Invoke(item,newPosition);
                             return true;
                         }
                     }
-
                     _itemsPosition.Add(item,oldPosition);
-                    MatrixEdit(item.Size, oldPosition, item);
                     return false;
                 }
 
@@ -467,7 +466,14 @@ namespace Inventories
         /// </summary>
         public void ReorganizeSpace()
         {
-            throw new NotImplementedException();
+            var items = _itemsPosition.Keys.OrderByDescending(t=>t.Size.x*t.Size.y).ToList();
+            Clear();
+            foreach (var item in items)
+            {
+                if (!FindFreePosition(item.Size, out var freePosition))
+                    throw new Exception("Invalid position");
+                AddItem(item, freePosition);
+            }
         }
 
         /// <summary>
