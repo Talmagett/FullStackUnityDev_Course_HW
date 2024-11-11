@@ -8,10 +8,12 @@ namespace Converter.Tests
         [Test]
         public void Instantiate()
         {
-            var converterZone = new ConverterZone(5,ResourceType.Wood);
+            const ResourceType resourceType = ResourceType.Wood;
+            var converterZone = new ConverterZone(resourceType,5,1);
+            
             Assert.IsNotNull(converterZone);
-            Assert.AreEqual(0, converterZone.Count);
-            Assert.AreEqual(ResourceType.Wood, converterZone.ResourceType);
+            Assert.AreEqual(0, converterZone.GetResourcesCount());
+            Assert.IsTrue(converterZone.CanConvert(resourceType));
         }
 
         [TestCase(1,0)]
@@ -19,20 +21,20 @@ namespace Converter.Tests
         [TestCase(5,0)]
         [TestCase(6,1)]
         [TestCase(10,5)]
-        public void AddResource(int count, int extra)
+        public void AddResourcesToZone(int count, int change)
         {
             var limit = 5;
-            var converterZone = new ConverterZone(limit, ResourceType.Wood);
-            var extraOutput = converterZone.AddResources(count);
-            Assert.AreEqual(extraOutput, extra);
-            Assert.AreEqual(extraOutput>0?limit:count, converterZone.Count);
+            var converterZone = new ConverterZone(ResourceType.Wood,5,1);
+            var changeOutput = converterZone.AddResources(count);
+            Assert.AreEqual(changeOutput, change);
+            Assert.AreEqual(changeOutput>0?limit:count, converterZone.GetResourcesCount());
         }
         
         [TestCase(-1)]
         [TestCase(0)]
-        public void AddResourcesOutOfRangeThrowException(int count)
+        public void AddResourcesToZoneOutOfRangeThrowException(int count)
         {
-            var converterZone = new ConverterZone(5, ResourceType.Wood);
+            var converterZone = new ConverterZone(ResourceType.Wood,5,1);
             Assert.Catch<ArgumentOutOfRangeException>(()=>converterZone.AddResources(count));
         }
     }
