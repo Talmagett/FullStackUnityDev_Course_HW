@@ -18,17 +18,17 @@ namespace Converter
         
         public Converter(Recipe recipe, int convertingTime, ConverterZone loadZone, ConverterZone unloadZone)
         {
-            _recipe = recipe;
-            LoadZone = loadZone;
-            UnloadZone = unloadZone;
+            _recipe = recipe ?? throw new ArgumentNullException($"recipe");
+            LoadZone = loadZone ?? throw new ArgumentNullException($"loadZone");
+            UnloadZone = unloadZone ?? throw new ArgumentNullException($"unloadZone");
+            
             _countdown = new Countdown(convertingTime);
             _countdown.OnEnded += Convert;
         }
 
         private void Convert()
         {
-            Debug.Log("Converting");
-            UnloadZone.AddResources(_convertingResourceCount);
+            UnloadZone.PutResources(_convertingResourceCount);
             _convertingResourceCount = 0;
             IsWorking = false;
         }
@@ -52,7 +52,7 @@ namespace Converter
             if (!LoadZone.CanConvert(resource.ResourceType))
                 throw new InvalidEnumArgumentException("Resource type is not supported");
             
-            var change = LoadZone.AddResources(addingResourcesCount);
+            var change = LoadZone.PutResources(addingResourcesCount);
             return change;
         }
 
@@ -78,7 +78,7 @@ namespace Converter
             _countdown.ResetTime();
             if (_convertingResourceCount > 0)
             {
-                LoadZone.AddResources(_convertingResourceCount);
+                LoadZone.PutResources(_convertingResourceCount);
             }
         }
 

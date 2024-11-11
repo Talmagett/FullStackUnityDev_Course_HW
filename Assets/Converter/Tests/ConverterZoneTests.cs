@@ -25,7 +25,7 @@ namespace Converter.Tests
         {
             var limit = 5;
             var converterZone = new ConverterZone(ResourceType.Wood,5,1);
-            var changeOutput = converterZone.AddResources(count);
+            var changeOutput = converterZone.PutResources(count);
             Assert.AreEqual(changeOutput, change);
             Assert.AreEqual(changeOutput>0?limit:count, converterZone.GetResourcesCount());
         }
@@ -35,7 +35,16 @@ namespace Converter.Tests
         public void AddResourcesToZoneOutOfRangeThrowException(int count)
         {
             var converterZone = new ConverterZone(ResourceType.Wood,5,1);
-            Assert.Catch<ArgumentOutOfRangeException>(()=>converterZone.AddResources(count));
+            Assert.Catch<ArgumentOutOfRangeException>(()=>converterZone.PutResources(count));
+        }
+
+        [Test]
+        public void RemoveResourcesFromZone()
+        {
+            var converterZone = new ConverterZone(ResourceType.Wood,5,2);
+            converterZone.PutResources(5);
+            var removedResources = converterZone.RemoveResources();
+            Assert.AreEqual(removedResources,2);
         }
     }
 }

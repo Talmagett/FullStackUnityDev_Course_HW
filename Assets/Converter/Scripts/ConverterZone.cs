@@ -21,7 +21,7 @@ namespace Converter
         public bool IsFill() => _count == _limit;
         public bool IsEmpty() => _count ==0;
 
-        public int AddResources(int addingResourcesCount)
+        public int PutResources(int addingResourcesCount)
         {
             if (addingResourcesCount <= 0)
                 throw new ArgumentOutOfRangeException("AddingResourcesCount must be greater than zero");
