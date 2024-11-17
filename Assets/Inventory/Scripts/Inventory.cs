@@ -14,8 +14,8 @@ namespace Inventories
         public event Action<Item, Vector2Int> OnRemoved;
         public event Action<Item, Vector2Int> OnMoved;
         public event Action OnCleared;
-        
-        private readonly Dictionary<Item,Vector2Int> _itemsPosition = new ();
+
+        private readonly Dictionary<Item, Vector2Int> _itemsPosition = new();
         private readonly Item[,] _matrixItems;
 
         public int Width { get; }
@@ -37,13 +37,10 @@ namespace Inventories
             params KeyValuePair<Item, Vector2Int>[] items
         ) : this(width, height)
         {
-            if(items==null)
+            if (items == null)
                 throw new ArgumentNullException(nameof(items));
 
-            foreach (var (item, position) in items)
-            {
-                AddItem(item, position);
-            }
+            foreach (var (item, position) in items) AddItem(item, position);
         }
 
         public Inventory(
@@ -52,13 +49,10 @@ namespace Inventories
             params Item[] items
         ) : this(width, height)
         {
-            if(items==null)
+            if (items == null)
                 throw new ArgumentNullException(nameof(items));
 
-            foreach (var item in items)
-            {
-                AddItem(item);
-            }
+            foreach (var item in items) AddItem(item);
         }
 
         public Inventory(
@@ -67,13 +61,10 @@ namespace Inventories
             in IEnumerable<KeyValuePair<Item, Vector2Int>> items
         ) : this(width, height)
         {
-            if(items==null)
+            if (items == null)
                 throw new ArgumentNullException(nameof(items));
 
-            foreach (var item in items)
-            {
-                AddItem(item.Key, item.Value);
-            }
+            foreach (var item in items) AddItem(item.Key, item.Value);
         }
 
         public Inventory(
@@ -82,13 +73,10 @@ namespace Inventories
             in IEnumerable<Item> items
         ) : this(width, height)
         {
-            if(items==null)
+            if (items == null)
                 throw new ArgumentNullException(nameof(items));
 
-            foreach (var item in items)
-            {
-                AddItem(item);
-            }
+            foreach (var item in items) AddItem(item);
         }
 
         /// <summary>
@@ -98,32 +86,23 @@ namespace Inventories
         {
             if (item == null)
                 return false;
-            CheckItemSizeValid(item.Size.x,item.Size.y);
-            return CanAddItem(item,position.x,position.y);
+            if(!IsItemSizeValid(item.Size.x, item.Size.y))
+                throw new ArgumentOutOfRangeException("Item size must be positive integers within the inventory bounds.");
+            return CanAddItem(item, position.x, position.y);
         }
 
         public bool CanAddItem(in Item item, in int posX, in int posY)
         {
-            try
-            {
-                CheckItem(item);
-                if (Contains(item))
-                    return false;
-                for (int x = 0; x < item.Size.x; x++)
-                {
-                    for (int y = 0; y < item.Size.y; y++)
-                    {
-                        if (_matrixItems[posX + x, posY + y] !=null)
-                            return false;
-                    }
-                }
-
-                return true;
-            }
-            catch (Exception)
-            {
+            if (item == null)
                 return false;
-            }
+            if (Contains(item))
+                return false;
+            for (var x = 0; x < item.Size.x; x++)
+            for (var y = 0; y < item.Size.y; y++)
+                if (_matrixItems[posX + x, posY + y] != null)
+                    return false;
+
+            return true;
         }
 
         /// <summary>
@@ -131,30 +110,26 @@ namespace Inventories
         /// </summary>
         public bool AddItem(in Item item, in Vector2Int position)
         {
-            if(item==null)
+            if (item == null)
                 return false;
-            CheckItemSizeValid(item.Size.x,item.Size.y);
+            if(!IsItemSizeValid(item.Size.x, item.Size.y))
+                throw new ArgumentOutOfRangeException("Item size must be positive integers within the inventory bounds.");
             return AddItem(item, position.x, position.y);
         }
 
         public bool AddItem(in Item item, in int posX, in int posY)
         {
-            try
-            {
-                CheckItem(item);
-                CheckPosition(posX, posY);
-                if (!CanAddItem(item, posX, posY))
-                    return false;
-                var position=new Vector2Int(posX, posY);
-                _itemsPosition.Add(item,position);
-                MatrixEdit(item.Size,new Vector2Int(posX, posY),item);
-                OnAdded?.Invoke(item, position);
-                return true;
-            }
-            catch (Exception e)
-            {
+            if (item == null)
                 return false;
-            }
+            if (!IsPositionValid(posX, posY))
+                throw new IndexOutOfRangeException($"{posX} and {posY} is not a valid");
+            if (!CanAddItem(item, posX, posY))
+                return false;
+            var position = new Vector2Int(posX, posY);
+            _itemsPosition.Add(item, position);
+            MatrixEdit(item.Size, new Vector2Int(posX, posY), item);
+            OnAdded?.Invoke(item, position);
+            return true;
         }
 
         /// <summary>
@@ -164,19 +139,14 @@ namespace Inventories
         {
             if (item == null)
                 return false;
-            
-            CheckItemSizeValid(item.Size.x,item.Size.y);
 
-            try
-            {
-                if (Contains(item))
-                    return false;
-                return FindFreePosition(item.Size, out var position);
-            }
-            catch (Exception)
-            {
+            if(!IsItemSizeValid(item.Size.x, item.Size.y))
+                throw new ArgumentOutOfRangeException("Item size must be positive integers within the inventory bounds.");
+
+            if (Contains(item))
                 return false;
-            }
+            
+            return FindFreePosition(item.Size, out var position);
         }
 
         /// <summary>
@@ -186,23 +156,19 @@ namespace Inventories
         {
             if (item == null)
                 return false;
-            CheckItemSizeValid(item.Size.x,item.Size.y);
+            if(!IsItemSizeValid(item.Size.x, item.Size.y))
+                throw new ArgumentOutOfRangeException("Item size must be positive integers within the inventory bounds.");
             if (Contains(item))
                 return false;
+
             
-            try
+            if (FindFreePosition(item.Size, out var position))
             {
-                if (FindFreePosition(item.Size, out var position))
-                {
-                    AddItem(item, position);
-                    return true;
-                }
-                return false;
+                AddItem(item, position);
+                return true;
             }
-            catch (Exception e)
-            {
-                return false;
-            }
+
+            return false;
         }
 
         /// <summary>
@@ -215,45 +181,29 @@ namespace Inventories
                 freePosition = new Vector2Int();
                 return false;
             }
-            
-            CheckItemSizeValid(size.x,size.y);
-            
-            try
+
+            if(!IsItemSizeValid(size.x, size.y))
+                throw new ArgumentOutOfRangeException("Item size must be positive integers within the inventory bounds.");
+
+            for (var y = 0; y <= Height - size.y; y++)
+            for (var x = 0; x <= Width - size.x; x++)
             {
-                for (int y = 0; y <= Height-size.y; y++)
-                {
-                    for (int x = 0; x <= Width-size.x; x++)
+//TODO: goto
+                for (var xCheck = 0; xCheck < size.x; xCheck++)
+                for (var yCheck = 0; yCheck < size.y; yCheck++)
+                    if (IsOccupied(x + xCheck, y + yCheck))
                     {
-                        var canPlace = true;
-
-                        for (int xCheck = 0; xCheck < size.x && canPlace; xCheck++)
-                        {
-                            for (int yCheck = 0; yCheck < size.y; yCheck++)
-                            {
-                                if (IsOccupied(x+xCheck, y+yCheck))
-                                {
-                                    canPlace = false;
-                                    break;
-                                }
-                            }
-                        }
-
-                        if (canPlace)
-                        {
-                            freePosition = new Vector2Int(x, y);
-                            return true;
-                        }
+                        goto FoundPosition;
                     }
-                }
                 
-                freePosition = new Vector2Int();
-                return false;
+                freePosition = new Vector2Int(x, y);
+                return true;
+                
+                FoundPosition: ;
             }
-            catch (Exception e)
-            {
-                freePosition = new Vector2Int();
-                return false;
-            }
+
+            freePosition = new Vector2Int();
+            return false;
         }
 
         /// <summary>
@@ -261,8 +211,8 @@ namespace Inventories
         /// </summary>
         public bool Contains(in Item item)
         {
-            if(item==null) return false;
-            
+            if (item == null) return false;
+
             return _itemsPosition.ContainsKey(item);
         }
 
@@ -276,8 +226,9 @@ namespace Inventories
 
         public bool IsOccupied(in int x, in int y)
         {
-            CheckPosition(x, y);
-            return _matrixItems[x, y]!=null;
+            if (!IsPositionValid(x, y))
+                return false;
+            return _matrixItems[x, y] != null;
         }
 
         /// <summary>
@@ -290,8 +241,8 @@ namespace Inventories
 
         public bool IsFree(in int x, in int y)
         {
-            CheckPosition(x, y);
-            return _matrixItems[x, y]==null;
+            IsPositionValid(x, y);
+            return _matrixItems[x, y] == null;
         }
 
         /// <summary>
@@ -299,27 +250,26 @@ namespace Inventories
         /// </summary>
         public bool RemoveItem(in Item item)
         {
-            return RemoveItem(item,out var position);
+            return RemoveItem(item, out var position);
         }
 
         public bool RemoveItem(in Item item, out Vector2Int position)
         {
-            try
-            {
-                CheckItem(item);
-                var result= _itemsPosition.Remove(item, out position);
-                if (result)
-                {
-                    MatrixEdit(item.Size,position,null);
-                    OnRemoved?.Invoke(item, position);
-                }
-                return result;
-            }
-            catch (Exception e)
+            if (item == null)
             {
                 position = new Vector2Int();
+
                 return false;
             }
+
+            var result = _itemsPosition.Remove(item, out position);
+            if (result)
+            {
+                MatrixEdit(item.Size, position, null);
+                OnRemoved?.Invoke(item, position);
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -332,8 +282,8 @@ namespace Inventories
 
         public Item GetItem(in int x, in int y)
         {
-            CheckPosition(x,y);
-            var item =  _matrixItems[x, y];
+            IsPositionValid(x, y);
+            var item = _matrixItems[x, y];
             if (item == null)
                 throw new NullReferenceException("Item is null");
             return item;
@@ -341,21 +291,18 @@ namespace Inventories
 
         public bool TryGetItem(in Vector2Int position, out Item item)
         {
-            return TryGetItem(position.x,position.y,out item);
+            return TryGetItem(position.x, position.y, out item);
         }
 
         public bool TryGetItem(in int x, in int y, out Item item)
         {
-            try
-            {
-                item = GetItem(x, y);
-                return true;
-            }
-            catch (Exception)
+            if (!IsPositionValid(x, y))
             {
                 item = null;
                 return false;
             }
+            item = _matrixItems[x, y];
+            return true;
         }
 
         /// <summary>
@@ -363,37 +310,36 @@ namespace Inventories
         /// </summary>
         public Vector2Int[] GetPositions(in Item item)
         {
-            if(item == null)
+            if (item == null)
                 throw new NullReferenceException("Item is null");
-            CheckItem(item);
-            
-            if(!_itemsPosition.ContainsKey(item))
+
+            if (!_itemsPosition.ContainsKey(item))
                 throw new KeyNotFoundException("Item not found in inventory");
-            
-            var positions=new Vector2Int[item.Size.x*item.Size.y];
-            for (int x = 0; x < item.Size.x; x++)
-            {
-                for (int y = 0; y < item.Size.y; y++)
-                {
-                    positions[x * item.Size.y + y] = new Vector2Int(_itemsPosition[item].x + x, _itemsPosition[item].y + y);
-                }
-            }
-            
+
+            var positions = new Vector2Int[item.Size.x * item.Size.y];
+            for (var x = 0; x < item.Size.x; x++)
+            for (var y = 0; y < item.Size.y; y++)
+                positions[x * item.Size.y + y] = new Vector2Int(_itemsPosition[item].x + x, _itemsPosition[item].y + y);
+
             return positions;
         }
 
         public bool TryGetPositions(in Item item, out Vector2Int[] positions)
         {
-            try
+            positions = null;
+
+            if (item == null)
             {
-                positions = GetPositions(item);
-                return true;
-            }
-            catch (Exception)
-            {
-                positions = null;
                 return false;
             }
+
+            if (!_itemsPosition.ContainsKey(item))
+            {
+                return false;
+            }
+
+            positions = GetPositions(item);
+            return true;
         }
 
         /// <summary>
@@ -403,15 +349,10 @@ namespace Inventories
         {
             if (_itemsPosition.Count == 0)
                 return;
-            
+
             _itemsPosition.Clear();
-            for (int x = 0; x < Width; x++)
-            {
-                for (int y = 0; y < Height; y++)
-                {
-                    _matrixItems[x, y] = null;
-                }
-            }
+            Array.Clear(_matrixItems,0,_matrixItems.Length);
+            
             OnCleared?.Invoke();
         }
 
@@ -428,37 +369,30 @@ namespace Inventories
         /// </summary>
         public bool MoveItem(in Item item, in Vector2Int newPosition)
         {
-            CheckItem(item);
-            try
-            {
-                CheckPosition(newPosition.x,newPosition.y);
+            if (item == null)
+                throw new ArgumentNullException("Item is null");
+            if (IsPositionValid(newPosition.x, newPosition.y))
+                return false;
+            var result = _itemsPosition.Remove(item, out var oldPosition);
+            if (!result) 
+                return false;
             
-                var result= _itemsPosition.Remove(item, out var oldPosition);
-                if (result)
+            if (oldPosition != newPosition)
+            {
+                MatrixEdit(item.Size, oldPosition, null);
+
+                if (CanAddItem(item, newPosition))
                 {
-                    if (oldPosition != newPosition)
-                    {
-                        MatrixEdit(item.Size, oldPosition, null);
+                    _itemsPosition.Add(item, newPosition);
+                    MatrixEdit(item.Size, newPosition, item);
 
-                        if (CanAddItem(item, newPosition))
-                        {
-                            _itemsPosition.Add(item,newPosition);
-                            MatrixEdit(item.Size, newPosition, item);
-                            
-                            OnMoved?.Invoke(item,newPosition);
-                            return true;
-                        }
-                    }
-                    _itemsPosition.Add(item,oldPosition);
-                    return false;
+                    OnMoved?.Invoke(item, newPosition);
+                    return true;
                 }
+            }
 
-                return false;
-            }
-            catch (Exception)
-            {            
-                return false;
-            }
+            _itemsPosition.Add(item, oldPosition);
+            return false;
         }
 
         /// <summary>
@@ -466,7 +400,10 @@ namespace Inventories
         /// </summary>
         public void ReorganizeSpace()
         {
-            var items = _itemsPosition.Keys.OrderByDescending(t=>t.Size.x*t.Size.y).ToList();
+            //Comparer
+            var items = _itemsPosition.Keys.OrderByDescending(t => t.Size.x * t.Size.y);
+            
+            //TODO: reorganize without actions
             Clear();
             foreach (var item in items)
             {
@@ -482,21 +419,15 @@ namespace Inventories
         public void CopyTo(in Item[,] matrix)
         {
             if (_matrixItems.GetLength(0) != matrix.GetLength(0) || _matrixItems.GetLength(1) != matrix.GetLength(1))
-            {
                 throw new ArgumentException("Size of matrix are not equal");
-            }
 
-            for (int i = 0; i < _matrixItems.GetLength(0); i++)
-            {
-                for (int j = 0; j < _matrixItems.GetLength(1); j++)
-                {
-                    matrix[i, j] = _matrixItems[i, j];
-                }
-            }
+            Array.Copy(_matrixItems, matrix, _matrixItems.Length);
         }
 
         public IEnumerator<Item> GetEnumerator()
-            => _itemsPosition.Keys.GetEnumerator();
+        {
+            return _itemsPosition.Keys.GetEnumerator();
+        }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
@@ -506,31 +437,19 @@ namespace Inventories
 
         private void MatrixEdit(Vector2Int size, Vector2Int position, Item item)
         {
-            for (int x = 0; x < size.x; x++)
-            {
-                for (int y = 0; y < size.y; y++)
-                {
-                    _matrixItems[x + position.x, y + position.y] = item;
-                }
-            }
+            for (var x = 0; x < size.x; x++)
+            for (var y = 0; y < size.y; y++)
+                _matrixItems[x + position.x, y + position.y] = item;
         }
 
-        private void CheckItem(in Item item)
+        private bool IsItemSizeValid(in int x, in int y)
         {
-            if(item == null)
-                throw new ArgumentNullException("Item is null");
+            return x > 0 && y > 0 && x <= Width && y <= Height;
         }
 
-        private void CheckItemSizeValid(in int x, in int y)
+        private bool IsPositionValid(in int x, in int y)
         {
-            if(x<=0||y<=0||x>Width||y>Height)
-                throw new ArgumentOutOfRangeException("Item size must be positive integers within the inventory bounds.");
-        }
-        
-        private void CheckPosition(in int x, in int y)
-        {
-            if (x < 0 || y < 0 || x > Width || y > Height)
-                throw new IndexOutOfRangeException("X and Y must be positive integers within the inventory bounds.");
+            return x >= 0 && y >= 0 && x <= Width && y <= Height;
         }
     }
 }
