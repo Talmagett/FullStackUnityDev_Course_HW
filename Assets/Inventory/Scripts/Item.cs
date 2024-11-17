@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 namespace Inventories
 {
     ///Don't modify 
-    public sealed class Item
+    public sealed class Item : IComparable
     {
         private static int ID_GEN;
 
@@ -64,6 +65,22 @@ namespace Inventories
         public override string ToString()
         {
             return $"{this.name}";
+        }
+
+        public int CompareTo(object obj)
+        {
+            if(obj is not Item itemToCompare)
+                return 0;
+            
+            var comparingItemSize = itemToCompare.Size.x * itemToCompare.Size.y;
+            var itemSize = Size.x * Size.y;
+            
+            if (itemSize > comparingItemSize)
+                return 1;
+            else if (itemSize < comparingItemSize)
+                return -1;
+            else 
+                return 0;
         }
     }
 }
