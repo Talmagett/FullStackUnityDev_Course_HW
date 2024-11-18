@@ -10,7 +10,7 @@ namespace Converter
         public ConverterZone(int limit)
         {
             if (limit < 1)
-                throw new ArgumentOutOfRangeException("limit must be greater than zero");
+                throw new ArgumentOutOfRangeException(nameof(limit),"limit must be greater than zero");
             _limit = limit;
         }
 
