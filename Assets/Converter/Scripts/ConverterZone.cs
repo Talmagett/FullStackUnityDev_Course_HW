@@ -1,22 +1,20 @@
 using System;
+using UnityEngine;
 
 namespace Converter
 {
     public class ConverterZone
     {
-        private readonly ResourceType _resourceType;
         private readonly int _limit;
-        private readonly int _convertingCount;
         private int _count;
 
-        public ConverterZone(ResourceType recipeInputResourceType, int limit, int convertingCount)
+        public ConverterZone(int limit)
         {
+            if (limit < 1)
+                throw new ArgumentOutOfRangeException($"limit must be greater than zero");
             _limit = limit;
-            _resourceType = recipeInputResourceType;
-            _convertingCount = convertingCount;
         }
 
-        public bool CanConvert(ResourceType inputResourceType) => _resourceType == inputResourceType;
         public int GetResourcesCount() => _count;
         public bool IsFill() => _count == _limit;
         public bool IsEmpty() => _count ==0;
@@ -24,10 +22,10 @@ namespace Converter
         public int PutResources(int addingResourcesCount)
         {
             if (addingResourcesCount <= 0)
-                throw new ArgumentOutOfRangeException("AddingResourcesCount must be greater than zero");
+                throw new ArgumentOutOfRangeException(nameof(addingResourcesCount),"AddingResourcesCount must be greater than zero");
             
             var newValue = _count + addingResourcesCount;
-            if (newValue >= _limit)
+            if (newValue > _limit)
             {
                 _count = _limit;
                 return newValue - _limit;
@@ -37,11 +35,14 @@ namespace Converter
             return 0;
         }
 
-        public int RemoveResources()
+        public int RemoveResources(int amount)
         {
-            var removingCount =  _count > _convertingCount ? _convertingCount : _count;
-            _count -= removingCount;
-            return removingCount;
+            if (amount<=0)
+                throw new ArgumentOutOfRangeException(nameof(amount),"Amount must be greater than zero");
+
+            var removingValue = amount > _count?_count:amount;
+            _count -= removingValue;
+            return removingValue;
         }
     }
 }

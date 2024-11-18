@@ -1,12 +1,19 @@
 namespace Converter
 {
-    public class Resource
+    public abstract class Resource
     {
-        public readonly ResourceType ResourceType;
+        //что-то можно добавить
+    }
 
-        public Resource(ResourceType resourceType)
-        {
-            ResourceType = resourceType;
-        }
+    public class Wood : Resource
+    {
+    }
+
+    public class Board : Resource
+    {
+    }
+
+    public class Stone : Resource
+    {
     }
 }
