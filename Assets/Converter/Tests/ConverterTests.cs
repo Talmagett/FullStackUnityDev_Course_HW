@@ -126,7 +126,8 @@ namespace Converter.Tests
         [TestCase(1, 2, 0, 10, TestName = "Recipe 1:2")]
         [TestCase(2, 3, 1, 6, TestName = "Recipe 2:3")]
         [TestCase(3, 2, 2, 2, TestName = "Recipe 3:2")]
-        public void UpdateConverterFinishingConvertWithComplexRecipe(int inputResourceCount, int outputResourceCount, int expectedInputCount, int expectedOutputCount)
+        public void UpdateConverterFinishingConvertWithComplexRecipe(int inputResourceCount, int outputResourceCount,
+            int expectedInputCount, int expectedOutputCount)
         {
             //Arrange:
             var recipe = new Recipe(new Wood(), inputResourceCount, new Board(), outputResourceCount);

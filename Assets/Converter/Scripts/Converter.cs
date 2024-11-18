@@ -86,7 +86,7 @@ namespace Converter
             if (LoadZone.GetResourcesCount() < _recipe.InputCount)
                 return false;
 
-            var convertingCount = _workingPackCount - (_workingPackCount % _recipe.InputCount);
+            var convertingCount = _workingPackCount - _workingPackCount % _recipe.InputCount;
             _convertingResourceCount = LoadZone.RemoveResources(convertingCount);
 
             IsWorking = true;
