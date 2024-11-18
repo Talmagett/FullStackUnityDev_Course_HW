@@ -77,10 +77,9 @@ namespace Inventories
             
             if (itemSize > comparingItemSize)
                 return 1;
-            else if (itemSize < comparingItemSize)
+            if (itemSize < comparingItemSize)
                 return -1;
-            else 
-                return 0;
+            return -1;
         }
     }
 }

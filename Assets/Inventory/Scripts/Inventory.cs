@@ -40,7 +40,8 @@ namespace Inventories
             if (items == null)
                 throw new ArgumentNullException(nameof(items));
 
-            foreach (var (item, position) in items) AddItem(item, position);
+            foreach (var (item, position) in items) 
+                AddItem(item, position);
         }
 
         public Inventory(
@@ -52,7 +53,8 @@ namespace Inventories
             if (items == null)
                 throw new ArgumentNullException(nameof(items));
 
-            foreach (var item in items) AddItem(item);
+            foreach (var item in items) 
+                AddItem(item);
         }
 
         public Inventory(
@@ -64,7 +66,8 @@ namespace Inventories
             if (items == null)
                 throw new ArgumentNullException(nameof(items));
 
-            foreach (var item in items) AddItem(item.Key, item.Value);
+            foreach (var item in items) 
+                AddItem(item.Key, item.Value);
         }
 
         public Inventory(
@@ -76,7 +79,8 @@ namespace Inventories
             if (items == null)
                 throw new ArgumentNullException(nameof(items));
 
-            foreach (var item in items) AddItem(item);
+            foreach (var item in items) 
+                AddItem(item);
         }
 
         /// <summary>
@@ -86,8 +90,9 @@ namespace Inventories
         {
             if (item == null)
                 return false;
-            if(!IsItemSizeValid(item.Size.x, item.Size.y))
-                throw new ArgumentOutOfRangeException("Item size must be positive integers within the inventory bounds.");
+            if (!IsItemSizeValid(item.Size.x, item.Size.y))
+                throw new ArgumentOutOfRangeException(
+                    "Item size must be positive integers within the inventory bounds.");
             return CanAddItem(item, position.x, position.y);
         }
 
@@ -98,8 +103,8 @@ namespace Inventories
 
             if (Contains(item))
                 return false;
-            
-            if (!IsPositionValid(posX + item.Size.x-1, posY + item.Size.y-1))
+
+            if (!IsPositionValid(posX + item.Size.x - 1, posY + item.Size.y - 1))
                 return false;
 
             for (var x = 0; x < item.Size.x; x++)
@@ -122,21 +127,22 @@ namespace Inventories
         {
             if (item == null)
                 return false;
-            
+
             if (!IsPositionValid(posX, posY))
                 return false;
-            
-            if(!IsItemSizeValid(item.Size.x, item.Size.y))
-                throw new ArgumentOutOfRangeException("Item size must be positive integers within the inventory bounds.");
+
+            if (!IsItemSizeValid(item.Size.x, item.Size.y))
+                throw new ArgumentOutOfRangeException(
+                    "Item size must be positive integers within the inventory bounds.");
 
             if (!CanAddItem(item, posX, posY))
                 return false;
-            
+
             var position = new Vector2Int(posX, posY);
             _itemsPosition.Add(item, position);
             MatrixEdit(item.Size, position, item);
             OnAdded?.Invoke(item, position);
-            
+
             return true;
         }
 
@@ -148,12 +154,13 @@ namespace Inventories
             if (item == null)
                 return false;
 
-            if(!IsItemSizeValid(item.Size.x, item.Size.y))
-                throw new ArgumentOutOfRangeException("Item size must be positive integers within the inventory bounds.");
+            if (!IsItemSizeValid(item.Size.x, item.Size.y))
+                throw new ArgumentOutOfRangeException(
+                    "Item size must be positive integers within the inventory bounds.");
 
             if (Contains(item))
                 return false;
-            
+
             return FindFreePosition(item.Size, out var position);
         }
 
@@ -164,19 +171,17 @@ namespace Inventories
         {
             if (item == null)
                 return false;
-            if(!IsItemSizeValid(item.Size.x, item.Size.y))
-                throw new ArgumentOutOfRangeException("Item size must be positive integers within the inventory bounds.");
+            if (!IsItemSizeValid(item.Size.x, item.Size.y))
+                throw new ArgumentOutOfRangeException(
+                    "Item size must be positive integers within the inventory bounds.");
             if (Contains(item))
                 return false;
 
-            
-            if (FindFreePosition(item.Size, out var position))
-            {
-                AddItem(item, position);
-                return true;
-            }
 
-            return false;
+            if (!FindFreePosition(item.Size, out var position)) return false;
+            
+            AddItem(item, position);
+            return true;
         }
 
         /// <summary>
@@ -190,8 +195,9 @@ namespace Inventories
                 return false;
             }
 
-            if(!IsItemSizeValid(size.x, size.y))
-                throw new ArgumentOutOfRangeException("Item size must be positive integers within the inventory bounds.");
+            if (!IsItemSizeValid(size.x, size.y))
+                throw new ArgumentOutOfRangeException(
+                    "Item size must be positive integers within the inventory bounds.");
 
             for (var y = 0; y <= Height - size.y; y++)
             for (var x = 0; x <= Width - size.x; x++)
@@ -199,13 +205,11 @@ namespace Inventories
                 for (var xCheck = 0; xCheck < size.x; xCheck++)
                 for (var yCheck = 0; yCheck < size.y; yCheck++)
                     if (IsOccupied(x + xCheck, y + yCheck))
-                    {
                         goto FoundPosition;
-                    }
-                
+
                 freePosition = new Vector2Int(x, y);
                 return true;
-                
+
                 FoundPosition: ;
             }
 
@@ -301,7 +305,7 @@ namespace Inventories
         public bool TryGetItem(in int x, in int y, out Item item)
         {
             item = !IsPositionValid(x, y) ? null : _matrixItems[x, y];
-            
+
             return item != null;
         }
 
@@ -347,8 +351,8 @@ namespace Inventories
                 return;
 
             _itemsPosition.Clear();
-            Array.Clear(_matrixItems,0,_matrixItems.Length);
-            
+            Array.Clear(_matrixItems, 0, _matrixItems.Length);
+
             OnCleared?.Invoke();
         }
 
@@ -367,14 +371,15 @@ namespace Inventories
         {
             if (item == null)
                 throw new ArgumentNullException("Item is null");
-            
+
             if (!IsPositionValid(newPosition.x, newPosition.y))
                 return false;
 
             var result = _itemsPosition.Remove(item, out var oldPosition);
-            if (!result) 
-                return false;
             
+            if (!result)
+                return false;
+
             if (oldPosition != newPosition)
             {
                 MatrixEdit(item.Size, oldPosition, null);
@@ -400,28 +405,20 @@ namespace Inventories
         {
             if (_itemsPosition.Count == 0)
                 return;
-            
-            var items = _itemsPosition.Keys.OrderByDescending(t=>t.Size.x*t.Size.y);
+
+            var items = _itemsPosition.Keys.ToList();
+            items.Sort();
 
             _itemsPosition.Clear();
-            Array.Clear(_matrixItems,0,_matrixItems.Length);
-            
-            foreach (var item in items)
-            {
-                Debug.Log($"{item.Name}");
-                if (!FindFreePosition(item.Size, out var freePosition))
-                    throw new Exception("Invalid position");
-                _itemsPosition.Add(item, freePosition);
-                MatrixEdit(item.Size, freePosition, item);
-            }
-            
-            /*for (var i = items.Count()- 1; i >= 0; i--)
+            Array.Clear(_matrixItems, 0, _matrixItems.Length);
+
+            for (var i = items.Count() - 1; i >= 0; i--)
             {
                 if (!FindFreePosition(items[i].Size, out var freePosition))
                     throw new Exception("Invalid position");
                 _itemsPosition.Add(items[i], freePosition);
                 MatrixEdit(items[i].Size, freePosition, items[i]);
-            }*/
+            }
         }
 
         /// <summary>
