@@ -21,8 +21,9 @@ namespace Game.Scripts.UI
         public void Initialize()
         {
             _difficulty.OnStateChanged+=UpdateDifficulty;
-            UpdateDifficulty();
             _score.OnStateChanged+=UpdateScore;
+            UpdateDifficulty();
+            UpdateScore(_score.Current);
         }
 
         public void Dispose()
@@ -33,7 +34,7 @@ namespace Game.Scripts.UI
 
         private void UpdateScore(int scoreValue)
         {
-            _gameUI.SetScore($"Score: {scoreValue}");
+            _gameUI.SetScore(scoreValue.ToString());
         }
 
         private void UpdateDifficulty()

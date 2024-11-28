@@ -487,6 +487,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snake: {fileID: 1446817787}
+  gameUI: {fileID: 1764093826}
+  worldBounds: {fileID: 1431199845}
+  coin: {fileID: 1221131666036007499, guid: f37c023e6b8b06149a4215320dd7e482, type: 3}
 --- !u!4 &664443158
 Transform:
   m_ObjectHideFlags: 0
