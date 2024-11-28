@@ -1,4 +1,5 @@
 using Game.Scripts.Player;
+using Game.Scripts.Systems.Coin;
 using Game.Scripts.UI;
 using Modules;
 using SnakeGame;
@@ -13,6 +14,7 @@ namespace Game.Scripts.Zenject
         [SerializeField] private GameUI gameUI;
         [SerializeField] private WorldBounds worldBounds;
         [SerializeField] private Coin coin;
+        [SerializeField] private Transform worldTransform;
         
         
         public override void InstallBindings()
@@ -31,24 +33,8 @@ namespace Game.Scripts.Zenject
             Container.BindInterfacesAndSelfTo<GameUIController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<LevelController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameUIPresenter>().AsSingle().NonLazy();
-
-            Container
-                .BindMemoryPool<Coin, CoinPool>()
-                .WithInitialSize(4)
-                .ExpandByOneAtATime()
-                .FromComponentInNewPrefab(coin)
-                .AsSingle();
-            /*
-            this.Container
-                .BindMemoryPool<Bullet, BulletPool>()
-                // .WithFixedSize(10)
-                .WithInitialSize(5)
-                .WithMaxSize(10)
-                .ExpandByOneAtATime()
-                .FromComponentInNewPrefab(_bulletPrefab)
-                .WithGameObjectName("Bullet")
-                .UnderTransform(_worldTransform)
-                .AsSingle();*/
+            
+            CoinInstaller.Install(Container,worldTransform);
         }
     }
 }

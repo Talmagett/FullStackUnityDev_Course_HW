@@ -11,12 +11,12 @@ namespace Game.Scripts
     {
         private readonly ISnake _snake;
         private readonly IDifficulty _difficulty;
-        private List<Coin> _coins;
-        private readonly CoinPool _coinsPool;
+        private List<ICoin> _coins;
+        private readonly ICoinSpawner _coinsPool;
         private readonly IWorldBounds _worldBounds;
         private readonly IScore _score;
 
-        public LevelController(ISnake snake, IDifficulty difficulty, CoinPool coinsPool, IWorldBounds worldBounds, IScore score)
+        public LevelController(ISnake snake, IDifficulty difficulty, ICoinSpawner coinsPool, IWorldBounds worldBounds, IScore score)
         {
             _snake = snake;
             _difficulty = difficulty;
@@ -46,24 +46,22 @@ namespace Game.Scripts
 
                 _snake.Expand(coin.Bones);
                 _score.Add(coin.Score);
-                _coinsPool.Despawn(coin);
+                _coinsPool.Despawn(coin as Coin);
                 _coins.Remove(coin);
+                
+                if (_coins.Count == 0)
+                {
+                    _difficulty.Next(out int difficulty);
+                }
                 return;
-            }
-
-            if (_coins.Count == 0)
-            {
-                _difficulty.Next(out int difficulty);
-                SpawnCoins();
             }
         }
         
         private void SpawnCoins()
         {
             var difficulty = _difficulty.Current;
-            _coins = new List<Coin>(difficulty);
+            _coins = new List<ICoin>(difficulty);
             _snake.SetSpeed(difficulty);
-            Debug.Log(difficulty);
             for (int i = 0; i < difficulty; i++)
             {
                 var newPosition = _worldBounds.GetRandomPosition();
