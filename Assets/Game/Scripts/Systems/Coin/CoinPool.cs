@@ -2,16 +2,21 @@ using Modules;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts
+namespace Game.Scripts.Systems.Coin
 {
-    public class CoinPool : MonoMemoryPool<Vector2Int, Coin>, ICoinSpawner
+    public class CoinPool : MonoMemoryPool<Vector2Int, Modules.Coin>, ICoinSpawner
     {
-        ICoin ICoinSpawner.Spawn(Vector2Int position)=>
-            Spawn(position);
+        ICoin ICoinSpawner.Spawn(Vector2Int position)
+        {
+            return Spawn(position);
+        }
 
-        public void Despawn(Coin coin) => base.Despawn(coin);
+        public new void Despawn(Modules.Coin coin)
+        {
+            base.Despawn(coin);
+        }
 
-        protected override void Reinitialize(Vector2Int p1, Coin item)
+        protected override void Reinitialize(Vector2Int p1, Modules.Coin item)
         {
             item.Position = p1;
             item.Generate();

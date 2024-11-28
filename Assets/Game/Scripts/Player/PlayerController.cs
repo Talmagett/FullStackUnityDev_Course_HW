@@ -8,8 +8,8 @@ namespace Game.Scripts
 {
     public class PlayerController : IInitializable, IDisposable
     {
-        private readonly ISnake _snake;
         private readonly IPlayerInput _playerInput;
+        private readonly ISnake _snake;
 
         public PlayerController(ISnake snake, IPlayerInput playerInput)
         {
@@ -32,11 +32,11 @@ namespace Game.Scripts
             var snakeDirection = SnakeDirection.NONE;
             if (direction.x == 1)
                 snakeDirection = SnakeDirection.RIGHT;
-            else if (direction.x ==-1)
+            else if (direction.x == -1)
                 snakeDirection = SnakeDirection.LEFT;
-            else if (direction.y ==1)
+            else if (direction.y == 1)
                 snakeDirection = SnakeDirection.UP;
-            else if (direction.y ==-1)
+            else if (direction.y == -1)
                 snakeDirection = SnakeDirection.DOWN;
             _snake.Turn(snakeDirection);
         }

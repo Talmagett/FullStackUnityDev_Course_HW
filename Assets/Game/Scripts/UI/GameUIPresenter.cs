@@ -2,7 +2,7 @@ using System;
 using SnakeGame;
 using Zenject;
 
-namespace Game.Scripts
+namespace Game.Scripts.UI
 {
     public class GameUIPresenter : IInitializable, IDisposable
     {
@@ -17,17 +17,17 @@ namespace Game.Scripts
 
         public void Initialize()
         {
-            _gameController.OnGameOver+=OnGameOver;
+            _gameController.OnGameOver += OnGameOver;
         }
 
         public void Dispose()
         {
-            _gameController.OnGameOver-=OnGameOver;
+            _gameController.OnGameOver -= OnGameOver;
         }
 
-        private void OnGameOver(bool obj)
+        private void OnGameOver(bool value)
         {
-            _gameUI.GameOver(obj);
+            _gameUI.GameOver(value);
         }
     }
 }

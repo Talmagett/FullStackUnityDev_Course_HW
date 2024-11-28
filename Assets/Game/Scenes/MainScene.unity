@@ -491,6 +491,7 @@ MonoBehaviour:
   worldBounds: {fileID: 1431199845}
   coin: {fileID: 1221131666036007499, guid: f37c023e6b8b06149a4215320dd7e482, type: 3}
   worldTransform: {fileID: 1431199844}
+  maxDifficulty: 9
 --- !u!4 &664443158
 Transform:
   m_ObjectHideFlags: 0

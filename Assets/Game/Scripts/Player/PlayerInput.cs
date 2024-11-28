@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Game.Scripts.Player
 {
-    public class PlayerInput:IPlayerInput, ITickable
+    public class PlayerInput : IPlayerInput, ITickable
     {
         public event Action<Vector2Int> OnMoved;
 
@@ -13,7 +13,7 @@ namespace Game.Scripts.Player
             var horizontal = (int)Input.GetAxisRaw("Horizontal");
             var vertical = (int)Input.GetAxisRaw("Vertical");
             var direction = new Vector2Int(horizontal, vertical);
-            Debug.Log(direction);
+            
             OnMoved?.Invoke(direction);
         }
     }
