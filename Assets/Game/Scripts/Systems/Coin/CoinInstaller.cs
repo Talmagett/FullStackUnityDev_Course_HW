@@ -1,31 +1,44 @@
+using Modules;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Systems.Coin
+namespace SnakeGame.Systems
 {
-    public class CoinInstaller : Installer<Transform, CoinInstaller>
+    public class CoinInstaller : Installer<Transform, Coin,CoinInstaller>
     {
-        [Inject] protected Modules.Coin _coinPrefab;
+        private Transform _parentTransform;
+        private Coin _coinPrefab;
 
-        [Inject] protected Transform _worldTransform;
+        public CoinInstaller(Transform parentTransform, Coin coinPrefab)
+        {
+            _parentTransform = parentTransform;
+            _coinPrefab = coinPrefab;
+        }
 
         public override void InstallBindings()
         {
             Container
-                .BindInterfacesAndSelfTo<CoinController>()
-                .AsSingle()
-                .NonLazy();
-            Container
-                .BindMemoryPool<Modules.Coin, CoinPool>()
+                .BindMemoryPool<Coin, CoinPool>()
                 .WithInitialSize(4)
                 .ExpandByOneAtATime()
                 .FromComponentInNewPrefab(_coinPrefab)
+                .UnderTransform(_parentTransform)
                 .AsSingle();
 
             Container
                 .Bind<ICoinSpawner>()
                 .To<CoinPool>()
                 .FromResolve();
+            
+            Container
+                .BindInterfacesAndSelfTo<CoinService>()
+                .AsSingle()
+                .NonLazy();
+            
+            Container
+                .BindInterfacesAndSelfTo<CoinGenerator>()
+                .AsSingle()
+                .NonLazy();
         }
     }
 }

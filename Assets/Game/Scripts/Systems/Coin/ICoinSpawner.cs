@@ -1,11 +1,11 @@
 using Modules;
 using UnityEngine;
 
-namespace Game.Scripts.Systems.Coin
+namespace SnakeGame.Systems
 {
     public interface ICoinSpawner
     {
         ICoin Spawn(Vector2Int position);
-        void Despawn(Modules.Coin coin);
+        void Despawn(Coin coin);
     }
 }

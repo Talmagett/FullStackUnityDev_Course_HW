@@ -2,16 +2,16 @@ using Modules;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Systems.Coin
+namespace SnakeGame.Systems
 {
-    public class CoinPool : MonoMemoryPool<Vector2Int, Modules.Coin>, ICoinSpawner
+    public class CoinPool : MonoMemoryPool<Vector2Int, Coin>, ICoinSpawner
     {
         ICoin ICoinSpawner.Spawn(Vector2Int position)
         {
             return Spawn(position);
         }
 
-        public new void Despawn(Modules.Coin coin)
+        public new void Despawn(Coin coin)
         {
             base.Despawn(coin);
         }

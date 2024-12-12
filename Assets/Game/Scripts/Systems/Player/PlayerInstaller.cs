@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace Game.Scripts.Player
+namespace SnakeGame.Systems
 {
     public class PlayerInstaller : Installer<PlayerInstaller>
     {

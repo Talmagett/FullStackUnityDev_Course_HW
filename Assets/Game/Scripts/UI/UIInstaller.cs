@@ -1,13 +1,16 @@
 using Zenject;
 
-namespace Game.Scripts.UI
+namespace SnakeGame.UI
 {
     public class UIInstaller : Installer<UIInstaller>
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<GameUIController>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<GameUIPresenter>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<GameUI>().FromComponentsInHierarchy().AsSingle();
+
+            Container.BindInterfacesTo<ScorePresenter>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<DifficultyPresenter>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<GameOverPresenter>().AsSingle().NonLazy();
         }
     }
 }
