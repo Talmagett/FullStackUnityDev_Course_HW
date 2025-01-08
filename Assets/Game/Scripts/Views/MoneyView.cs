@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Game.Views
     {
         [SerializeField] private TMP_Text moneyText;
 
+        [Button]
         public void SetMoneyText(string money)
         {
             moneyText.text = money;
