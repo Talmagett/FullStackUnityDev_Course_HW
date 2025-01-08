@@ -11,8 +11,17 @@ namespace Game.Views
             this.Container
                 .Bind<MoneyView>()
                 .FromComponentInHierarchy()
-                .AsSingle()
-                .NonLazy();
+                .AsSingle();
+            
+            this.Container
+                .Bind<PlanetView>()
+                .FromComponentsInHierarchy()
+                .AsCached();
+            
+            this.Container
+                .Bind<PlanetPopupView>()
+                .FromComponentInHierarchy()
+                .AsSingle();
         }
     }
 }

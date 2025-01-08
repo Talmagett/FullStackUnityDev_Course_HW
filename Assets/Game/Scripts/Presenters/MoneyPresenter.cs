@@ -7,13 +7,13 @@ namespace Game.Presenters
 {
     public class MoneyPresenter : IInitializable, IDisposable
     {
-        private IMoneyStorage _moneyStorage;
-        private MoneyView _moneyView;
+        private readonly IMoneyStorage _moneyStorage;
+        private readonly MoneyView _view;
 
-        public MoneyPresenter(IMoneyStorage moneyStorage, MoneyView moneyView)
+        public MoneyPresenter(IMoneyStorage moneyStorage, MoneyView view)
         {
             _moneyStorage = moneyStorage;
-            _moneyView = moneyView;
+            _view = view;
             UpdateMoneyText(_moneyStorage.Money,0);
         }
 
@@ -29,7 +29,7 @@ namespace Game.Presenters
         
         private void UpdateMoneyText(int newvalue, int prevvalue)
         {
-            _moneyView.SetMoneyText(newvalue.ToString());
+            _view.SetMoneyText(newvalue.ToString());
         }
     }
 }

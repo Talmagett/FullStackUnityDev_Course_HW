@@ -9,6 +9,8 @@ namespace Game.Views
 {
     public class PlanetView : MonoBehaviour
     {
+        [SerializeField] private Image planetIcon;
+        
         [SerializeField] private GameObject coinGameObject;
         [SerializeField] private GameObject incomeGameObject;
         
@@ -32,6 +34,12 @@ namespace Game.Views
         {
             add => smartButton.OnHold += value;
             remove => smartButton.OnHold -= value;
+        }
+        
+        [Button]
+        public void SetIcon(Sprite sprite)
+        {
+            planetIcon.sprite = sprite;
         }
         
         [Button]
