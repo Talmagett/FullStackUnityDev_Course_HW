@@ -9,11 +9,13 @@ namespace Game.Presenters
     {
         private readonly IPlanet _planet;
         private readonly PlanetView _view;
+        private readonly PlanetPopupPresenter _popupPresenter;
 
-        public PlanetPresenter(IPlanet planet, PlanetView view)
+        public PlanetPresenter(IPlanet planet, PlanetView view, PlanetPopupPresenter popupPresenter)
         {
             _planet = planet;
             _view = view;
+            _popupPresenter = popupPresenter;
 
             InitData();
         }
@@ -31,11 +33,38 @@ namespace Game.Presenters
 
         public void Initialize()
         {
+            _planet.OnIncomeTimeChanged += UpdateTimerText;
+            _planet.OnIncomeReady += UpdateIncomeReady;
+            _view.OnClick += OnClick;
+            _view.OnHold += OnHold;
         }
-
+        
         public void Dispose()
         {
-            
+            _planet.OnIncomeTimeChanged -= UpdateTimerText;
+            _planet.OnIncomeReady -= UpdateIncomeReady;
+        }
+        
+        private void OnClick()
+        {
+            if(_planet.CanUnlock)
+                _planet.Unlock();
+        }
+        
+        private void OnHold()
+        {
+            _popupPresenter.Show(_planet);
+        }
+        
+        private void UpdateIncomeReady(bool incomeReady)
+        {
+            _view.ShowCoinHideIncomeSlider(incomeReady);
+        }
+
+        private void UpdateTimerText(float time)
+        {
+            _view.SetTimerText($"{time/60}m:{time%60}s");
+            _view.SetIncomeSliderValue(_planet.IncomeProgress);
         }
     }
 }

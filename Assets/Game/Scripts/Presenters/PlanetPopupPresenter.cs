@@ -1,11 +1,10 @@
 using System;
 using Game.Views;
 using Modules.Planets;
-using Zenject;
 
 namespace Game.Presenters
 {
-    public class PlanetPopupPresenter : IInitializable,IDisposable
+    public class PlanetPopupPresenter
     {
         private IPlanet _planet;
         private readonly PlanetPopupView _view;
@@ -15,12 +14,21 @@ namespace Game.Presenters
             _view = view;
         }
 
-        public void SetPlanet(IPlanet planet)
+        public void Show(IPlanet planet)
         {
             _planet = planet;
             UpdateData();
+            _view.Show();
+            _view.OnCloseBtnClicked += Hide;
         }
 
+        private void Hide()
+        {
+            _view.Hide();
+            _planet.OnPopulationChanged -= UpdatePopulationText;
+            _view.OnCloseBtnClicked -= Hide;
+        }
+        
         private void UpdateData()
         {
             _view.SetPlanetAvatar(_planet.GetIcon(true));
@@ -30,16 +38,7 @@ namespace Game.Presenters
             _view.SetIncomeText($"Income: {_planet.MinuteIncome/60}/sec");
             _view.SetUpgradePriceText(_planet.Price.ToString());
             _view.SetUpgradeButtonInteractable(!_planet.IsMaxLevel);
-        }
-
-        public void Initialize()
-        {
             _planet.OnPopulationChanged += UpdatePopulationText;
-        }
-
-        public void Dispose()
-        {
-            _planet.OnPopulationChanged -= UpdatePopulationText;
         }
         
         private void UpdatePopulationText(int population)

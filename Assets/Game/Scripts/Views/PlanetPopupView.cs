@@ -14,7 +14,6 @@ namespace Game.Views
         [SerializeField] private Button closeButton;
         [SerializeField] private Image planetAvatar;
         
-        
         [SerializeField] private TMP_Text populationText;
         [SerializeField] private TMP_Text levelText;
         [SerializeField] private TMP_Text incomeText;
@@ -22,23 +21,23 @@ namespace Game.Views
         [SerializeField] private TMP_Text upgradePriceText;
         [SerializeField] private Button upgradeButton;
         
+        public event UnityAction OnCloseBtnClicked
+        {
+            add => closeButton.onClick.AddListener(value);
+            remove => closeButton.onClick.RemoveListener(value);
+        }
         public event UnityAction OnUpgradeBtnClicked
         {
             add => upgradeButton.onClick.AddListener(value);
             remove => upgradeButton.onClick.RemoveListener(value);
         }
         
-        private void OnEnable()
+        public void Show()
         {
-            closeButton.onClick.AddListener(ClosePopup);
-        }
-
-        private void OnDisable()
-        {
-            closeButton.onClick.RemoveListener(ClosePopup);
+            gameObject.SetActive(true);
         }
         
-        private void ClosePopup()
+        public void Hide()
         {
             gameObject.SetActive(false);
         }
@@ -84,5 +83,6 @@ namespace Game.Views
         {
             upgradeButton.interactable = interactable;
         }
+
     }
 }
