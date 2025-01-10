@@ -22,19 +22,17 @@ namespace Game.Presenters
 
         private void InitData()
         {
-            var isUnlocked = _planet.IsUnlocked;
-            
-            _view.ShowPriceAndLock(!isUnlocked);
-            if (isUnlocked)
-                _view.SetPrice(_planet.Price.ToString());
-
-            _view.SetIcon(_planet.GetIcon(isUnlocked));
+            _view.SetPrice(_planet.Price.ToString());
+            _view.SetIcon(_planet.GetIcon(false));
+            _view.SetActiveIncomeSlider(false);
+            _view.SetActiveCoin(false);
         }
 
         public void Initialize()
         {
             _planet.OnIncomeTimeChanged += UpdateTimerText;
             _planet.OnIncomeReady += UpdateIncomeReady;
+            _planet.OnUnlocked += OnUnlocked;
             _view.OnClick += OnClick;
             _view.OnHold += OnHold;
         }
@@ -43,12 +41,29 @@ namespace Game.Presenters
         {
             _planet.OnIncomeTimeChanged -= UpdateTimerText;
             _planet.OnIncomeReady -= UpdateIncomeReady;
+            _planet.OnUnlocked -= OnUnlocked;
+            _view.OnClick -= OnClick;
+            _view.OnHold -= OnHold;
         }
-        
+
+        private void OnUnlocked()
+        {
+            _view.HidePriceAndLock();
+            _view.SetIcon(_planet.GetIcon(true));
+            _view.SetActiveIncomeSlider(true);
+        }
+
         private void OnClick()
         {
-            if(_planet.CanUnlock)
-                _planet.Unlock();
+            if(_planet.IsUnlocked)
+            {
+                _planet.GatherIncome();
+            }
+            else
+            {
+                if(_planet.CanUnlock)
+                    _planet.Unlock();
+            }
         }
         
         private void OnHold()
@@ -58,12 +73,14 @@ namespace Game.Presenters
         
         private void UpdateIncomeReady(bool incomeReady)
         {
-            _view.ShowCoinHideIncomeSlider(incomeReady);
+            _view.SetActiveCoin(incomeReady);
+            _view.SetActiveIncomeSlider(!incomeReady);
         }
 
         private void UpdateTimerText(float time)
         {
-            _view.SetTimerText($"{time/60}m:{time%60}s");
+            var timeInt = (int)time;
+            _view.SetTimerText($"{timeInt/60}m:{timeInt%60}s");
             _view.SetIncomeSliderValue(_planet.IncomeProgress);
         }
     }

@@ -55,10 +55,15 @@ namespace Game.Views
         }
         
         [Button]
-        public void ShowCoinHideIncomeSlider(bool enable)
+        public void SetActiveCoin(bool enable)
         {
             coinGameObject.SetActive(enable);
-            incomeGameObject.SetActive(!enable);
+        }
+        
+        [Button]
+        public void SetActiveIncomeSlider(bool enable)
+        {
+            incomeGameObject.SetActive(enable);
         }
 
         [Button]
@@ -68,10 +73,10 @@ namespace Game.Views
         }
         
         [Button]
-        public void ShowPriceAndLock(bool enable)
+        public void HidePriceAndLock()
         {
-            priceGameObject.SetActive(enable);
-            lockGameObject.SetActive(enable);
+            priceGameObject.SetActive(false);
+            lockGameObject.SetActive(false);
         }
     }
 }
