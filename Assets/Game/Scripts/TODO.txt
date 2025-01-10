@@ -1,0 +1,3 @@
+upgrade text gameObject remove on max level
+
+animation of coins

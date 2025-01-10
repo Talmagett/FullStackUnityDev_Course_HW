@@ -9,9 +9,9 @@ namespace Game.Presenters
     {
         private readonly IPlanet _planet;
         private readonly PlanetView _view;
-        private readonly PlanetPopupPresenter _popupPresenter;
+        private readonly IPlanetPopupPresenter _popupPresenter;
 
-        public PlanetPresenter(IPlanet planet, PlanetView view, PlanetPopupPresenter popupPresenter)
+        public PlanetPresenter(IPlanet planet, PlanetView view, IPlanetPopupPresenter popupPresenter)
         {
             _planet = planet;
             _view = view;
@@ -30,8 +30,8 @@ namespace Game.Presenters
 
         public void Initialize()
         {
-            _planet.OnIncomeTimeChanged += UpdateTimerText;
-            _planet.OnIncomeReady += UpdateIncomeReady;
+            _planet.OnIncomeTimeChanged += OnIncomeTimeChanged;
+            _planet.OnIncomeReady += OnIncomeReady;
             _planet.OnUnlocked += OnUnlocked;
             _view.OnClick += OnClick;
             _view.OnHold += OnHold;
@@ -39,8 +39,8 @@ namespace Game.Presenters
         
         public void Dispose()
         {
-            _planet.OnIncomeTimeChanged -= UpdateTimerText;
-            _planet.OnIncomeReady -= UpdateIncomeReady;
+            _planet.OnIncomeTimeChanged -= OnIncomeTimeChanged;
+            _planet.OnIncomeReady -= OnIncomeReady;
             _planet.OnUnlocked -= OnUnlocked;
             _view.OnClick -= OnClick;
             _view.OnHold -= OnHold;
@@ -71,13 +71,13 @@ namespace Game.Presenters
             _popupPresenter.Show(_planet);
         }
         
-        private void UpdateIncomeReady(bool incomeReady)
+        private void OnIncomeReady(bool incomeReady)
         {
             _view.SetActiveCoin(incomeReady);
             _view.SetActiveIncomeSlider(!incomeReady);
         }
 
-        private void UpdateTimerText(float time)
+        private void OnIncomeTimeChanged(float time)
         {
             var timeInt = (int)time;
             _view.SetTimerText($"{timeInt/60}m:{timeInt%60}s");
