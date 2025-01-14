@@ -35,7 +35,9 @@ namespace Game.Views
             add => smartButton.OnHold += value;
             remove => smartButton.OnHold -= value;
         }
-        
+
+        public Vector3 Position => coinGameObject.transform.position;
+
         [Button]
         public void SetIcon(Sprite sprite)
         {

@@ -17,7 +17,9 @@ namespace Game.Views
         [SerializeField] private TMP_Text populationText;
         [SerializeField] private TMP_Text levelText;
         [SerializeField] private TMP_Text incomeText;
-        
+
+        [SerializeField] private TMP_Text upgradeText;
+        [SerializeField] private GameObject priceGameObject;
         [SerializeField] private TMP_Text upgradePriceText;
         [SerializeField] private Button upgradeButton;
         
@@ -36,7 +38,7 @@ namespace Game.Views
         {
             gameObject.SetActive(true);
         }
-        
+
         public void Hide()
         {
             gameObject.SetActive(false);
@@ -45,31 +47,43 @@ namespace Game.Views
         [Button]
         public void SetPlanetNameText(string planetName)
         {
-            this.planetNameText.text = planetName;
+            planetNameText.text = planetName;
         }
-        
+
         [Button]
         public void SetPlanetAvatar(Sprite avatar)
         {
             planetAvatar.sprite = avatar;
         }
-        
+
         [Button]
         public void SetPopulationText(string population)
         {
             populationText.text = population;
         }
-        
+
         [Button]
         public void SetLevelText(string level)
         {
             levelText.text = level;
         }
-        
+
         [Button]
         public void SetIncomeText(string income)
         {
             incomeText.text = income;
+        }
+
+        [Button]
+        public void SetUpgradeText(string text)
+        {
+            upgradeText.text = text;
+        }
+
+        [Button]
+        public void SetPriceGameObjectActive(bool active)
+        {
+            priceGameObject.SetActive(active);
         }
         
         [Button]
@@ -77,12 +91,11 @@ namespace Game.Views
         {
             upgradePriceText.text = price;
         }
-        
+
         [Button]
         public void SetUpgradeButtonInteractable(bool interactable)
         {
             upgradeButton.interactable = interactable;
         }
-
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using Game.Views;
 using Modules.Planets;
+using Modules.UI;
 using Zenject;
 
 namespace Game.Presenters
@@ -10,12 +11,16 @@ namespace Game.Presenters
         private readonly IPlanet _planet;
         private readonly PlanetView _view;
         private readonly IPlanetPopupPresenter _popupPresenter;
-
-        public PlanetPresenter(IPlanet planet, PlanetView view, IPlanetPopupPresenter popupPresenter)
+        private readonly ParticleAnimator _particleAnimator;
+        private readonly MoneyView _moneyView;
+        
+        public PlanetPresenter(IPlanet planet, PlanetView view, IPlanetPopupPresenter popupPresenter, ParticleAnimator particleAnimator, MoneyView moneyView)
         {
             _planet = planet;
             _view = view;
             _popupPresenter = popupPresenter;
+            _particleAnimator = particleAnimator;
+            _moneyView = moneyView;
 
             InitData();
         }
@@ -57,7 +62,8 @@ namespace Game.Presenters
         {
             if(_planet.IsUnlocked)
             {
-                _planet.GatherIncome();
+                if(_planet.GatherIncome())
+                    _particleAnimator.Emit(_view.Position,_moneyView.Position);
             }
             else
             {

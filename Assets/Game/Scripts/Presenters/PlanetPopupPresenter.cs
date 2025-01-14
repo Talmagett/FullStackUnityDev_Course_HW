@@ -6,11 +6,6 @@ using Zenject;
 
 namespace Game.Presenters
 {
-    public interface IPlanetPopupPresenter
-    {
-        void Show(IPlanet planet);
-    }
-
     public class PlanetPopupPresenter : IPlanetPopupPresenter
     {
         private readonly PlanetPopupView _view;
@@ -51,6 +46,8 @@ namespace Game.Presenters
             OnIncomeChanged(_planet.MinuteIncome);
             OnUpgraded(_planet.Level);
             OnMoneyChanged(_moneyStorage.Money,0);
+            if(!_planet.IsUnlocked)
+                _view.SetUpgradeButtonInteractable(false);
             _planet.OnPopulationChanged += OnPopulationChanged;
             _planet.OnUpgraded += OnUpgraded;
             _moneyStorage.OnMoneyChanged += OnMoneyChanged;
@@ -60,16 +57,16 @@ namespace Game.Presenters
 
         private void OnIncomeChanged(int obj)
         {
-            _view.SetIncomeText($"Income: {_planet.MinuteIncome/60}/sec");
+            _view.SetIncomeText($"Income: {_planet.MinuteIncome}$");
         }
 
         private void OnUpgraded(int level)
         {
-            _view.SetUpgradePriceText(_planet.IsMaxLevel ? "MAX LEVEL" : _planet.Price.ToString());
+            _view.SetUpgradePriceText(_planet.Price.ToString());
             _view.SetLevelText($"Level: {level}/{_planet.MaxLevel}");
-
-            if (!_planet.IsMaxLevel) return;
-            _view.SetUpgradeButtonInteractable(false);
+            _view.SetUpgradeText(_planet.IsMaxLevel?"MAX LEVEL": "UPGRADE");
+            _view.SetPriceGameObjectActive(!_planet.IsMaxLevel);
+            _view.SetUpgradeButtonInteractable(!_planet.IsMaxLevel);
         }
 
         private void OnUpgradeBtnClicked()

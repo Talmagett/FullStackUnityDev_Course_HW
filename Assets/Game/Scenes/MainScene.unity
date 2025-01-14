@@ -322,6 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyText: {fileID: 1480420532}
+  moneyTransform: {fileID: 1912426729}
 --- !u!1001 &249258343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1876,6 +1877,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1710053799 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7285282909723352476, guid: c6f3aabda10ed1841ba1c1a8999ef4ba, type: 3}
+  m_PrefabInstance: {fileID: 1052078977217180737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1790648463 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 328163744762118583, guid: c6f3aabda10ed1841ba1c1a8999ef4ba, type: 3}
@@ -1910,6 +1922,8 @@ MonoBehaviour:
   populationText: {fileID: 2001927441}
   levelText: {fileID: 1861165140}
   incomeText: {fileID: 653377600}
+  upgradeText: {fileID: 1710053799}
+  priceGameObject: {fileID: 1910305494}
   upgradePriceText: {fileID: 2046340887}
   upgradeButton: {fileID: 1112401}
 --- !u!114 &1861165140 stripped
@@ -2026,6 +2040,16 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1910305494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7510333081995661202, guid: c6f3aabda10ed1841ba1c1a8999ef4ba, type: 3}
+  m_PrefabInstance: {fileID: 1052078977217180737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1912426729 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6204055655084186918, guid: 922a3fcd633baa0498344270e9eabd2a, type: 3}
+  m_PrefabInstance: {fileID: 6121086404576301247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1918786892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2250,6 +2274,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 1849719361140464407, guid: c6f3aabda10ed1841ba1c1a8999ef4ba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4047992451227309323, guid: c6f3aabda10ed1841ba1c1a8999ef4ba, type: 3}
       propertyPath: m_SizeDelta.x
       value: -624.53
@@ -2353,6 +2381,10 @@ PrefabInstance:
     - target: {fileID: 6181788182618639097, guid: c6f3aabda10ed1841ba1c1a8999ef4ba, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7510333081995661202, guid: c6f3aabda10ed1841ba1c1a8999ef4ba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

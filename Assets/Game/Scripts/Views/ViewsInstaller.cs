@@ -1,3 +1,4 @@
+using Modules.UI;
 using Zenject;
 
 namespace Game.Views
@@ -20,6 +21,11 @@ namespace Game.Views
             
             this.Container
                 .Bind<PlanetPopupView>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+            
+            this.Container
+                .Bind<ParticleAnimator>()
                 .FromComponentInHierarchy()
                 .AsSingle();
         }
