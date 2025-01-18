@@ -21,7 +21,7 @@ namespace Game.Presenters
         {
             _moneyStorage.OnMoneyChanged += OnMoneyChangedHandler;
         }
-        
+        //Может просто OnStateChanged использовать? вместо всех этих Actionов
         public event Action<int> OnUpgraded
         {
             add => _planet.OnUpgraded += value;
