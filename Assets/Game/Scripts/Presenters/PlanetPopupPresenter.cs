@@ -2,96 +2,68 @@ using System;
 using Game.Views;
 using Modules.Money;
 using Modules.Planets;
-using Zenject;
+using UnityEngine;
 
 namespace Game.Presenters
 {
-    public class PlanetPopupPresenter : IPlanetPopupPresenter
+    public class PlanetPopupPresenter : IPlanetPopupPresenter, IDisposable
     {
-        private readonly PlanetPopupView _view;
         private readonly IMoneyStorage _moneyStorage;
-        
         private IPlanet _planet;
         
-        public PlanetPopupPresenter(PlanetPopupView view, IMoneyStorage moneyStorage)
+        public PlanetPopupPresenter(IMoneyStorage moneyStorage)
         {
-            _view = view;
             _moneyStorage = moneyStorage;
-        }
-
-        public void Show(IPlanet planet)
-        {
-            _planet = planet;
-            UpdateData();
-            _view.Show();
-            _view.OnCloseBtnClicked += Hide;
-        }
-
-        private void Hide()
-        {
-            _view.Hide();
-            _planet.OnPopulationChanged -= OnPopulationChanged;
-            _moneyStorage.OnMoneyChanged -= OnMoneyChanged;
-            _view.OnUpgradeBtnClicked -= OnUpgradeBtnClicked;
-            _planet.OnUpgraded -= OnUpgraded;
-            _planet.OnIncomeChanged -= OnIncomeChanged;
-            _view.OnCloseBtnClicked -= Hide;
+            _moneyStorage.OnMoneyChanged += OnMoneyChangedHandler;
         }
         
-        private void UpdateData()
+        public void Dispose()
         {
-            _view.SetPlanetAvatar(_planet.GetIcon(true));
-            _view.SetPlanetNameText(_planet.Name);
-            _view.SetPopulationText($"Population: {_planet.Population}");
-            OnIncomeChanged(_planet.MinuteIncome);
-            OnUpgraded(_planet.Level);
-            OnMoneyChanged(_moneyStorage.Money,0);
-            if(!_planet.IsUnlocked)
-                _view.SetUpgradeButtonInteractable(false);
-            _planet.OnPopulationChanged += OnPopulationChanged;
-            _planet.OnUpgraded += OnUpgraded;
-            _moneyStorage.OnMoneyChanged += OnMoneyChanged;
-            _view.OnUpgradeBtnClicked += OnUpgradeBtnClicked;
-            _planet.OnIncomeChanged += OnIncomeChanged;
+            _moneyStorage.OnMoneyChanged += OnMoneyChangedHandler;
+        }
+        
+        public event Action<int> OnUpgraded
+        {
+            add => _planet.OnUpgraded += value;
+            remove=> _planet.OnUpgraded -= value;
+        }
+        public event Action<int> OnIncomeChanged
+        {
+            add => _planet.OnIncomeChanged += value;
+            remove=> _planet.OnIncomeChanged -= value;
+        }
+        public event Action<int> OnPopulationChanged
+        {
+            add => _planet.OnPopulationChanged += value;
+            remove => _planet.OnPopulationChanged -= value;
         }
 
-        private void OnIncomeChanged(int obj)
-        {
-            _view.SetIncomeText($"Income: {_planet.MinuteIncome}$");
-        }
+        public event Action<int> OnMoneyChanged;
 
-        private void OnUpgraded(int level)
+        public string PlanetName => _planet.Name;
+        public Sprite PlanetAvatar => _planet.GetIcon(_planet.IsUnlocked);
+        public string PopulationText => $"Population: {_planet.Population}";
+        public string LevelText => $"Level: {_planet.Level}/{_planet.MaxLevel}";
+        public string IncomeText => $"Income: {_planet.MinuteIncome}$";
+        public string UpgradeText => _planet.IsMaxLevel ? "MAX LEVEL" : "UPGRADE";
+        public bool PriceGameObjectActive => !_planet.IsMaxLevel;
+        public string UpgradePriceText => _planet.Price.ToString();
+        public bool UpgradeButtonActive => !_planet.IsMaxLevel && _planet.Price <= _moneyStorage.Money&&_planet.IsUnlocked;
+        
+        private void OnMoneyChangedHandler(int newvalue, int prevvalue)
         {
-            _view.SetUpgradePriceText(_planet.Price.ToString());
-            _view.SetLevelText($"Level: {level}/{_planet.MaxLevel}");
-            _view.SetUpgradeText(_planet.IsMaxLevel?"MAX LEVEL": "UPGRADE");
-            _view.SetPriceGameObjectActive(!_planet.IsMaxLevel); 
-            
-            _view.SetUpgradeButtonInteractable(!_planet.IsMaxLevel&&_planet.Price<=_moneyStorage.Money);
+            OnMoneyChanged?.Invoke(newvalue);
         }
-
-        private void OnUpgradeBtnClicked()
+        
+        public void SetPlanet(IPlanet planet)
+        {
+            _planet = planet;
+        }
+        
+        public void Upgrade()
         {
             if (!_planet.CanUpgrade) return;
-            
             _planet.Upgrade();
-        }
-
-        private void OnPopulationChanged(int population)
-        {
-            _view.SetPopulationText($"Population: {population}");
-        }
-
-        private void OnMoneyChanged(int newValue, int prevValue)
-        {
-            if (_planet.IsMaxLevel) 
-            {
-                _view.SetUpgradeButtonInteractable(false);
-                return;
-            }
-            
-            var canUpgrade = _planet.Price<=newValue;
-            _view.SetUpgradeButtonInteractable(canUpgrade);
         }
     }
 }

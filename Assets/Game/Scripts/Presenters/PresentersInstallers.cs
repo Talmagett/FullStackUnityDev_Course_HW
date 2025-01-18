@@ -23,6 +23,11 @@ namespace Game.Presenters
                 .AsSingle()
                 .NonLazy();
             
+            this.Container
+                .Bind<PlanetPopupShower>()
+                .AsSingle()
+                .NonLazy();
+            
             Container
                 .BindInterfacesTo<PlanetsCatalogPresenter>()
                 .AsSingle()

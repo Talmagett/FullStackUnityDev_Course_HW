@@ -1,7 +1,6 @@
 using System;
 using Game.Views;
 using Modules.Planets;
-using Modules.UI;
 using Zenject;
 
 namespace Game.Presenters
@@ -10,14 +9,14 @@ namespace Game.Presenters
     {
         private readonly IPlanet _planet;
         private readonly PlanetView _view;
-        private readonly IPlanetPopupPresenter _popupPresenter;
+        private readonly PlanetPopupShower _popupShower;
         private readonly MoneyPresenter _moneyPresenter;
         
-        public PlanetPresenter(IPlanet planet, PlanetView view, IPlanetPopupPresenter popupPresenter, MoneyPresenter moneyPresenter)
+        public PlanetPresenter(IPlanet planet, PlanetView view, PlanetPopupShower popupShower, MoneyPresenter moneyPresenter)
         {
             _planet = planet;
             _view = view;
-            _popupPresenter = popupPresenter;
+            _popupShower = popupShower;
             _moneyPresenter = moneyPresenter;
             InitData();
         }
@@ -77,7 +76,7 @@ namespace Game.Presenters
         
         private void OnHold()
         {
-            _popupPresenter.Show(_planet);
+            _popupShower.Show(_planet);
         }
         
         private void OnIncomeReady(bool incomeReady)
