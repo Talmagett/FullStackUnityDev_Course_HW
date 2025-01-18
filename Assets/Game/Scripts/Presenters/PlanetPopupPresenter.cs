@@ -65,8 +65,9 @@ namespace Game.Presenters
             _view.SetUpgradePriceText(_planet.Price.ToString());
             _view.SetLevelText($"Level: {level}/{_planet.MaxLevel}");
             _view.SetUpgradeText(_planet.IsMaxLevel?"MAX LEVEL": "UPGRADE");
-            _view.SetPriceGameObjectActive(!_planet.IsMaxLevel);
-            _view.SetUpgradeButtonInteractable(!_planet.IsMaxLevel);
+            _view.SetPriceGameObjectActive(!_planet.IsMaxLevel); 
+            
+            _view.SetUpgradeButtonInteractable(!_planet.IsMaxLevel&&_planet.Price<=_moneyStorage.Money);
         }
 
         private void OnUpgradeBtnClicked()

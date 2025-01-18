@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -15,6 +16,11 @@ namespace Game.Views
         public void SetMoneyText(string money)
         {
             moneyText.text = money;
+        }
+
+        public void SetMoneyTextWithAnimation(int from, int to)
+        {
+            DOTween.To(() => from, x => SetMoneyText(x.ToString()), to, 0.5f);
         }
     }
 }

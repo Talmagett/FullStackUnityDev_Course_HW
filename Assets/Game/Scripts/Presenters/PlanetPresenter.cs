@@ -11,17 +11,14 @@ namespace Game.Presenters
         private readonly IPlanet _planet;
         private readonly PlanetView _view;
         private readonly IPlanetPopupPresenter _popupPresenter;
-        private readonly ParticleAnimator _particleAnimator;
-        private readonly MoneyView _moneyView;
+        private readonly MoneyPresenter _moneyPresenter;
         
-        public PlanetPresenter(IPlanet planet, PlanetView view, IPlanetPopupPresenter popupPresenter, ParticleAnimator particleAnimator, MoneyView moneyView)
+        public PlanetPresenter(IPlanet planet, PlanetView view, IPlanetPopupPresenter popupPresenter, MoneyPresenter moneyPresenter)
         {
             _planet = planet;
             _view = view;
             _popupPresenter = popupPresenter;
-            _particleAnimator = particleAnimator;
-            _moneyView = moneyView;
-
+            _moneyPresenter = moneyPresenter;
             InitData();
         }
 
@@ -38,6 +35,7 @@ namespace Game.Presenters
             _planet.OnIncomeTimeChanged += OnIncomeTimeChanged;
             _planet.OnIncomeReady += OnIncomeReady;
             _planet.OnUnlocked += OnUnlocked;
+            _planet.OnGathered+=OnGathered;
             _view.OnClick += OnClick;
             _view.OnHold += OnHold;
         }
@@ -47,8 +45,14 @@ namespace Game.Presenters
             _planet.OnIncomeTimeChanged -= OnIncomeTimeChanged;
             _planet.OnIncomeReady -= OnIncomeReady;
             _planet.OnUnlocked -= OnUnlocked;
+            _planet.OnGathered-=OnGathered;
             _view.OnClick -= OnClick;
             _view.OnHold -= OnHold;
+        }
+
+        private void OnGathered(int moneyValue)
+        {
+            _moneyPresenter.GatherMoney(_view.Position,moneyValue);
         }
 
         private void OnUnlocked()
@@ -62,8 +66,7 @@ namespace Game.Presenters
         {
             if(_planet.IsUnlocked)
             {
-                if(_planet.GatherIncome())
-                    _particleAnimator.Emit(_view.Position,_moneyView.Position);
+                _planet.GatherIncome();
             }
             else
             {
@@ -88,6 +91,11 @@ namespace Game.Presenters
             var timeInt = (int)time;
             _view.SetTimerText($"{timeInt/60}m:{timeInt%60}s");
             _view.SetIncomeSliderValue(_planet.IncomeProgress);
+        }
+
+        public class Factory : PlaceholderFactory<IPlanet, PlanetView, PlanetPresenter>
+        {
+            
         }
     }
 }

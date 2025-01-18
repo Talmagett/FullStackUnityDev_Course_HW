@@ -1,7 +1,8 @@
 using System;
-using DG.Tweening;
 using Game.Views;
 using Modules.Money;
+using Modules.UI;
+using UnityEngine;
 using Zenject;
 
 namespace Game.Presenters
@@ -10,41 +11,40 @@ namespace Game.Presenters
     {
         private readonly IMoneyStorage _moneyStorage;
         private readonly MoneyView _view;
-        
-        public MoneyPresenter(IMoneyStorage moneyStorage, MoneyView view)
+        private readonly ParticleAnimator _particleAnimator;
+
+        public MoneyPresenter(IMoneyStorage moneyStorage, MoneyView view, ParticleAnimator particleAnimator)
         {
             _moneyStorage = moneyStorage;
             _view = view;
+            _particleAnimator = particleAnimator;
             _view.SetMoneyText(_moneyStorage.Money.ToString());
         }
 
         public void Initialize()
         {
-            _moneyStorage.OnMoneyChanged += OnMoneyChanged;
-            _moneyStorage.OnMoneyEarned+=OnMoneyEarned;
-            _moneyStorage.OnMoneySpent+=OnMoneySpent;
+            _moneyStorage.OnMoneySpent += OnMoneySpent;
         }
 
         public void Dispose()
         {
-            _moneyStorage.OnMoneyChanged += OnMoneyChanged;
-            _moneyStorage.OnMoneyEarned+=OnMoneyEarned;
-            _moneyStorage.OnMoneySpent+=OnMoneySpent;
-        }
-
-        private void OnMoneyChanged(int newvalue, int prevvalue)
-        {
-            _view.SetMoneyText(newvalue.ToString());
+            _moneyStorage.OnMoneySpent -= OnMoneySpent;
         }
 
         private void OnMoneyEarned(int newvalue, int range)
         {
-            DOTween.To(() => newvalue-range, x => _view.SetMoneyText(x.ToString()), newvalue, 0.5f);
+            _view.SetMoneyTextWithAnimation(newvalue - range, newvalue);
         }
 
         private void OnMoneySpent(int newvalue, int range)
         {
             _view.SetMoneyText(newvalue.ToString());
+        }
+
+        public void GatherMoney(Vector3 planetPosition, int moneyValue)
+        {
+            _particleAnimator.Emit(planetPosition, _view.Position, 1,
+                () => OnMoneyEarned(_moneyStorage.Money, moneyValue));
         }
     }
 }

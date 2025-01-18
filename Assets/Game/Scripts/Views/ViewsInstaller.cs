@@ -7,8 +7,6 @@ namespace Game.Views
     {
         public override void InstallBindings()
         {
-            //TODO:
-            
             this.Container
                 .Bind<MoneyView>()
                 .FromComponentInHierarchy()
