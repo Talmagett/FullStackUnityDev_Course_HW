@@ -10,36 +10,23 @@ namespace Game.Presenters
     {
         private readonly IMoneyStorage _moneyStorage;
         private IPlanet _planet;
-        
+        public event Action OnStateChanged;
+
         public PlanetPopupPresenter(IMoneyStorage moneyStorage)
         {
             _moneyStorage = moneyStorage;
             _moneyStorage.OnMoneyChanged += OnMoneyChangedHandler;
+            
         }
         
         public void Dispose()
         {
-            _moneyStorage.OnMoneyChanged += OnMoneyChangedHandler;
+            _moneyStorage.OnMoneyChanged -= OnMoneyChangedHandler;
+            _planet.OnUpgraded -= OnUpgraded;
+            _planet.OnIncomeChanged -= OnIncomeChanged;
+            _planet.OnPopulationChanged -= OnPopulationChanged;
         }
-        //Может просто OnStateChanged использовать? вместо всех этих Actionов
-        public event Action<int> OnUpgraded
-        {
-            add => _planet.OnUpgraded += value;
-            remove=> _planet.OnUpgraded -= value;
-        }
-        public event Action<int> OnIncomeChanged
-        {
-            add => _planet.OnIncomeChanged += value;
-            remove=> _planet.OnIncomeChanged -= value;
-        }
-        public event Action<int> OnPopulationChanged
-        {
-            add => _planet.OnPopulationChanged += value;
-            remove => _planet.OnPopulationChanged -= value;
-        }
-
-        public event Action<int> OnMoneyChanged;
-
+        
         public string PlanetName => _planet.Name;
         public Sprite PlanetAvatar => _planet.GetIcon(_planet.IsUnlocked);
         public string PopulationText => $"Population: {_planet.Population}";
@@ -52,7 +39,22 @@ namespace Game.Presenters
         
         private void OnMoneyChangedHandler(int newvalue, int prevvalue)
         {
-            OnMoneyChanged?.Invoke(newvalue);
+            OnStateChanged?.Invoke();
+        }
+
+        private void OnUpgraded(int level)
+        {
+            OnStateChanged?.Invoke();
+        }
+
+        private void OnIncomeChanged(int income)
+        {
+            OnStateChanged?.Invoke();
+        }
+
+        private void OnPopulationChanged(int population)
+        {
+            OnStateChanged?.Invoke();
         }
         
         public void SetPlanet(IPlanet planet)

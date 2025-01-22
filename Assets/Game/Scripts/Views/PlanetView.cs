@@ -23,7 +23,7 @@ namespace Game.Views
         [SerializeField] private Image incomeFillImage;
         
         [SerializeField] private SmartButton smartButton;
-        
+        //to pm
         public event Action OnClick
         {
             add => smartButton.OnClick += value;

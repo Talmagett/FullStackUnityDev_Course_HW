@@ -24,54 +24,40 @@ namespace Game.Views
         [SerializeField] private Button upgradeButton;
         
         [Inject] private IPlanetPopupPresenter popupPresenter;
-        private event UnityAction OnCloseBtnClicked
-        {
-            add => closeButton.onClick.AddListener(value);
-            remove => closeButton.onClick.RemoveListener(value);
-        }
-        private event UnityAction OnUpgradeBtnClicked
-        {
-            add => upgradeButton.onClick.AddListener(value);
-            remove => upgradeButton.onClick.RemoveListener(value);
-        }
         
         public void Show()
         {
-            gameObject.SetActive(true);
+            gameObject.SetActive(true); 
             SetInitData();
         }
 
         private void OnEnable()
         {
-            OnCloseBtnClicked += Hide;
-            OnUpgradeBtnClicked += popupPresenter.Upgrade;
-            popupPresenter.OnUpgraded += OnUpgraded;
-            popupPresenter.OnMoneyChanged+=OnMoneyChanged;
-            popupPresenter.OnPopulationChanged += OnPopulationChanged;
-            popupPresenter.OnIncomeChanged += OnIncomeChanged;
+            closeButton.onClick.AddListener(Hide);
+            upgradeButton.onClick.AddListener(popupPresenter.Upgrade);
+            popupPresenter.OnStateChanged+=OnStateChanged;
         }
 
         private void OnDisable()
         {
-            OnCloseBtnClicked -= Hide;
-            OnUpgradeBtnClicked -= popupPresenter.Upgrade;
-            popupPresenter.OnUpgraded -= OnUpgraded;
-            popupPresenter.OnMoneyChanged-=OnMoneyChanged;
-            popupPresenter.OnPopulationChanged -= OnPopulationChanged;
-            popupPresenter.OnIncomeChanged -= OnIncomeChanged;
+            closeButton.onClick.RemoveListener(Hide);
+            upgradeButton.onClick.RemoveListener(popupPresenter.Upgrade);
+            popupPresenter.OnStateChanged-=OnStateChanged;
         }
 
-        private void OnMoneyChanged(int _=0)
+        private void OnStateChanged()
         {
+            OnPopulationChanged();
+            OnIncomeChanged();
             OnUpgraded();
         }
 
-        private void OnPopulationChanged(int _=0)
+        private void OnPopulationChanged()
         {
             SetPopulationText(popupPresenter.PopulationText);
         }
 
-        private void OnIncomeChanged(int _=0)
+        private void OnIncomeChanged()
         {
             SetIncomeText(popupPresenter.IncomeText);
         }
@@ -86,7 +72,7 @@ namespace Game.Views
             OnUpgraded();
         }
 
-        private void OnUpgraded(int _=0)
+        private void OnUpgraded()
         {
             SetLevelText(popupPresenter.LevelText);
             SetUpgradeText(popupPresenter.UpgradeText);
@@ -95,6 +81,7 @@ namespace Game.Views
             SetUpgradePriceText(popupPresenter.UpgradePriceText);
             SetUpgradeButtonInteractable(popupPresenter.UpgradeButtonActive);
         }
+        
         private void Hide()
         {
             gameObject.SetActive(false);

@@ -9,7 +9,7 @@ namespace Game.Views
     {
         [SerializeField] private TMP_Text moneyText;
         [SerializeField] private Transform moneyTransform;
-        
+        //to pm
         public Vector3 Position => moneyTransform.position;
 
         [Button]

@@ -1,14 +1,14 @@
+using Game.Views;
 using Modules.Planets;
-using UnityEngine;
 
-namespace Game.Views
+namespace Game.Presenters
 {
     public class PlanetPopupShower
     {
         private readonly PlanetPopupView _view;
-        private readonly IPlanetPopupPresenter _presenter;
+        private readonly PlanetPopupPresenter _presenter;
 
-        public PlanetPopupShower(PlanetPopupView view, IPlanetPopupPresenter presenter)
+        public PlanetPopupShower(PlanetPopupView view, PlanetPopupPresenter presenter)
         {
             _view = view;
             _presenter = presenter;
@@ -16,7 +16,7 @@ namespace Game.Views
 
         public void Show(IPlanet planet)
         {
-            _presenter.SetPlanet(planet);
+            //_presenter.SetPlanet(planet);
             _view.Show();
         }
     }

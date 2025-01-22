@@ -1,5 +1,4 @@
 using System;
-using Modules.Planets;
 using UnityEngine;
 
 namespace Game.Views
@@ -16,10 +15,6 @@ namespace Game.Views
         string UpgradePriceText { get; }
         bool UpgradeButtonActive { get; }
         void Upgrade();
-        event Action<int> OnUpgraded;
-        event Action<int> OnIncomeChanged;
-        event Action<int> OnPopulationChanged;
-        event Action<int> OnMoneyChanged;
-        void SetPlanet(IPlanet planet);
+        event Action OnStateChanged;
     }
 }
