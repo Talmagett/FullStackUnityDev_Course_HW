@@ -5,15 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ef70682-a367-4dd9-8815-63b440c34fb2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Views/IMoneyPresenter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Views/IMoneyPresenter.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Views/IPlanetPresenter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Views/IPlanetPresenter.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/Game.Presenters.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/Game.Presenters.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/MoneyPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/MoneyPresenter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/PlanetPopupPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/PlanetPopupPresenter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/PlanetPopupShower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/PlanetPopupShower.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Views/Game.Views.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Views/Game.Views.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Views/IPlanetPopupPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Views/IPlanetPopupPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/PlanetPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/PlanetPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/PlanetsCatalogPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/PlanetsCatalogPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/PresentersInstallers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Presenters/PresentersInstallers.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Views/MoneyView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Views/MoneyView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Views/PlanetPopupView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Views/PlanetPopupView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Views/PlanetView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Views/PlanetView.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +47,9 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/7a/8bd2ddf8/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game/Scripts/Presenters/PlanetPopupPresenter.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -190,6 +196,6 @@
     <MESSAGE value="update" />
     <MESSAGE value="update, planet popup presenter" />
     <MESSAGE value="question" />
-    <option name="LAST_COMMIT_MESSAGE" value="question" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>

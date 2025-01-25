@@ -19,21 +19,21 @@ namespace Game.Presenters
                 .NonLazy();
             
             this.Container
-                .BindInterfacesTo<PlanetPopupPresenter>()
+                .BindInterfacesAndSelfTo<PlanetPopupPresenter>()
                 .AsSingle()
                 .NonLazy();
             
+            Container
+                .BindInterfacesAndSelfTo<PlanetsCatalogPresenter>()
+                .AsSingle()
+                .NonLazy();
+
             this.Container
                 .Bind<PlanetPopupShower>()
                 .AsSingle()
                 .NonLazy();
             
-            Container
-                .BindInterfacesTo<PlanetsCatalogPresenter>()
-                .AsSingle()
-                .NonLazy();
-
-            Container.BindFactory<IPlanet,PlanetView,PlanetPresenter,PlanetPresenter.Factory>().AsSingle().NonLazy();
+            Container.BindFactory<IPlanet, Vector3, PlanetPresenter,PlanetPresenter.Factory>().AsSingle().NonLazy();
         }
     }
 }

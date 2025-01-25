@@ -31,8 +31,9 @@ namespace Game.Presenters
         {
             for (int i = 0; i < _planets.Length; i++)
             {
-                var planetPresenter = _factory.Create(_planets[i], _planetViews[i]);
+                var planetPresenter = _factory.Create(_planets[i],_planetViews[i].Position);
                 _presenters.Add(planetPresenter);
+                _planetViews[i].Construct(planetPresenter);
             }
         }
 

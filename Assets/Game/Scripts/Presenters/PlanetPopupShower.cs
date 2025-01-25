@@ -16,7 +16,7 @@ namespace Game.Presenters
 
         public void Show(IPlanet planet)
         {
-            //_presenter.SetPlanet(planet);
+            _presenter.SetPlanet(planet);
             _view.Show();
         }
     }

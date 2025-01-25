@@ -1,6 +1,4 @@
-using System;
 using Modules.UI;
-using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,62 +21,41 @@ namespace Game.Views
         [SerializeField] private Image incomeFillImage;
         
         [SerializeField] private SmartButton smartButton;
-        //to pm
-        public event Action OnClick
+
+        private IPlanetPresenter _planetPresenter;
+
+        public void Construct(IPlanetPresenter planetPresenter)
         {
-            add => smartButton.OnClick += value;
-            remove => smartButton.OnClick -= value;
+            _planetPresenter = planetPresenter;
+            UpdateState();
         }
         
-        public event Action OnHold
+        private void OnEnable()
         {
-            add => smartButton.OnHold += value;
-            remove => smartButton.OnHold -= value;
+            _planetPresenter.OnStateChanged += UpdateState;
+            smartButton.OnClick += _planetPresenter.Click;
+            smartButton.OnHold += _planetPresenter.Hold;
         }
 
+        private void OnDisable()
+        {
+            _planetPresenter.OnStateChanged -= UpdateState;
+            smartButton.OnClick -= _planetPresenter.Click;
+            smartButton.OnHold -= _planetPresenter.Hold;
+        }
+
+        private void UpdateState()
+        {
+            planetIcon.sprite = _planetPresenter.PlanetIcon;
+            priceText.text = _planetPresenter.PriceText;
+            incomeTimerText.text = _planetPresenter.RemainingTimerText;
+            incomeFillImage.fillAmount = _planetPresenter.IncomeProgressValue;
+            coinGameObject.SetActive(_planetPresenter.IsIncomeReady&&_planetPresenter.IsUnlocked);
+            incomeGameObject.SetActive(!_planetPresenter.IsIncomeReady&&_planetPresenter.IsUnlocked);
+            priceGameObject.SetActive(!_planetPresenter.IsUnlocked);
+            lockGameObject.SetActive(!_planetPresenter.IsUnlocked);
+        }
+        
         public Vector3 Position => coinGameObject.transform.position;
-
-        [Button]
-        public void SetIcon(Sprite sprite)
-        {
-            planetIcon.sprite = sprite;
-        }
-        
-        [Button]
-        public void SetTimerText(string remainingTimer)
-        {
-            incomeTimerText.text = remainingTimer;
-        }
-        
-        [Button]
-        public void SetIncomeSliderValue(float value)
-        {
-            incomeFillImage.fillAmount = value;
-        }
-        
-        [Button]
-        public void SetActiveCoin(bool enable)
-        {
-            coinGameObject.SetActive(enable);
-        }
-        
-        [Button]
-        public void SetActiveIncomeSlider(bool enable)
-        {
-            incomeGameObject.SetActive(enable);
-        }
-
-        [Button]
-        public void SetPrice(string price)
-        {
-            priceText.text = price;
-        }
-        
-        [Button]
-        public void HidePriceAndLock()
-        {
-            priceGameObject.SetActive(false);
-            lockGameObject.SetActive(false);
-        }
     }
 }

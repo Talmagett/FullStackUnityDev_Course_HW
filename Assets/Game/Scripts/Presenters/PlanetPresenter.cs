@@ -1,32 +1,32 @@
 using System;
 using Game.Views;
 using Modules.Planets;
+using UnityEngine;
 using Zenject;
 
 namespace Game.Presenters
 {
-    public class PlanetPresenter : IInitializable, IDisposable
+    public class PlanetPresenter : IPlanetPresenter, IInitializable, IDisposable
     {
         private readonly IPlanet _planet;
-        private readonly PlanetView _view;
         private readonly PlanetPopupShower _popupShower;
         private readonly MoneyPresenter _moneyPresenter;
+        public event Action OnStateChanged;
+        private int _remainingTime;
+        public Sprite PlanetIcon => _planet.GetIcon(_planet.IsUnlocked);
+        public string PriceText => _planet.Price.ToString();
+        public string RemainingTimerText => $"{_remainingTime / 60}m:{_remainingTime % 60}s";
+        public float IncomeProgressValue => _planet.IncomeProgress;
+        public bool IsIncomeReady => _planet.IsIncomeReady;
+        public bool IsUnlocked => _planet.IsUnlocked;
+        private Vector3 _viewMoneyPosition;
         
-        public PlanetPresenter(IPlanet planet, PlanetView view, PlanetPopupShower popupShower, MoneyPresenter moneyPresenter)
+        public PlanetPresenter(IPlanet planet, PlanetPopupShower popupShower, MoneyPresenter moneyPresenter, Vector3 viewMoneyPosition)
         {
             _planet = planet;
-            _view = view;
             _popupShower = popupShower;
             _moneyPresenter = moneyPresenter;
-            InitData();
-        }
-
-        private void InitData()
-        {
-            _view.SetPrice(_planet.Price.ToString());
-            _view.SetIcon(_planet.GetIcon(false));
-            _view.SetActiveIncomeSlider(false);
-            _view.SetActiveCoin(false);
+            _viewMoneyPosition = viewMoneyPosition;
         }
 
         public void Initialize()
@@ -35,8 +35,6 @@ namespace Game.Presenters
             _planet.OnIncomeReady += OnIncomeReady;
             _planet.OnUnlocked += OnUnlocked;
             _planet.OnGathered+=OnGathered;
-            _view.OnClick += OnClick;
-            _view.OnHold += OnHold;
         }
         
         public void Dispose()
@@ -45,23 +43,14 @@ namespace Game.Presenters
             _planet.OnIncomeReady -= OnIncomeReady;
             _planet.OnUnlocked -= OnUnlocked;
             _planet.OnGathered-=OnGathered;
-            _view.OnClick -= OnClick;
-            _view.OnHold -= OnHold;
         }
 
-        private void OnGathered(int moneyValue)
+        private void OnIncomeReady(bool obj)
         {
-            _moneyPresenter.GatherMoney(_view.Position,moneyValue);
+            OnStateChanged?.Invoke();
         }
 
-        private void OnUnlocked()
-        {
-            _view.HidePriceAndLock();
-            _view.SetIcon(_planet.GetIcon(true));
-            _view.SetActiveIncomeSlider(true);
-        }
-
-        private void OnClick()
+        public void Click()
         {
             if(_planet.IsUnlocked)
             {
@@ -73,26 +62,29 @@ namespace Game.Presenters
                     _planet.Unlock();
             }
         }
-        
-        private void OnHold()
+
+        public void Hold()
         {
             _popupShower.Show(_planet);
         }
         
-        private void OnIncomeReady(bool incomeReady)
+        private void OnGathered(int moneyValue)
         {
-            _view.SetActiveCoin(incomeReady);
-            _view.SetActiveIncomeSlider(!incomeReady);
+            _moneyPresenter.GatherMoney(_viewMoneyPosition, moneyValue);
+        }
+
+        private void OnUnlocked()
+        {
+            OnStateChanged?.Invoke();
         }
 
         private void OnIncomeTimeChanged(float time)
         {
-            var timeInt = (int)time;
-            _view.SetTimerText($"{timeInt/60}m:{timeInt%60}s");
-            _view.SetIncomeSliderValue(_planet.IncomeProgress);
+            _remainingTime = (int)time;
+            OnStateChanged?.Invoke();
         }
 
-        public class Factory : PlaceholderFactory<IPlanet, PlanetView, PlanetPresenter>
+        public class Factory : PlaceholderFactory<IPlanet,Vector3, PlanetPresenter>
         {
             
         }

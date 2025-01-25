@@ -16,12 +16,13 @@ namespace Game.Presenters
         {
             _moneyStorage = moneyStorage;
             _moneyStorage.OnMoneyChanged += OnMoneyChangedHandler;
-            
         }
         
         public void Dispose()
         {
             _moneyStorage.OnMoneyChanged -= OnMoneyChangedHandler;
+            if (_planet == null)
+                return;
             _planet.OnUpgraded -= OnUpgraded;
             _planet.OnIncomeChanged -= OnIncomeChanged;
             _planet.OnPopulationChanged -= OnPopulationChanged;
@@ -66,6 +67,7 @@ namespace Game.Presenters
         {
             if (!_planet.CanUpgrade) return;
             _planet.Upgrade();
+            OnStateChanged?.Invoke();
         }
     }
 }

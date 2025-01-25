@@ -7,18 +7,21 @@ using Zenject;
 
 namespace Game.Presenters
 {
-    public class MoneyPresenter : IInitializable, IDisposable
+    public class MoneyPresenter : IMoneyPresenter, IInitializable, IDisposable
     {
         private readonly IMoneyStorage _moneyStorage;
-        private readonly MoneyView _view;
         private readonly ParticleAnimator _particleAnimator;
 
-        public MoneyPresenter(IMoneyStorage moneyStorage, MoneyView view, ParticleAnimator particleAnimator)
+        public string MoneyText => _moneyStorage.Money.ToString();
+        public event Action OnMoneyChanged;
+        public event Action<int, int> OnMoneyEarned;
+        
+        private Vector3 _moneyViewPosition;
+
+        public MoneyPresenter(IMoneyStorage moneyStorage, ParticleAnimator particleAnimator)
         {
             _moneyStorage = moneyStorage;
-            _view = view;
             _particleAnimator = particleAnimator;
-            _view.SetMoneyText(_moneyStorage.Money.ToString());
         }
 
         public void Initialize()
@@ -31,20 +34,21 @@ namespace Game.Presenters
             _moneyStorage.OnMoneySpent -= OnMoneySpent;
         }
 
-        private void OnMoneyEarned(int newvalue, int range)
+        public void SetMoneyViewPosition(Vector3 position)
         {
-            _view.SetMoneyTextWithAnimation(newvalue - range, newvalue);
+            _moneyViewPosition = position;
         }
-
+        
         private void OnMoneySpent(int newvalue, int range)
         {
-            _view.SetMoneyText(newvalue.ToString());
+            OnMoneyChanged?.Invoke();
         }
 
         public void GatherMoney(Vector3 planetPosition, int moneyValue)
         {
-            _particleAnimator.Emit(planetPosition, _view.Position, 1,
-                () => OnMoneyEarned(_moneyStorage.Money, moneyValue));
+            _particleAnimator.Emit(planetPosition, _moneyViewPosition, 1,
+                () => OnMoneyEarned?.Invoke(_moneyStorage.Money-moneyValue, _moneyStorage.Money));
         }
+
     }
 }
