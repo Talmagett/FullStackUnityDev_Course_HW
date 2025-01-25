@@ -60,14 +60,24 @@ namespace Game.Presenters
         
         public void SetPlanet(IPlanet planet)
         {
+            if (_planet != null)
+            {
+                _planet.OnUpgraded -= OnUpgraded;
+                _planet.OnIncomeChanged -= OnIncomeChanged;
+                _planet.OnPopulationChanged -= OnPopulationChanged;
+            }
+            
             _planet = planet;
+
+            _planet.OnUpgraded += OnUpgraded;
+            _planet.OnIncomeChanged += OnIncomeChanged;
+            _planet.OnPopulationChanged += OnPopulationChanged;
         }
         
         public void Upgrade()
         {
             if (!_planet.CanUpgrade) return;
             _planet.Upgrade();
-            OnStateChanged?.Invoke();
         }
     }
 }
