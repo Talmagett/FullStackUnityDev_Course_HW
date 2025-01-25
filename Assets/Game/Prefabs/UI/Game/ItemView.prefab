@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7061678090588138304}
+  - component: {fileID: 4850200992621651959}
   - component: {fileID: 2661058341072745769}
   m_Layer: 0
   m_Name: ItemView
@@ -33,6 +34,19 @@ Transform:
   - {fileID: 3629836303777772655}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4850200992621651959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706505687517449992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8515576f83914cd38f740e30866af33c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSpriteRenderer: {fileID: 7920267543023355779}
 --- !u!61 &2661058341072745769
 BoxCollider2D:
   m_ObjectHideFlags: 0
