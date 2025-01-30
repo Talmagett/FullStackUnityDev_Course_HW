@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7930736120566954652}
+  - component: {fileID: 5378616474974107191}
   m_Layer: 5
   m_Name: QuestWidget
   m_TagString: Untagged
@@ -38,6 +39,20 @@ RectTransform:
   m_AnchoredPosition: {x: -150, y: -125}
   m_SizeDelta: {x: 185, y: 205}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5378616474974107191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240671203088533292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a73851020628b1c49a66ec94d9870e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questProgress: {fileID: 4328839398726826195}
+  questTask: {fileID: 5593357847018502429}
 --- !u!1 &4476082485449876555
 GameObject:
   m_ObjectHideFlags: 0

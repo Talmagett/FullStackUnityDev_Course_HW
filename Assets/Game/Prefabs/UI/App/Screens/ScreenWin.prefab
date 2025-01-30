@@ -456,7 +456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7909866162547116315}
-  - component: {fileID: 2554481157201903339}
+  - component: {fileID: 4062393477330737888}
   m_Layer: 5
   m_Name: ScreenWin
   m_TagString: Untagged
@@ -488,7 +488,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2554481157201903339
+--- !u!114 &4062393477330737888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -497,9 +497,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7480321340725854791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63fceff0c173e436598a4b593b2044eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 52472260b5a74f008b64f5c93e622cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNumberView: {fileID: 3113457753966891477}
+  nextButton: {fileID: 2943268969292415671}
 --- !u!1001 &1433110322028233219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -624,3 +626,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1433110322028233219}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3113457753966891477 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4095557025731285974, guid: d090edb2dbdd04e878e40a63592499f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1433110322028233219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb582c825b034f47ac56c7362f4f4e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
