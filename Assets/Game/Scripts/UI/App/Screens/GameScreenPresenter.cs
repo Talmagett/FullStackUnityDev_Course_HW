@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.UI
 {
-    public class LevelsScreenPresenter : Presenter
+    public class GameScreenPresenter : Presenter
     {
         
     }

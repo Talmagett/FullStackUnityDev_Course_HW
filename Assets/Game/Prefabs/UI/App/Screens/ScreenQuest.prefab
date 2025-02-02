@@ -492,7 +492,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 438804391841687882}
-  - component: {fileID: 662283967998642986}
+  - component: {fileID: -7849053547699082828}
   m_Layer: 5
   m_Name: ScreenQuest
   m_TagString: Untagged
@@ -523,7 +523,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &662283967998642986
+--- !u!114 &-7849053547699082828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -532,6 +532,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8194520694430738398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63fceff0c173e436598a4b593b2044eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bef5f9f95e741028d645ee38f0ab5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
