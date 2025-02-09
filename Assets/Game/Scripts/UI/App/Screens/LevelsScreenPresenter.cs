@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Atomic.UI;
 using Game.App;
+using Game.Scripts.System.App.Map;
 using Game.Scripts.UI.App.Level;
 using UnityEngine;
 using Zenject;
@@ -12,16 +13,17 @@ namespace Game.UI
     {
         [SerializeField] private Sprite backgroundImage;
         [SerializeField] private LevelView[] levelView;
+        [SerializeField] private MusicName musicName;
         
         [Inject] private ScreenNavigator screenNavigator;
         [Inject] private BackgroundView backgroundView;
         [Inject] private LevelCatalog levelCatalog;
-        
+        [Inject] private MusicPlayer musicPlayer;
+        [Inject] private Map map;
         private readonly List<LevelPresenter> _levelPresenters = new();
         
         protected override void OnInit()
         {
-            print(levelCatalog.LevelCount);
             for (int i = 0; i < levelView.Length; i++)
             {
                 if (i >= levelCatalog.LevelCount) return;
@@ -35,10 +37,12 @@ namespace Game.UI
         protected override void OnShow()
         {
             backgroundView.SetSprite(backgroundImage);
+            musicPlayer.Play(musicName);
         }
 
         public void LoadLevel(LevelConfig levelConfig)
         {
+            map.SetLevel(levelConfig);
             screenNavigator.ChangeScreen(ScreenName.Quest);
         }
     }

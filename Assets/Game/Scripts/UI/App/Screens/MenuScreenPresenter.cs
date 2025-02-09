@@ -1,4 +1,5 @@
 using Atomic.UI;
+using Game.App;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -9,9 +10,11 @@ namespace Game.UI
     {
         [SerializeField] private Button playButton;
         [SerializeField] private Sprite backgroundImage;
-        
+        [SerializeField] private MusicName musicName;
+
         [Inject] private ScreenNavigator screenNavigator;
         [Inject] private BackgroundView backgroundView;
+        [Inject] private MusicPlayer musicPlayer;
 
         protected override void OnInit()
         {
@@ -26,6 +29,7 @@ namespace Game.UI
         protected override void OnShow()
         {
             backgroundView.SetSprite(backgroundImage);
+            musicPlayer.Play(musicName);
         }
 
         private void OnPlayButtonClicked()

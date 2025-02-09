@@ -1,0 +1,30 @@
+using System;
+using Game.Scripts.System.Gameplay.Quest;
+using Game.Scripts.UI.Game.Quest;
+
+namespace Game.Scripts.UI.App.Level
+{
+    public class QuestPresenter : IDisposable
+    {
+        private readonly QuestView _questView;
+        private readonly Quest _quest;
+        
+        public QuestPresenter(QuestView questView, Quest quest)
+        {
+            _questView = questView;
+            _quest = quest;
+            _quest.OnQuestUpdated += OnQuestUpdate;
+            OnQuestUpdate();
+        }
+
+        private void OnQuestUpdate()
+        {
+            _questView.SetProgress($"{_quest.Current}/{_quest.Target}");
+        }
+
+        public void Dispose()
+        {
+            _quest.OnQuestUpdated -= OnQuestUpdate;
+        }
+    }
+}
