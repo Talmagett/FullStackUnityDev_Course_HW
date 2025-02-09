@@ -1,6 +1,4 @@
 using Atomic.UI;
-using Cysharp.Threading.Tasks;
-using Game.App;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -10,7 +8,10 @@ namespace Game.UI
     public class MenuScreenPresenter : Presenter
     {
         [SerializeField] private Button playButton;
-        [Inject] private SceneNavigator sceneNavigator;
+        [SerializeField] private Sprite backgroundImage;
+        
+        [Inject] private ScreenNavigator screenNavigator;
+        [Inject] private BackgroundView backgroundView;
 
         protected override void OnInit()
         {
@@ -22,10 +23,14 @@ namespace Game.UI
             playButton.onClick.RemoveListener(OnPlayButtonClicked);
         }
 
+        protected override void OnShow()
+        {
+            backgroundView.SetSprite(backgroundImage);
+        }
+
         private void OnPlayButtonClicked()
         {
-            sceneNavigator.OpenGame().Forget();
-            Hide();
+            screenNavigator.ChangeScreen(ScreenName.Levels);
         }
     }
 }

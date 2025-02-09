@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starImage: {fileID: 3557070094074873036}
+  levelButton: {fileID: 7372488211764639691}
 --- !u!1 &5514989104265267002
 GameObject:
   m_ObjectHideFlags: 0

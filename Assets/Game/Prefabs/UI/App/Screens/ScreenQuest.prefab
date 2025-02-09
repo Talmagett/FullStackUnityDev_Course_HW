@@ -535,3 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bef5f9f95e741028d645ee38f0ab5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundImage: {fileID: 21300000, guid: 6ca4348f10d64490cb4fceb3096596ff, type: 3}
+  questTargetImage: {fileID: 3648495525577566436}
+  questTargetText: {fileID: 7777991876601005988}
+  startButton: {fileID: 6948726652962187076}
