@@ -26,7 +26,7 @@ namespace Game.UI
         [Inject] private BackgroundView backgroundView;
         [Inject] private LevelCatalog levelCatalog;
         [Inject] private MusicPlayer musicPlayer;
-        [Inject] private Map map;
+        [Inject] private IMap map;
         private readonly List<LevelPresenter> _levelPresenters = new();
         
         protected override void OnInit()
@@ -54,7 +54,7 @@ namespace Game.UI
 
         public void LoadLevel(LevelConfig levelConfig)
         {
-            map.SetLevel(levelConfig);
+            map.SetCurrentLevel(levelConfig.Number);
             screenNavigator.ChangeScreen(ScreenName.Quest);
         }
     }

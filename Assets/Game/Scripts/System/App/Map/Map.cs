@@ -5,16 +5,20 @@ namespace Game.Scripts.System.App.Map
 {
     public class Map : IMap
     {
+        private readonly LevelCatalog _catalog;
         public int MaxLevel => _maxLevel;
         private int _maxLevel;
         private int _currentLevel;
-        public LevelConfig CurrentLevel { get; private set; }
 
-        public void SetLevel(LevelConfig levelConfig)
+        public Map(LevelCatalog catalog)
         {
-            CurrentLevel = levelConfig;
+            _catalog = catalog;
         }
-
+        public LevelConfig CurrentLevel { get; private set; }
+        public void SetCurrentLevel(int levelConfigNumber)
+        {
+            CurrentLevel = _catalog.FindLevel(levelConfigNumber);
+        }
         public void SetMaxLevel(int dataMaxLevel)
         {
             if (dataMaxLevel < 0)
@@ -27,5 +31,7 @@ namespace Game.Scripts.System.App.Map
     public interface IMap
     {
         int MaxLevel { get; }
+        LevelConfig CurrentLevel { get; }
+        void SetCurrentLevel(int levelConfigNumber);
     }
 }

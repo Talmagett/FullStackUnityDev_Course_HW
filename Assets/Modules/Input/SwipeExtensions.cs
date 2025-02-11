@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Modules.Inputs
 {
-    public static class SwupeExtensions
+    public static class SwipeExtensions
     {
         public static Vector2Int ToVector2Int(this SwipeDirection direction)
         {

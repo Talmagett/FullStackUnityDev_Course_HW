@@ -21,7 +21,7 @@ namespace Game.UI
         [Inject] private SceneNavigator sceneNavigator;
         [Inject] private BackgroundView backgroundView;
         [Inject] private MusicPlayer musicPlayer;
-        [Inject] private Map map;
+        [Inject] private IMap map;
         [Inject] private ItemSpriteMap itemSpriteMap;
         private const string QuestTargetText = "YOU NEED TO COLLECT [x] CANDIES OF THIS TYPE";
         protected override void OnInit()

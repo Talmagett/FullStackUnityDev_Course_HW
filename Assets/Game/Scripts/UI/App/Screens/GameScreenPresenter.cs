@@ -15,7 +15,7 @@ namespace Game.UI
         [SerializeField] private LevelNumberView levelNumberView;
         [SerializeField] private QuestView questView;
 
-        [Inject] private Map _map;
+        [Inject] private IMap _map;
         [Inject] private ItemSpriteMap _itemSpriteMap;
         [Inject] private Quest _quest;
         private QuestPresenter _questPresenter;
