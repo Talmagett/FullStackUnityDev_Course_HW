@@ -15,6 +15,13 @@ namespace Game.UI
         [SerializeField] private LevelView[] levelView;
         [SerializeField] private MusicName musicName;
         
+        [Space] 
+        [SerializeField] private Sprite openedLevelSprite;
+        [SerializeField] private Sprite lockedLevelSprite;
+        
+        [SerializeField] private Sprite completedStarSprite;
+        [SerializeField] private Sprite emptyStarSprite;
+        
         [Inject] private ScreenNavigator screenNavigator;
         [Inject] private BackgroundView backgroundView;
         [Inject] private LevelCatalog levelCatalog;
@@ -29,7 +36,12 @@ namespace Game.UI
                 if (i >= levelCatalog.LevelCount) return;
                 
                 var levelConfig = levelCatalog.FindLevel(i+1);
-                var presenter = new LevelPresenter(levelConfig, levelView[i], this);
+                bool isOpened = map.MaxLevel > levelConfig.Number - 2;
+                levelView[i].SetInteractable(isOpened);
+                levelView[i].PlayBounce(map.MaxLevel==levelConfig.Number - 1);
+                levelView[i].SetLevelImage( isOpened? openedLevelSprite : lockedLevelSprite);
+                levelView[i].SetStarImage(map.MaxLevel>levelConfig.Number-1?completedStarSprite:emptyStarSprite);
+                var presenter = new LevelPresenter(levelConfig, levelView[i],this);
                 _levelPresenters.Add(presenter);
             }
         }
@@ -53,7 +65,8 @@ namespace Game.UI
         private readonly LevelView _levelView;
         private readonly LevelsScreenPresenter _levelsScreenPresenter;
 
-        public LevelPresenter(LevelConfig levelConfig, LevelView levelView, LevelsScreenPresenter levelsScreenPresenter)
+        public LevelPresenter(LevelConfig levelConfig, LevelView levelView,
+            LevelsScreenPresenter levelsScreenPresenter)
         {
             this._levelConfig = levelConfig;
             this._levelView = levelView;

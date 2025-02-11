@@ -1,15 +1,8 @@
 {
-    "name": "Game",
+    "name": "Game.App",
     "rootNamespace": "",
     "references": [
-        "Zenject",
-        "Atomic.UI",
-        "UniTask",
-        "Modules.Input",
-        "Modules.Animation",
-        "DOTween.Modules",
-        "UniTask.DOTween",
-        "Game.App"
+        "Zenject"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -344,8 +344,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce8699320744fc6879e5d01c9714c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelImage: {fileID: 2120931607036667209}
   starImage: {fileID: 3557070094074873036}
   levelButton: {fileID: 7372488211764639691}
+  bounceAnimator: {fileID: 3336776351644516445}
 --- !u!1 &5514989104265267002
 GameObject:
   m_ObjectHideFlags: 0

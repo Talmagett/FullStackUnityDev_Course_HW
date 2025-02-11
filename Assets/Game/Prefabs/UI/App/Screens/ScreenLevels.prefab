@@ -136,6 +136,11 @@ MonoBehaviour:
   - {fileID: 2700054866505887868}
   - {fileID: 541745128787918266}
   musicName: 0
+  openedLevelSprite: {fileID: 21300000, guid: 39044d2b11dcc52449f18020daae2bf0, type: 3}
+  lockedLevelSprite: {fileID: 21300000, guid: d1bf50e65230f4a2ba55b111ba4209f7, type: 3}
+  completedStarSprite: {fileID: 21300000, guid: 394876ec644900b45834c11eaba904d8,
+    type: 3}
+  emptyStarSprite: {fileID: 21300000, guid: 51b989d938a034db58caba43a59a7ed9, type: 3}
 --- !u!1 &4390968004023184440
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +576,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ItemLevel (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514989104265267002, guid: ae25071d7fa548b4f941cbd968cd4620,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8043515438752224010, guid: ae25071d7fa548b4f941cbd968cd4620,
         type: 3}

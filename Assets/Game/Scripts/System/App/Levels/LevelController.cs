@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Game.Common;
 using Game.Scripts.System.App.Map;
@@ -18,8 +17,9 @@ namespace Game.App
         [Inject] private ItemView _itemView;
         
         private LevelConfig _currentLevel;
-        private readonly Dictionary<Vector2Int, Transform> _points = new Dictionary<Vector2Int, Transform>();
-        private readonly Dictionary<Vector2Int, ItemView> _itemViews = new Dictionary<Vector2Int, ItemView>();
+        private Transform[,] _points;
+        private ItemView[,] _itemViews;
+        
         private void Awake()
         {
             _currentLevel = _map.CurrentLevel;
@@ -28,15 +28,36 @@ namespace Game.App
 
         private void BuildLevel()
         {
-            foreach (var item in _currentLevel.Field.items)
+            var items = _currentLevel.Field.items;
+            int width = 0;
+            int height = 0;
+            foreach (var item in items)
+            {
+                if (item.point.x > width)
+                {
+                    width = item.point.x;
+                }
+                if (item.point.y > height)
+                {
+                    height = item.point.y;
+                }
+            }
+
+            print(width+" "+height);
+            _points = new Transform[width+1,height+1];
+            _itemViews = new ItemView[width+1,height+1];
+            foreach (var item in items)
             {
                 var point=new GameObject($"Point {item.point}");
                 point.transform.SetParent(pointGrid);
-                _points.Add(item.point,point.transform);
+                _points[item.point.x, item.point.y] = point.transform;
+                
                 var itemView = Instantiate(_itemView,(Vector2)item.point,Quaternion.identity, itemGrid);
                 itemView.SetSprite(_itemSpriteMap.GetItemSprite(item.type));
-                _itemViews.Add(item.point, itemView);
+                _itemViews[item.point.x,item.point.y] = itemView;
             }
+            pointGrid.position = new Vector3(-width/2f, -height/2f, 0);
+            itemGrid.position = new Vector3(-width/2f, -height/2f, 0);
         }
     }
 }
