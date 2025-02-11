@@ -18,7 +18,7 @@ namespace Game.App
         [Inject] private IMap _map;
         [Inject] private ItemSpriteMap _itemSpriteMap;
         [Inject] private ItemView _itemView;
-        
+        [Inject] private SoundPlayer _soundPlayer;
         private LevelConfig _currentLevel;
         private Transform[,] _points;
         private ItemView[,] _grid;
@@ -77,7 +77,7 @@ namespace Game.App
             
             var queue = new AnimationQueue();
             //(_grid[pos1.x, pos1.y], _grid[pos2.x, pos2.y]) = (_grid[pos2.x, pos2.y], _grid[pos1.x, pos1.y]);
-
+            _soundPlayer.Play(SoundName.Swap);
             queue.Enqueue(new SwapItemsAnimation(_grid[gridPos.x, gridPos.y], _grid[targetPos.x, targetPos.y]));
             queue.Enqueue(new ActionAnimation(()=>SwapItems(gridPos,targetPos)));
             queue.Execute();
@@ -93,13 +93,15 @@ namespace Game.App
 
             _isInteractable = false;
             var queue = new AnimationQueue();
-            //queue.Enqueue(new ActionAnimation(DropDownItems));
             queue.Enqueue(new DelayAnimation(0.3f));
             queue.Enqueue(new ActionAnimation(RemoveMatches));
-            queue.Enqueue(new DelayAnimation(0.3f));
+            queue.Enqueue(new DelayAnimation(0.1f));
+            queue.Enqueue(new ActionAnimation(DropDownItems));
+            queue.Enqueue(new DelayAnimation(0.2f));
             queue.Enqueue(new ActionAnimation(SpawnNewItems));
             queue.Execute();
         }
+        
         private bool IsValidPosition(Vector2Int pos)
         {
             return pos.x >= 0 && pos.y >= 0 && pos.x < _grid.GetLength(0) && pos.y < _grid.GetLength(1);
@@ -160,24 +162,25 @@ namespace Game.App
             {
                 Destroy(item.gameObject);
             }
+            _soundPlayer.Play(SoundName.Collect);
         }
         
         private void DropDownItems()
         {
             for (int x = 0; x < _grid.GetLength(0); x++)
             {
-                for (int y = _grid.GetLength(1) - 1; y >= 0; y--)
+                for (int y = 0; y < _grid.GetLength(1); y++) // Проходим снизу вверх
                 {
-                    if (_grid[x, y] == null) // Если пусто
+                    if (_grid[x, y] != null) continue; // Пропускаем, если клетка занята
+            
+                    for (int dropY = y + 1; dropY < _grid.GetLength(1); dropY++) // Ищем сверху вниз
                     {
-                        for (int dropY = y - 1; dropY >= 0; dropY--)
+                        if (_grid[x, dropY] != null)
                         {
-                            if (_grid[x, dropY] != null)
-                            {
-                                _grid[x, y] = _grid[x, dropY];
-                                _grid[x, dropY] = null;
-                                break;
-                            }
+                            _grid[x, y] = _grid[x, dropY];
+                            _grid[x, dropY] = null;
+                            _grid[x, y].MoveTo(new Vector2Int(x, y)); // Перемещаем графику
+                            break;
                         }
                     }
                 }

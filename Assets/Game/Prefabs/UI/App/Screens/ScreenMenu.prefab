@@ -161,7 +161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1903637098583949450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: e5a7eba82f5e4ebda24de1220fe710d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  soundName: 0
 --- !u!95 &1908664351
 Animator:
   serializedVersion: 5
@@ -271,6 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playButton: {fileID: 4724380561754817355}
   backgroundImage: {fileID: 21300000, guid: fdaa26bf12ef84168b825f3d3688929b, type: 3}
+  musicName: 0
 --- !u!1 &5493547728556276986
 GameObject:
   m_ObjectHideFlags: 0

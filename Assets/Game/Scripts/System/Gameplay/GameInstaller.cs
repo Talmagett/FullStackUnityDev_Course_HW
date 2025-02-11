@@ -1,6 +1,7 @@
 using Game.Common;
 using Game.Scripts.System.App.Map;
 using Game.Scripts.UI.Game.Items;
+using Game.Scripts.UI.Views;
 using UnityEngine;
 using Zenject;
 
@@ -18,9 +19,6 @@ namespace Game.Scripts.System.Gameplay
             Container.BindInstance(itemSpriteMap).AsSingle();
             Container.BindInstance(itemView).AsSingle();
             Container.Bind<Quest.Quest>().AsSingle().NonLazy();
-            // Container.Bind<Score>().AsSingle().NonLazy();
-            // Container.Bind<Level>().AsSingle().NonLazy();
-            // Container.Bind<LevelManager>().AsSingle().NonLazy();
         }
     }
 }

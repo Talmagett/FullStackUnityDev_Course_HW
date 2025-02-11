@@ -4,10 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ef70682-a367-4dd9-8815-63b440c34fb2" name="Changes" comment="made basic match3">
+    <list default="true" id="2ef70682-a367-4dd9-8815-63b440c34fb2" name="Changes" comment="update match3, remove, no drop">
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Buttons/AdvancedButton.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Buttons/AdvancedButton.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupInstaller.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupInstaller.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Elements/ButtonSettings.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Elements/ButtonSettings.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Elements/ItemLevel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Elements/ItemLevel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Popups/PopupSettings.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Popups/PopupSettings.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Screens/ScreenGame.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Screens/ScreenGame.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Screens/ScreenMenu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Screens/ScreenMenu.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/ProjectContext.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/ProjectContext.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/GameInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/GameInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/CheckForMatchesAnimation.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/CheckForMatchesAnimation.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Buttons/SettingsButtonView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Buttons/SettingsButtonView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/GameScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/GameScreenPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/GameState.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/GameState.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,13 +57,17 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/6b/81d52114/Array.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/7a/8bd2ddf8/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Downloads/Конец урока/Assets/Game/Scripts/Gameplay/Money/MoneyInstaller.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Downloads/Конец урока/Assets/Modules/MoneyStorage/Scripts/IMoneyStorage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Downloads/Конец урока/Assets/Modules/MoneyStorage/Scripts/MoneyStorage.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/Assets/Game/Prefabs/UI/App/Elements/ButtonSettings.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupInstaller.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Input/PlayerInput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/SaveSystem/Main/ApplicationEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/SaveSystem/Main/MainInstaller.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Selectable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/ProjectSettings/ProjectSettings.asset" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -147,7 +168,7 @@
       <workItem from="1739246191337" duration="1931000" />
       <workItem from="1739252139312" duration="7369000" />
       <workItem from="1739263860559" duration="27000" />
-      <workItem from="1739263897414" duration="3303000" />
+      <workItem from="1739263897414" duration="6799000" />
     </task>
     <task id="LOCAL-00001" summary="animation, others">
       <option name="closed" value="true" />
@@ -277,7 +298,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739266652151</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="update match3, remove, no drop">
+      <option name="closed" value="true" />
+      <created>1739267539653</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1739267539653</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +356,8 @@
     <MESSAGE value="added level controller" />
     <MESSAGE value="added save system, and levels are opened and locked" />
     <MESSAGE value="made basic match3" />
-    <option name="LAST_COMMIT_MESSAGE" value="made basic match3" />
+    <MESSAGE value="update match3, remove, no drop" />
+    <option name="LAST_COMMIT_MESSAGE" value="update match3, remove, no drop" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
