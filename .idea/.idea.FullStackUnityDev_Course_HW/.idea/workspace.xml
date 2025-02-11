@@ -4,30 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ef70682-a367-4dd9-8815-63b440c34fb2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ActionAnimation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ActionAnimation.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/CheckForMatchesAnimation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/CheckForMatchesAnimation.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/DelayAnimation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/DelayAnimation.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemController.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/SwapItemsAnimation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/SwapItemsAnimation.cs.meta" afterDir="false" />
+    <list default="true" id="2ef70682-a367-4dd9-8815-63b440c34fb2" name="Changes" comment="made basic match3">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/Game/ItemView.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/Game/ItemView.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/GameScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/Map.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/Map.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/MapInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/MapInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/GameScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/GameScreenPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/LevelsScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/LevelsScreenPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/QuestScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/QuestScreenPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Items/ItemView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Items/ItemView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/Input/SwupeExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/Input/SwipeExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/Input/SwupeExtensions.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/Input/SwipeExtensions.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +47,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Input/PlayerInput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/SaveSystem/Main/ApplicationEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/SaveSystem/Main/MainInstaller.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/ProjectSettings/ProjectSettings.asset" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -166,7 +147,7 @@
       <workItem from="1739246191337" duration="1931000" />
       <workItem from="1739252139312" duration="7369000" />
       <workItem from="1739263860559" duration="27000" />
-      <workItem from="1739263897414" duration="2603000" />
+      <workItem from="1739263897414" duration="3303000" />
     </task>
     <task id="LOCAL-00001" summary="animation, others">
       <option name="closed" value="true" />
@@ -288,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739248100541</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="made basic match3">
+      <option name="closed" value="true" />
+      <created>1739266652151</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1739266652151</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,7 +326,8 @@
     <MESSAGE value="moved files" />
     <MESSAGE value="added level controller" />
     <MESSAGE value="added save system, and levels are opened and locked" />
-    <option name="LAST_COMMIT_MESSAGE" value="added save system, and levels are opened and locked" />
+    <MESSAGE value="made basic match3" />
+    <option name="LAST_COMMIT_MESSAGE" value="made basic match3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

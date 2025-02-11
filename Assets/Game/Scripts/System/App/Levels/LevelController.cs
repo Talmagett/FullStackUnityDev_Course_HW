@@ -23,6 +23,8 @@ namespace Game.App
         private Transform[,] _points;
         private ItemView[,] _grid;
         private Vector2Int GridSize;
+        
+        private bool _isInteractable=true;
         private void Awake()
         {
             _currentLevel = _map.CurrentLevel;
@@ -66,6 +68,8 @@ namespace Game.App
 
         public void TrySwap(ItemView item, Vector2Int direction)
         {
+            if (!_isInteractable) return;
+            
             Vector2Int gridPos = item.GridPosition;
             Vector2Int targetPos = gridPos + direction;
 
@@ -81,10 +85,17 @@ namespace Game.App
 
         private void CheckTheField()
         {
+            if (!CheckForMatches())
+            {
+                _isInteractable = true;
+                return;
+            }
+
+            _isInteractable = false;
             var queue = new AnimationQueue();
-            queue.Enqueue(new DelayAnimation(0.4f));
-            queue.Enqueue(new CheckForMatchesAnimation(CheckForMatches));
             //queue.Enqueue(new ActionAnimation(DropDownItems));
+            queue.Enqueue(new DelayAnimation(0.3f));
+            queue.Enqueue(new ActionAnimation(RemoveMatches));
             queue.Enqueue(new DelayAnimation(0.3f));
             queue.Enqueue(new ActionAnimation(SpawnNewItems));
             queue.Execute();
@@ -94,10 +105,11 @@ namespace Game.App
             return pos.x >= 0 && pos.y >= 0 && pos.x < _grid.GetLength(0) && pos.y < _grid.GetLength(1);
         }
 
+        private List<ItemView> _matchedItems;
         private bool CheckForMatches()
         {
             bool hasMatch = false;
-            List<ItemView> matchedItems = new List<ItemView>();
+            _matchedItems = new List<ItemView>();
 
             // Проверка по горизонтали
             for (int x = 0; x < _grid.GetLength(0); x++)
@@ -106,9 +118,9 @@ namespace Game.App
                 {
                     if (AreItemsMatching(_grid[x, y], _grid[x, y + 1], _grid[x, y + 2]))
                     {
-                        matchedItems.Add(_grid[x, y]);
-                        matchedItems.Add(_grid[x, y + 1]);
-                        matchedItems.Add(_grid[x, y + 2]);
+                        _matchedItems.Add(_grid[x, y]);
+                        _matchedItems.Add(_grid[x, y + 1]);
+                        _matchedItems.Add(_grid[x, y + 2]);
                         hasMatch = true;
                     }
                 }
@@ -121,17 +133,12 @@ namespace Game.App
                 {
                     if (AreItemsMatching(_grid[x, y], _grid[x + 1, y], _grid[x + 2, y]))
                     {
-                        matchedItems.Add(_grid[x, y]);
-                        matchedItems.Add(_grid[x + 1, y]);
-                        matchedItems.Add(_grid[x + 2, y]);
+                        _matchedItems.Add(_grid[x, y]);
+                        _matchedItems.Add(_grid[x + 1, y]);
+                        _matchedItems.Add(_grid[x + 2, y]);
                         hasMatch = true;
                     }
                 }
-            }
-
-            if (hasMatch)
-            {
-                RemoveMatches(matchedItems);
             }
 
             return hasMatch;
@@ -147,15 +154,12 @@ namespace Game.App
             CheckTheField();
         }
         
-        private void RemoveMatches(List<ItemView> matchedItems)
+        private void RemoveMatches()
         {
-            foreach (var item in matchedItems)
+            foreach (var item in _matchedItems)
             {
                 Destroy(item.gameObject);
             }
-    
-            // После удаления заполняем пустые места
-            
         }
         
         private void DropDownItems()
