@@ -21,11 +21,10 @@ namespace Game.Common
         }
         public async UniTask Execute()
         {
-            await view.transform.DOMove(targetPosition, Random.Range(0.4f,1.5f)).OnComplete(() =>
-            {
-                quest.AddProgress();
-                Object.Destroy(view.gameObject);
-            }).ToUniTask();
+            await view.transform.DOMove(targetPosition, Random.Range(0.4f, 1.5f));
+            await view.transform.DOPunchScale(Vector3.one*0.5f, 0.3f);
+            quest.AddProgress();
+            Object.Destroy(view.gameObject);
         }
     }
 }

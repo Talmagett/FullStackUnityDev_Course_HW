@@ -60,8 +60,8 @@ namespace Game.UI
 
         private void FinishLevel()
         {
-            sceneNavigator.OpenMenu();
             _screenNavigator.ChangeScreen(ScreenName.Win);
+            sceneNavigator.OpenMenu();
         }
     }
 }

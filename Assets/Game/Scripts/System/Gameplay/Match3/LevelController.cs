@@ -121,7 +121,7 @@ namespace Game.App
 
             _isInteractable = false;
             var queue = new AnimationQueue();
-            queue.Enqueue(new DelayAnimation(0.3f));
+            //rework
             queue.Enqueue(new ActionAnimation(RemoveMatches));
             queue.Enqueue(new DelayAnimation(0.2f));
             queue.Enqueue(new ActionAnimation(DropDownItems));

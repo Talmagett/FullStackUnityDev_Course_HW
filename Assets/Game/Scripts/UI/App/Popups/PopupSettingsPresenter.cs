@@ -36,8 +36,8 @@ namespace Game.Scripts.UI.Views
         private void GoHome()
         {
             Hide();
-            _sceneNavigator.OpenMenu();
             _screenNavigator.ChangeScreen(ScreenName.Menu);
+            _sceneNavigator.OpenMenu();
         }
     }
 }
