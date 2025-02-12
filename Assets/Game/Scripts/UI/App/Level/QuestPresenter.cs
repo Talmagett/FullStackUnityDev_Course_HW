@@ -1,5 +1,5 @@
 using System;
-using Game.Scripts.System.Gameplay.Quest;
+using Game.Scripts.System.Gameplay.Quests;
 using Game.Scripts.UI.Game.Quest;
 
 namespace Game.Scripts.UI.App.Level

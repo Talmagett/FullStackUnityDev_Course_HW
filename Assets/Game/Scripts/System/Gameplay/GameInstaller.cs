@@ -1,5 +1,6 @@
 using Game.Common;
 using Game.Scripts.System.App.Map;
+using Game.Scripts.System.Gameplay.Quests;
 using Game.Scripts.UI.Game.Items;
 using Game.Scripts.UI.Views;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace Game.Scripts.System.Gameplay
             MapInstaller.Install(Container);
             Container.BindInstance(itemSpriteMap).AsSingle();
             Container.BindInstance(itemView).AsSingle();
-            Container.Bind<Quest.Quest>().AsSingle().NonLazy();
+            Container.Bind<Quest>().AsSingle().NonLazy();
         }
     }
 }

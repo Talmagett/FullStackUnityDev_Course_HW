@@ -1,1 +1,1 @@
-{"MapData":"{\"MaxLevel\":3}"}
+{"MapData":"{\"MaxLevel\":1}"}

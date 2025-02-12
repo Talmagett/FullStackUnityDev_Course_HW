@@ -4,26 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ef70682-a367-4dd9-8815-63b440c34fb2" name="Changes" comment="update match3, remove, no drop">
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Buttons/AdvancedButton.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Buttons/AdvancedButton.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupInstaller.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupInstaller.cs.meta" afterDir="false" />
+    <list default="true" id="2ef70682-a367-4dd9-8815-63b440c34fb2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/QuestMoveAnimation.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/QuestMoveAnimation.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Elements/ButtonSettings.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Elements/ButtonSettings.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Elements/ItemLevel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Elements/ItemLevel.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Popups/PopupSettings.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Popups/PopupSettings.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Screens/ScreenGame.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Screens/ScreenGame.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Screens/ScreenMenu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Screens/ScreenMenu.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/ProjectContext.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/ProjectContext.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Configs/Levels/LevelConfig2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Configs/Levels/LevelConfig2.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Configs/Levels/LevelConfig3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Configs/Levels/LevelConfig3.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Configs/Levels/LevelConfig4.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Configs/Levels/LevelConfig4.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Configs/Levels/LevelConfig5.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Configs/Levels/LevelConfig5.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Configs/Levels/LevelConfig6.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Configs/Levels/LevelConfig6.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Screens/ScreenWin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Screens/ScreenWin.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/Game/ItemView.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/Game/ItemView.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/LevelController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/LevelController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/Map.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/Map.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/GameInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/GameInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/CheckForMatchesAnimation.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/CheckForMatchesAnimation.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Buttons/SettingsButtonView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Buttons/SettingsButtonView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Quest.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Quests.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Quest/Quest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Quests/Quest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Quest/Quest.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Quests/Quest.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Level/QuestPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Level/QuestPresenter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/GameScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/GameScreenPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/LevelsScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/LevelsScreenPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/WinScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/WinScreenPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Items/ItemView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Items/ItemView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/GameState.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/GameState.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,7 +174,8 @@
       <workItem from="1739246191337" duration="1931000" />
       <workItem from="1739252139312" duration="7369000" />
       <workItem from="1739263860559" duration="27000" />
-      <workItem from="1739263897414" duration="6799000" />
+      <workItem from="1739263897414" duration="7430000" />
+      <workItem from="1739334242574" duration="5766000" />
     </task>
     <task id="LOCAL-00001" summary="animation, others">
       <option name="closed" value="true" />
@@ -306,7 +313,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739267539653</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="adding settings popup, need to make catalog, &amp; others">
+      <option name="closed" value="true" />
+      <created>1739271884932</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1739271884932</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,7 +372,8 @@
     <MESSAGE value="added save system, and levels are opened and locked" />
     <MESSAGE value="made basic match3" />
     <MESSAGE value="update match3, remove, no drop" />
-    <option name="LAST_COMMIT_MESSAGE" value="update match3, remove, no drop" />
+    <MESSAGE value="adding settings popup, need to make catalog, &amp; others" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding settings popup, need to make catalog, &amp; others" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -36,22 +36,36 @@ namespace Game.UI
                 if (i >= levelCatalog.LevelCount) return;
                 
                 var levelConfig = levelCatalog.FindLevel(i+1);
-                bool isOpened = map.MaxLevel > levelConfig.Number - 2;
-                levelView[i].SetInteractable(isOpened);
-                levelView[i].PlayBounce(map.MaxLevel==levelConfig.Number - 1);
-                levelView[i].SetLevelImage( isOpened? openedLevelSprite : lockedLevelSprite);
-                levelView[i].SetStarImage(map.MaxLevel>levelConfig.Number-1?completedStarSprite:emptyStarSprite);
+                
                 var presenter = new LevelPresenter(levelConfig, levelView[i],this);
                 _levelPresenters.Add(presenter);
+                UpdateLevelViews();
             }
         }
 
         protected override void OnShow()
         {
+            musicPlayer.SetMute(false);
             backgroundView.SetSprite(backgroundImage);
             musicPlayer.Play(musicName);
+            UpdateLevelViews();
         }
 
+        private void UpdateLevelViews()
+        {
+            for (int i = 0; i < levelView.Length; i++)
+            {
+                if (i >= levelCatalog.LevelCount) return;
+                
+                var levelConfig = levelCatalog.FindLevel(i+1);
+                bool isOpened = map.MaxLevel > levelConfig.Number - 2;
+                levelView[i].SetInteractable(isOpened);
+                levelView[i].PlayBounce(map.MaxLevel==levelConfig.Number - 1);
+                levelView[i].SetLevelImage( isOpened? openedLevelSprite : lockedLevelSprite);
+                levelView[i].SetStarImage(map.MaxLevel>levelConfig.Number-1?completedStarSprite:emptyStarSprite);
+            }
+        }
+        
         public void LoadLevel(LevelConfig levelConfig)
         {
             map.SetCurrentLevel(levelConfig.Number);

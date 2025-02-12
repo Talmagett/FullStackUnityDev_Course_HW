@@ -1,5 +1,4 @@
 using Game.Common;
-using Game.Scripts.System.Gameplay.Quest;
 using Modules.Inputs;
 using UnityEngine;
 using Zenject;

@@ -1,12 +1,16 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Game.Common;
 using Game.Scripts.System.App.Map;
+using Game.Scripts.System.Gameplay.Quests;
 using Game.Scripts.UI.Game.Items;
 using Modules.Animations;
 using Modules.Inputs;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Game.App
 {
@@ -14,21 +18,40 @@ namespace Game.App
     {
         [SerializeField] private Transform itemGrid;
         [SerializeField] private Transform pointGrid;
+
+        [SerializeField] private Transform questTarget;
         
         [Inject] private IMap _map;
         [Inject] private ItemSpriteMap _itemSpriteMap;
         [Inject] private ItemView _itemView;
         [Inject] private SoundPlayer _soundPlayer;
+        [Inject] private Quest _quest;
         private LevelConfig _currentLevel;
         private Transform[,] _points;
         private ItemView[,] _grid;
         private Vector2Int GridSize;
         
         private bool _isInteractable=true;
+        private bool _isGameOver;
         private void Awake()
         {
             _currentLevel = _map.CurrentLevel;
             BuildLevel();
+        }
+
+        private void OnEnable()
+        {
+            _quest.OnQuestFinished+=OnQuestFinished;
+        }
+
+        private void OnDisable()
+        {
+            _quest.OnQuestFinished-=OnQuestFinished;
+        }
+
+        private void OnQuestFinished()
+        {
+            _isGameOver = true;
         }
 
         private void BuildLevel()
@@ -87,6 +110,11 @@ namespace Game.App
         {
             if (!CheckForMatches())
             {
+                if (_isGameOver)
+                {
+                    return;
+                }
+
                 _isInteractable = true;
                 return;
             }
@@ -95,7 +123,7 @@ namespace Game.App
             var queue = new AnimationQueue();
             queue.Enqueue(new DelayAnimation(0.3f));
             queue.Enqueue(new ActionAnimation(RemoveMatches));
-            queue.Enqueue(new DelayAnimation(0.1f));
+            queue.Enqueue(new DelayAnimation(0.2f));
             queue.Enqueue(new ActionAnimation(DropDownItems));
             queue.Enqueue(new DelayAnimation(0.2f));
             queue.Enqueue(new ActionAnimation(SpawnNewItems));
@@ -107,11 +135,11 @@ namespace Game.App
             return pos.x >= 0 && pos.y >= 0 && pos.x < _grid.GetLength(0) && pos.y < _grid.GetLength(1);
         }
 
-        private List<ItemView> _matchedItems;
+        private HashSet<ItemView> _matchedItems;
         private bool CheckForMatches()
         {
             bool hasMatch = false;
-            _matchedItems = new List<ItemView>();
+            _matchedItems = new HashSet<ItemView>();
 
             // Проверка по горизонтали
             for (int x = 0; x < _grid.GetLength(0); x++)
@@ -158,10 +186,21 @@ namespace Game.App
         
         private void RemoveMatches()
         {
+            var tasks = new List<IAnimation>();
             foreach (var item in _matchedItems)
             {
-                Destroy(item.gameObject);
+                _grid[item.GridPosition.x,item.GridPosition.y] = null;
+                if (_quest.IsQuestTarget(item.ItemType))
+                {
+                    tasks.Add(new QuestMoveAnimation(item, questTarget.position,_quest));
+                }
+                else
+                {
+                    item.Combinate();
+                }
             }
+            var parallelAnimation = new ParallelAnimation(tasks.ToArray());
+            parallelAnimation.Execute();
             _soundPlayer.Play(SoundName.Collect);
         }
         
@@ -179,13 +218,14 @@ namespace Game.App
                         {
                             _grid[x, y] = _grid[x, dropY];
                             _grid[x, dropY] = null;
-                            _grid[x, y].MoveTo(new Vector2Int(x, y)); // Перемещаем графику
+                            _grid[x, y].Drop(new Vector2Int(x, y)); // Перемещаем графику
                             break;
                         }
                     }
                 }
             }
         }
+        
         private void SpawnNewItems()
         {
             for (int x = 0; x < _grid.GetLength(0); x++)

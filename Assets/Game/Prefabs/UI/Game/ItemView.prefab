@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSpriteRenderer: {fileID: 7920267543023355779}
-  animationDuration: 0.15
+  swipeAnimationDuration: 0.15
+  combinateAnimationDuration: 0.2
+  dropSpeed: 20
 --- !u!61 &2661058341072745769
 BoxCollider2D:
   m_ObjectHideFlags: 0

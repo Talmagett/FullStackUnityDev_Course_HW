@@ -87,7 +87,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1019616455202871669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: e5a7eba82f5e4ebda24de1220fe710d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -500,7 +500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52472260b5a74f008b64f5c93e622cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundImage: {fileID: 21300000, guid: 6ca4348f10d64490cb4fceb3096596ff, type: 3}
   levelNumberView: {fileID: 3113457753966891477}
+  questTarget: {fileID: 6992434404909425668}
   nextButton: {fileID: 2943268969292415671}
 --- !u!1001 &1433110322028233219
 PrefabInstance:

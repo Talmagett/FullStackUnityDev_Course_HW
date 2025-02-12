@@ -75,6 +75,6 @@ MonoBehaviour:
       type: 2
     - point: {x: 4, y: 5}
       type: 2
-  goalCount: 35
+  goalCount: 15
   goalType: 6
   numberIcon: {fileID: 21300000, guid: 97e0c57e673a64788a44639f480ed6d7, type: 3}
