@@ -4,23 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ef70682-a367-4dd9-8815-63b440c34fb2" name="Changes" comment="added win, game ready. need to polish, with animations, clean up">
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemFeatureInstaller.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemFeatureInstaller.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Items/ItemGridPresenter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Items/ItemGridPresenter.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Items/ItemGridView.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Items/ItemGridView.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/PointGridView.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/PointGridView.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/GameUIInstaller.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/GameUIInstaller.cs.meta" afterDir="false" />
+    <list default="true" id="2ef70682-a367-4dd9-8815-63b440c34fb2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/Match3Controller.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/Match3Controller.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/SwapAnimation.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/SwapAnimation.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/QuestMoveAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/QuestMoveAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ActionAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/ActionAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ActionAnimation.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/ActionAnimation.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/DelayAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/DelayAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/DelayAnimation.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/DelayAnimation.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/QuestMoveAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/QuestMoveAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/QuestMoveAnimation.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/QuestMoveAnimation.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/SwapItemsAnimation.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/SwapItemsAnimation.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/LevelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/LevelController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/GameScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/GameScreenPresenter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +62,8 @@
     <setting file="file://$USER_HOME$/Downloads/Конец урока/Assets/Modules/MoneyStorage/Scripts/MoneyStorage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/Assets/Game/Scenes/GameScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/Assets/Game/Scenes/GameScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/Assets/Game/Scenes/GameScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/Assets/Game/Scripts/System/Gameplay/Items/QuestMoveAnimation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/Assets/Game/Scripts/System/Gameplay/Match3/LevelController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupInstaller.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/Assets/Game/Scripts/UI/App/Popups/PopupSettingsPresenter.cs" root0="SKIP_HIGHLIGHTING" />
@@ -168,7 +172,8 @@
       <workItem from="1739252139312" duration="7369000" />
       <workItem from="1739263860559" duration="27000" />
       <workItem from="1739263897414" duration="7430000" />
-      <workItem from="1739334242574" duration="9999000" />
+      <workItem from="1739334242574" duration="10108000" />
+      <workItem from="1739418204570" duration="3000000" />
     </task>
     <task id="LOCAL-00001" summary="animation, others">
       <option name="closed" value="true" />
@@ -322,7 +327,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739340688009</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="added some scripts">
+      <option name="closed" value="true" />
+      <created>1739358533158</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1739358533158</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,7 +362,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="init no zenject extras bug, money view" />
     <MESSAGE value="added zenject extra, fixed bug" />
     <MESSAGE value="added base planet view" />
     <MESSAGE value="basic presenters for planets" />
@@ -374,7 +386,8 @@
     <MESSAGE value="update match3, remove, no drop" />
     <MESSAGE value="adding settings popup, need to make catalog, &amp; others" />
     <MESSAGE value="added win, game ready. need to polish, with animations, clean up" />
-    <option name="LAST_COMMIT_MESSAGE" value="added win, game ready. need to polish, with animations, clean up" />
+    <MESSAGE value="added some scripts" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some scripts" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

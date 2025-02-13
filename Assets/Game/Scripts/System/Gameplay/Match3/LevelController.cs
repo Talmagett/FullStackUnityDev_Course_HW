@@ -18,7 +18,6 @@ namespace Game.App
     {
         [SerializeField] private Transform itemGrid;
         [SerializeField] private Transform pointGrid;
-
         [SerializeField] private Transform questTarget;
         
         [Inject] private IMap _map;
@@ -33,6 +32,7 @@ namespace Game.App
         
         private bool _isInteractable=true;
         private bool _isGameOver;
+        
         private void Awake()
         {
             _currentLevel = _map.CurrentLevel;
@@ -89,21 +89,25 @@ namespace Game.App
             itemGrid.position = -(Vector2)GridSize / 2;
         }
 
-        public void TrySwap(ItemView item, Vector2Int direction)
+        public bool TrySwap(ItemView item, Vector2Int direction, out ItemView itemView)
         {
-            if (!_isInteractable) return;
+            itemView = null;
+            if (!_isInteractable) return false;
             
             Vector2Int gridPos = item.GridPosition;
             Vector2Int targetPos = gridPos + direction;
 
-            if (!IsValidPosition(targetPos)) return;
-            
+            if (!IsValidPosition(targetPos)) return false;
+            itemView = GetItemAt(targetPos);
+            (_grid[gridPos.x, gridPos.y], _grid[targetPos.x, targetPos.y]) = (_grid[targetPos.x, targetPos.y], _grid[gridPos.x, gridPos.y]);
+/*
             var queue = new AnimationQueue();
             //(_grid[pos1.x, pos1.y], _grid[pos2.x, pos2.y]) = (_grid[pos2.x, pos2.y], _grid[pos1.x, pos1.y]);
             _soundPlayer.Play(SoundName.Swap);
             queue.Enqueue(new SwapItemsAnimation(_grid[gridPos.x, gridPos.y], _grid[targetPos.x, targetPos.y]));
             queue.Enqueue(new ActionAnimation(()=>SwapItems(gridPos,targetPos)));
-            queue.Execute();
+            queue.Execute();*/
+            return true;
         }
 
         private void CheckTheField()
@@ -252,5 +256,7 @@ namespace Game.App
             newItem.SetGridPosition(position);
             return newItem;
         }
+
+        public ItemView GetItemAt(Vector2Int itemGridPosition) => _grid[itemGridPosition.x, itemGridPosition.y];
     }
 }
