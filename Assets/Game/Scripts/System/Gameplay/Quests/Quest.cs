@@ -1,24 +1,26 @@
 using System;
-using Game.App;
 using Game.Common;
+using Game.Scripts.System.App.Map;
 
-namespace Game.Scripts.System.Gameplay.Quests
+namespace Game.System.Gameplay.Quests
 {
     public class Quest
     {
         public event Action OnQuestUpdated;
         public event Action OnQuestFinished;
-        public int Target { get; private set;}
-        public int Current { get; private set; }
-        public ItemType GoalType { get; private set; }
         
-        public void SetQuest(ItemType goalType, int goalCount)
+        public int Target {get; private set;}
+        public int Current {get; private set;}
+        public bool IsQuestComplete() => Current >= Target;
+        private ItemType GoalType { get; set; }
+
+        public Quest(IMap map)
         {
-            Target = goalCount;
+            Target = map.CurrentLevel.GoalCount;
             Current = 0;
-            GoalType = goalType;
+            GoalType = map.CurrentLevel.GoalType;
         }
-        
+
         public bool IsQuestTarget(ItemType itemType)=> GoalType == itemType;
         public void AddProgress()
         {
@@ -26,7 +28,7 @@ namespace Game.Scripts.System.Gameplay.Quests
                 return;
             Current++;
             OnQuestUpdated?.Invoke();
-            if(Current==Target)
+            if(IsQuestComplete())
                 OnQuestFinished?.Invoke();
         }
     }

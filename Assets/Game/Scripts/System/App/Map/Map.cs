@@ -1,6 +1,5 @@
 using System;
 using Game.App;
-using Game.Scripts.System.Gameplay.Quests;
 using UnityEngine;
 
 namespace Game.Scripts.System.App.Map
@@ -8,15 +7,13 @@ namespace Game.Scripts.System.App.Map
     public class Map : IMap
     {
         private readonly LevelCatalog _catalog;
-        private readonly Quest _quest;
         public int MaxLevel => _maxLevel;
         private int _maxLevel;
         private int _currentLevel;
 
-        public Map(LevelCatalog catalog, Quest quest)
+        public Map(LevelCatalog catalog)
         {
             _catalog = catalog;
-            _quest = quest;
         }
         
         public LevelConfig CurrentLevel { get; private set; }
@@ -25,7 +22,6 @@ namespace Game.Scripts.System.App.Map
             CurrentLevel = _catalog.FindLevel(levelConfigNumber);
             _currentLevel = CurrentLevel.Number - 1;
             Debug.Log($"Current level: {_currentLevel} : MaxLevel: {_maxLevel}");
-            _quest.SetQuest(CurrentLevel.GoalType,CurrentLevel.GoalCount);
         }
 
         public void OnFinishLevel()

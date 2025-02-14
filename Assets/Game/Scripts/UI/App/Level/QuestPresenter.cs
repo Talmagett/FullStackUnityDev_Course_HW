@@ -1,8 +1,8 @@
 using System;
-using Game.Scripts.System.Gameplay.Quests;
 using Game.Scripts.UI.Game.Quest;
+using Game.System.Gameplay.Quests;
 
-namespace Game.Scripts.UI.App.Level
+namespace Game.UI.App.Level
 {
     public class QuestPresenter : IDisposable
     {

@@ -1,16 +1,15 @@
 using System;
-using Game.Scripts.System.Gameplay.Match3;
 using Game.Scripts.UI.Game.Items;
 using Modules.Inputs;
 using UnityEngine;
 
 namespace Game.Common
 {
-    public class ItemController : IDisposable
+    public class ItemInputHandler : IDisposable
     {
         private readonly SwipeInput _swipeInput;
         public event Action<ItemView, Vector2Int> OnItemSwipe;
-        public ItemController(SwipeInput swipeInput)
+        public ItemInputHandler(SwipeInput swipeInput)
         {
             _swipeInput = swipeInput;
             _swipeInput.OnSwipe += OnSwipe;

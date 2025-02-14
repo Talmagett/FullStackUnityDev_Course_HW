@@ -1,5 +1,7 @@
 using Game.Common;
-using Game.Scripts.System.Gameplay.Match3;
+using Game.Scripts.UI.Game.Items;
+using Game.System.Gameplay.Match3;
+using Game.System.Gameplay.Quests;
 using Modules.Inputs;
 using UnityEngine;
 using Zenject;
@@ -15,8 +17,12 @@ namespace Game.App
         {
             Container.BindInstance(swipeInput).AsSingle();
             Container.BindInstance(levelController).AsSingle();
-            Container.BindInterfacesAndSelfTo<ItemController>().AsSingle().NonLazy();
+            Container.Bind<Quest>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ItemInputHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<Match3Controller>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<LevelGrid>().AsSingle().NonLazy();
+            Container.Bind<Match3Logic>().AsSingle().NonLazy();
+            Container.BindMemoryPool<ItemView,ItemView.ItemViewPool>().WithInitialSize(16).ExpandByDoubling();
         }
     }
 }

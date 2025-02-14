@@ -8,6 +8,7 @@ namespace Game.Common
     {
         private readonly ItemView _item1;
         private readonly ItemView _item2;
+        private const float SwipeDuration = 0.3f;
 
         public SwapAnimation(ItemView item1, ItemView item2)
         {
@@ -17,9 +18,9 @@ namespace Game.Common
 
         public async UniTask Execute()
         {
-            await UniTask.WhenAll(
-                _item1.MoveTo(_item2.GridPosition),
-                _item2.MoveTo(_item1.GridPosition));
+            /*await UniTask.WhenAll(
+                _item1.MoveTo(_item1.GridPosition, SwipeDuration),
+                _item2.MoveTo(_item2.GridPosition, SwipeDuration));*/
         }
     }
 }

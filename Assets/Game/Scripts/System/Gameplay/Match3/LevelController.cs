@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using Game.Common;
 using Game.Scripts.System.App.Map;
-using Game.Scripts.System.Gameplay.Quests;
 using Game.Scripts.UI.Game.Items;
+using Game.System.Gameplay.Quests;
 using Modules.Animations;
-using Modules.Inputs;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -16,6 +13,7 @@ namespace Game.App
 {
     public class LevelController : MonoBehaviour
     {
+        /*
         [SerializeField] private Transform itemGrid;
         [SerializeField] private Transform pointGrid;
         [SerializeField] private Transform questTarget;
@@ -30,47 +28,10 @@ namespace Game.App
         private ItemView[,] _grid;
         private Vector2Int GridSize;
         
-        private bool _isInteractable=true;
-        private bool _isGameOver;
-        
-        private void Awake()
-        {
-            _currentLevel = _map.CurrentLevel;
-            BuildLevel();
-        }
-
-        private void OnEnable()
-        {
-            _quest.OnQuestFinished+=OnQuestFinished;
-        }
-
-        private void OnDisable()
-        {
-            _quest.OnQuestFinished-=OnQuestFinished;
-        }
-
-        private void OnQuestFinished()
-        {
-            _isGameOver = true;
-        }
-
         private void BuildLevel()
         {
             var items = _currentLevel.Field.items;
             
-            GridSize = new Vector2Int(0,0);
-            foreach (var item in items)
-            {
-                if (item.point.x > GridSize.x)
-                {
-                    GridSize.x = item.point.x;
-                }
-                if (item.point.y > GridSize.y)
-                {
-                    GridSize.y = item.point.y;
-                }
-            }
-
             _points = new Transform[GridSize.x+1,GridSize.y+1];
             _grid = new ItemView[GridSize.x+1,GridSize.y+1];
             foreach (var item in items)
@@ -89,30 +50,28 @@ namespace Game.App
             itemGrid.position = -(Vector2)GridSize / 2;
         }
 
-        public bool TrySwap(ItemView item, Vector2Int direction, out ItemView itemView)
+        public bool TrySwap(ItemView item, Vector2Int direction, out ItemView item2)
         {
-            itemView = null;
+            item2 = null;
             if (!_isInteractable) return false;
             
             Vector2Int gridPos = item.GridPosition;
             Vector2Int targetPos = gridPos + direction;
 
             if (!IsValidPosition(targetPos)) return false;
-            itemView = GetItemAt(targetPos);
+            item2 = GetItemAt(targetPos);
+            if (item2 == null) throw new NullReferenceException("There is no item at target position");
+            var item2GridPos = item2.GridPosition;
+            item2.SetGridPosition(item.GridPosition);
+            item.SetGridPosition(item2GridPos);
+            
             (_grid[gridPos.x, gridPos.y], _grid[targetPos.x, targetPos.y]) = (_grid[targetPos.x, targetPos.y], _grid[gridPos.x, gridPos.y]);
-/*
-            var queue = new AnimationQueue();
-            //(_grid[pos1.x, pos1.y], _grid[pos2.x, pos2.y]) = (_grid[pos2.x, pos2.y], _grid[pos1.x, pos1.y]);
-            _soundPlayer.Play(SoundName.Swap);
-            queue.Enqueue(new SwapItemsAnimation(_grid[gridPos.x, gridPos.y], _grid[targetPos.x, targetPos.y]));
-            queue.Enqueue(new ActionAnimation(()=>SwapItems(gridPos,targetPos)));
-            queue.Execute();*/
             return true;
         }
 
         private void CheckTheField()
         {
-            if (!CheckForMatches())
+            //if (!CheckForMatches())
             {
                 if (_isGameOver)
                 {
@@ -126,11 +85,11 @@ namespace Game.App
             _isInteractable = false;
             var queue = new AnimationQueue();
             //rework
-            queue.Enqueue(new ActionAnimation(RemoveMatches));
+            //queue.Enqueue(new ActionAnimation(RemoveMatches));
             queue.Enqueue(new DelayAnimation(0.2f));
-            queue.Enqueue(new ActionAnimation(DropDownItems));
+            //queue.Enqueue(new ActionAnimation(FallDownItems));
             queue.Enqueue(new DelayAnimation(0.2f));
-            queue.Enqueue(new ActionAnimation(SpawnNewItems));
+            //queue.Enqueue(new ActionAnimation(SpawnNewItems));
             queue.Execute();
         }
         
@@ -138,12 +97,10 @@ namespace Game.App
         {
             return pos.x >= 0 && pos.y >= 0 && pos.x < _grid.GetLength(0) && pos.y < _grid.GetLength(1);
         }
-
-        private HashSet<ItemView> _matchedItems;
-        private bool CheckForMatches()
+        
+        public HashSet<ItemView> FindMatches()
         {
-            bool hasMatch = false;
-            _matchedItems = new HashSet<ItemView>();
+            var matchedItems = new HashSet<ItemView>();
 
             // Проверка по горизонтали
             for (int x = 0; x < _grid.GetLength(0); x++)
@@ -152,10 +109,9 @@ namespace Game.App
                 {
                     if (AreItemsMatching(_grid[x, y], _grid[x, y + 1], _grid[x, y + 2]))
                     {
-                        _matchedItems.Add(_grid[x, y]);
-                        _matchedItems.Add(_grid[x, y + 1]);
-                        _matchedItems.Add(_grid[x, y + 2]);
-                        hasMatch = true;
+                        matchedItems.Add(_grid[x, y]);
+                        matchedItems.Add(_grid[x, y + 1]);
+                        matchedItems.Add(_grid[x, y + 2]);
                     }
                 }
             }
@@ -167,49 +123,34 @@ namespace Game.App
                 {
                     if (AreItemsMatching(_grid[x, y], _grid[x + 1, y], _grid[x + 2, y]))
                     {
-                        _matchedItems.Add(_grid[x, y]);
-                        _matchedItems.Add(_grid[x + 1, y]);
-                        _matchedItems.Add(_grid[x + 2, y]);
-                        hasMatch = true;
+                        matchedItems.Add(_grid[x, y]);
+                        matchedItems.Add(_grid[x + 1, y]);
+                        matchedItems.Add(_grid[x + 2, y]);
                     }
                 }
             }
 
-            return hasMatch;
+            return matchedItems;
         }
+        
+        
         private bool AreItemsMatching(ItemView a, ItemView b, ItemView c)
         {
             return a != null && b != null && c != null && a.ItemType == b.ItemType && b.ItemType == c.ItemType;
         }
-
-        private void SwapItems(Vector2Int pos1, Vector2Int pos2)
-        {
-            (_grid[pos1.x, pos1.y], _grid[pos2.x, pos2.y]) = (_grid[pos2.x, pos2.y], _grid[pos1.x, pos1.y]);
-            CheckTheField();
-        }
         
-        private void RemoveMatches()
+        public void RemoveMatches(HashSet<ItemView> matches)
         {
-            var tasks = new List<IAnimation>();
-            foreach (var item in _matchedItems)
+            foreach (var item in matches)
             {
                 _grid[item.GridPosition.x,item.GridPosition.y] = null;
-                if (_quest.IsQuestTarget(item.ItemType))
-                {
-                    tasks.Add(new QuestMoveAnimation(item, questTarget.position,_quest));
-                }
-                else
-                {
-                    item.Combinate();
-                }
             }
-            var parallelAnimation = new ParallelAnimation(tasks.ToArray());
-            parallelAnimation.Execute();
-            _soundPlayer.Play(SoundName.Collect);
         }
         
-        private void DropDownItems()
+        public HashSet<ItemView> FallDownItems()
         {
+            var fallingItems = new HashSet<ItemView>();
+
             for (int x = 0; x < _grid.GetLength(0); x++)
             {
                 for (int y = 0; y < _grid.GetLength(1); y++) // Проходим снизу вверх
@@ -218,18 +159,20 @@ namespace Game.App
             
                     for (int dropY = y + 1; dropY < _grid.GetLength(1); dropY++) // Ищем сверху вниз
                     {
-                        if (_grid[x, dropY] != null)
-                        {
-                            _grid[x, y] = _grid[x, dropY];
-                            _grid[x, dropY] = null;
-                            _grid[x, y].Drop(new Vector2Int(x, y)); // Перемещаем графику
-                            break;
-                        }
+                        if (_grid[x, dropY] == null) continue;
+                        
+                        _grid[x, y] = _grid[x, dropY];
+                        _grid[x, dropY] = null;
+                        _grid[x, y].SetGridPosition(new Vector2Int(x, y));
+                        fallingItems.Add(_grid[x, y]);
+                        break;
                     }
                 }
             }
+
+            return fallingItems;
         }
-        
+
         private void SpawnNewItems()
         {
             for (int x = 0; x < _grid.GetLength(0); x++)
@@ -258,5 +201,22 @@ namespace Game.App
         }
 
         public ItemView GetItemAt(Vector2Int itemGridPosition) => _grid[itemGridPosition.x, itemGridPosition.y];
+
+        public void FillEmptySpaces()
+        {
+            for (int x = 0; x < _grid.GetLength(0); x++)
+            {
+                for (int y = 0; y < _grid.GetLength(1); y++)
+                {
+                    if (_grid[x, y] != null) continue;
+                    
+                    var newItem = SpawnNewItem(new Vector2Int(x, y));
+                    _grid[x, y] = newItem;
+                    var randomType = (ItemType)Random.Range(1, 7);
+                    newItem.SetItemType(randomType);
+                    newItem.SetSprite(_itemSpriteMap.GetItemSprite(randomType));
+                }
+            }
+        }*/
     }
 }
