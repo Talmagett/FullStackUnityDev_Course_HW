@@ -73,22 +73,15 @@ namespace Game.System.Gameplay.Match3
         {
             return a != null && b != null && c != null && a.ItemType == b.ItemType && b.ItemType == c.ItemType;
         }
-        //
-        // public bool CheckMatches()
-        // {
-        //     // Логика поиска совпадений
-        //     return false;
-        // }
-/*
-        public void RemoveMatches(List<Item> matchedItems)
+        
+        public void RemoveMatches(IEnumerable<Item> matchedItems)
         {
             foreach (var item in matchedItems)
             {
                 _grid.SetItem(item.GridPosition, null);
-                _questTracker.CheckItem(item); // Отслеживаем квестовые фишки
+                //_questTracker.CheckItem(item); // Отслеживаем квестовые фишки
             }
-            ApplyGravity();
-        }*/
+        }
 
         public void ApplyGravity()
         {

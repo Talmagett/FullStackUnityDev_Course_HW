@@ -9,10 +9,10 @@ namespace Game.Common
 {
     public class DestroyAnimation : IAnimation
     {
-        private readonly HashSet<ItemView> _matches;
+        private readonly IEnumerable<ItemView> _matches;
         private const float FadeDuration = 0.3f;
         private const float ScaleDuration = 0.3f;
-        public DestroyAnimation(HashSet<ItemView> matches)
+        public DestroyAnimation(IEnumerable<ItemView> matches)
         {
             _matches = matches;
         }
