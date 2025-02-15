@@ -6,7 +6,7 @@ namespace Game.Scripts.System.App.Map
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<Map>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<Game.System.App.Map.Map>().AsSingle().NonLazy();
         }
     }
 }

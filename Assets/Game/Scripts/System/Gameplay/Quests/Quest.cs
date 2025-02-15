@@ -1,6 +1,7 @@
 using System;
 using Game.Common;
 using Game.Scripts.System.App.Map;
+using Game.System.App.Map;
 
 namespace Game.System.Gameplay.Quests
 {
@@ -8,8 +9,8 @@ namespace Game.System.Gameplay.Quests
     {
         public event Action OnQuestUpdated;
         public event Action OnQuestFinished;
-        
-        public int Target {get; private set;}
+
+        public readonly int Target;
         public int Current {get; private set;}
         public bool IsQuestComplete() => Current >= Target;
         private ItemType GoalType { get; set; }

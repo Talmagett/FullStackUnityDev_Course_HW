@@ -3,6 +3,7 @@ using Game.App;
 using Game.Common;
 using Game.Scripts.System.App.Map;
 using Game.Scripts.UI.App.Level;
+using Game.System.App.Map;
 using Game.System.Gameplay.Quests;
 using UnityEngine;
 using UnityEngine.UI;

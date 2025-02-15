@@ -166,7 +166,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1040703107}
-  - component: {fileID: 1040703109}
   - component: {fileID: 1040703108}
   m_Layer: 0
   m_Name: ItemGrid
@@ -199,22 +198,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1040703106}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efee19908084492b9adbe2580e10619d, type: 3}
+  m_Script: {fileID: 11500000, guid: 762aeccc4de34269a7c16e3cddd7d93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1040703109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040703106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e7b1900f17f43cda7a037225e0d518a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnOffsetY: 4
+  offsetY: 4
 --- !u!1 &1064677391
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +250,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swipeInput: {fileID: 1805608859}
-  levelController: {fileID: 0}
+  levelGridView: {fileID: 1040703108}
+  itemView: {fileID: 4850200992621651959, guid: 5e0fb7b9c1de544449b0c3d61f28ccc9,
+    type: 3}
 --- !u!114 &1064677395
 MonoBehaviour:
   m_ObjectHideFlags: 0

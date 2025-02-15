@@ -1,6 +1,9 @@
+using System.Collections.Generic;
+using System.Text;
 using Game.App;
 using Game.Common;
 using Game.Scripts.System.App.Map;
+using Game.System.App.Map;
 using Game.System.Gameplay.Quests;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -10,14 +13,27 @@ using Random = UnityEngine.Random;
 namespace Game.System.Gameplay.Match3
 {
     [UsedImplicitly]
-    public class LevelGrid : ILevelGrid,IInitializable
+    public class LevelGrid : ILevelGrid, IInitializable
     {
+        public Vector2Int GridSize => _gridSize;
+        
         [Inject] private IMap _map;
         
         private readonly LevelConfig _currentLevel;
         private Item[,] _grid;
         private Vector2Int _gridSize;
         
+        public IEnumerable<Item> GetAllItems()
+        {
+            for (int x = 0; x < _grid.GetLength(0); x++)
+            {
+                for (int y = 0; y < _grid.GetLength(1); y++)
+                {
+                    yield return _grid[x, y];
+                }
+            }
+        }
+
         public LevelGrid(IMap map, Quest quest)
         {
             _map = map;
@@ -29,31 +45,44 @@ namespace Game.System.Gameplay.Match3
             CalculateGridSize();
             BuildLevel();
         }
-        
-        public Item GetItem(Vector2Int pos) => _grid[pos.x, pos.y];
-        public void SetItem(Vector2Int pos, Item item) => _grid[pos.x, pos.y] = item;
-        
+
+        public Item GetItem(Vector2Int pos)
+        {
+            if (pos.x < 0 || pos.x >= _gridSize.x || pos.y < 0 || pos.y >= _gridSize.y)
+            {
+                return null;
+            }
+            return _grid[pos.x, pos.y];
+        }
+
+        public void SetItem(Vector2Int pos, Item item)
+        {
+            _grid[pos.x, pos.y] = item;
+            item.SetGridPosition(pos);
+        }
+
         private void CalculateGridSize()
         {
             var items = _currentLevel.Field.items;
             
-            var gridSize = new Vector2Int(0,0);
+            _gridSize = new Vector2Int(0,0);
             foreach (var item in items)
             {
-                if (item.point.x > gridSize.x)
+                if (item.point.x > _gridSize.x)
                 {
-                    gridSize.x = item.point.x;
+                    _gridSize.x = item.point.x;
                 }
-                if (item.point.y > gridSize.y)
+                if (item.point.y > _gridSize.y)
                 {
-                    gridSize.y = item.point.y;
+                    _gridSize.y = item.point.y;
                 }
             }
+            _gridSize += Vector2Int.one;
         }
 
         private void BuildLevel()
         {
-            _grid = new Item[_gridSize.x+1,_gridSize.y+1];
+            _grid = new Item[_gridSize.x,_gridSize.y];
             foreach (var itemData in _currentLevel.Field.items)
             {
                 CreateItem(itemData.type, itemData.point);

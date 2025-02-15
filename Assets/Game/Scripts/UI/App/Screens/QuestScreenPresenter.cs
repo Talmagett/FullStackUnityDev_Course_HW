@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using Game.App;
 using Game.Common;
 using Game.Scripts.System.App.Map;
+using Game.System.App.Map;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

@@ -9,45 +9,26 @@ namespace Game.Scripts.UI.Game.Match3
     {
         [SerializeField] private float offsetY;
 
-        private ItemView.ItemViewPool _itemViewPool;
         private ItemView[,] _itemViews;
-        private Dictionary<ItemView, Vector2Int> _itemPositions=new();
         
-        [Inject]
-        public void Construct(ItemView.ItemViewPool itemViewPool)
-        {
-            _itemViewPool = itemViewPool;
-        }
+        [Inject] private ItemView.Pool _pool;
+
+        private Vector2 _positionOffset;
         
-        public void SpawnItem(Vector2Int position)
-        {
-            var itemView = _itemViewPool.Spawn();
-            _itemViews[position.x, position.y] = itemView;
-            _itemPositions.Add(itemView, position);
-        }
+       public void Inititalize(Vector2Int size)
+       {
+           _itemViews = new ItemView[size.x, size.y];
+           _positionOffset = new Vector2(-(size.x-1) / 2f, -(size.y -1)/ 2f);
+       }
 
-        public ItemView GetItem(Vector2Int position)
-        {
-            return _itemViews[position.x, position.y];
-        }
-
-        public Vector2Int GetPosition(ItemView itemView)
-        {
-            return _itemPositions[itemView];
-        }
-
-        public void RemoveItem(ItemView itemView)
-        {
-            var position = _itemPositions[itemView];
-            _itemViews[position.x, position.y] = null;
-            _itemPositions.Remove(itemView);
-            _itemViewPool.Despawn(itemView);
-        }
-        
-        public void RemoveItemAt(Vector2Int position)
-        {
-            var itemView = GetItem(position);
-            RemoveItem(itemView);
-        }
+       public ItemView SpawnItem(Vector2Int position, Sprite itemSprite, bool fromUp = false)
+       {
+           var itemView = _pool.Spawn();
+           _itemViews[position.x, position.y] = itemView;
+           itemView.SetSprite(itemSprite);
+           itemView.transform.SetParent(transform);
+           itemView.transform.position = new Vector3(position.x + _positionOffset.x, position.y + _positionOffset.y+(fromUp?offsetY:0), 0);
+           return itemView;
+       }
     }
 }

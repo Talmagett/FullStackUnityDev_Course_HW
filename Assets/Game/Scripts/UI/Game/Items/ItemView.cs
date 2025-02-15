@@ -3,10 +3,11 @@ using DG.Tweening;
 using Game.Common;
 using Cysharp.Threading.Tasks;
 using Zenject;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Game.Scripts.UI.Game.Items
 {
-    public class ItemView : MonoBehaviour
+    public class ItemView : MonoBehaviour, IPoolable
     {
         [SerializeField] private SpriteRenderer itemSpriteRenderer;
         
@@ -16,7 +17,7 @@ namespace Game.Scripts.UI.Game.Items
         }
 
         //ANIMATIONS
-        public UniTask MoveTo(Vector2Int position, float swipeAnimationDuration)
+        public UniTask MoveTo(Vector2 position, float swipeAnimationDuration)
         {
             return transform.DOLocalMove((Vector2)position, swipeAnimationDuration).ToUniTask();
         }
@@ -35,7 +36,22 @@ namespace Game.Scripts.UI.Game.Items
             return transform.DOScale(scale, scaleDuration).ToUniTask();
         }
         
-        public class ItemViewPool : MonoMemoryPool<ItemView>
+        public void OnDespawned()
+        {
+            
+        }
+
+        public void OnSpawned()
+        {
+            
+        }
+        
+        public class Factory : PlaceholderFactory<ItemView>
+        {
+            
+        }
+        
+        public class Pool : MonoMemoryPool<ItemView>
         {
             
         }

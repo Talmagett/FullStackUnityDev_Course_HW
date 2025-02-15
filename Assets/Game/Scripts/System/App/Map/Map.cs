@@ -2,7 +2,7 @@ using System;
 using Game.App;
 using UnityEngine;
 
-namespace Game.Scripts.System.App.Map
+namespace Game.System.App.Map
 {
     public class Map : IMap
     {

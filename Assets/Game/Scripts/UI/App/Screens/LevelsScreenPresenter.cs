@@ -4,6 +4,7 @@ using Atomic.UI;
 using Game.App;
 using Game.Scripts.System.App.Map;
 using Game.Scripts.UI.App.Level;
+using Game.System.App.Map;
 using UnityEngine;
 using Zenject;
 

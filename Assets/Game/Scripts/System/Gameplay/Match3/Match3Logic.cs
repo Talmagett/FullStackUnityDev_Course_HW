@@ -24,7 +24,7 @@ namespace Game.System.Gameplay.Match3
 
             _grid.SetItem(pos1, item2);
             _grid.SetItem(pos2, item1);
-
+            
             return true;
         }
         //
