@@ -19,7 +19,7 @@ namespace Game.UI.Game.Match3
         private readonly LevelGridView _view;
         private readonly ItemSpriteMap _itemSpriteMap;
 
-        private ItemPresenter[,] _itemPresenters;
+        private readonly Dictionary<Vector2Int, ItemPresenter> _itemPresenters = new Dictionary<Vector2Int, ItemPresenter>();
         private readonly ItemInputHandler _itemInputHandler;
         private readonly AnimationQueue _animationQueue;
 
@@ -36,45 +36,45 @@ namespace Game.UI.Game.Match3
         public void Initialize()
         {
             _view.Inititalize(_model.GridSize);
-            _itemPresenters = new ItemPresenter[_model.GridSize.x, _model.GridSize.y];
             foreach (var item in _model.GetAllItems())
             {
                 var itemSprite = _itemSpriteMap.GetItemSprite(item.ItemType);
                 var itemView = _view.SpawnItem(item.GridPosition, itemSprite);
                 var itemPresenter = new ItemPresenter(item, itemView);
-                _itemPresenters[item.GridPosition.x, item.GridPosition.y] = itemPresenter;
-                //_itemPresenters.Add(item.GridPosition,itemPresenter);
+                _itemPresenters.Add(item.GridPosition,itemPresenter);
             }
             _itemInputHandler.OnItemSwipe+= HandleSwipe;
         }
 
-
         public Vector2Int GetGridPosition(ItemPresenter presenter)
         {
-            for (int x = 0; x < _itemPresenters.GetLength(0); x++)
+            foreach (var itemPresenter in _itemPresenters)
             {
-                for (int y = 0; y < _itemPresenters.GetLength(1); y++)
-                {
-                    if (_itemPresenters[x, y] == presenter)
-                        return new Vector2Int(x, y);
-                }
+                if (itemPresenter.Value == presenter)
+                    return itemPresenter.Key;
             }
-            return Vector2Int.zero;
+            throw new NullReferenceException("ItemPresenter not found");
         }
 
         private Item GetItem(Vector2Int position) => _model.GetItem(position);
 
         private Item GetItem(ItemView itemView)
         {
-            for (int x = 0; x < _itemPresenters.GetLength(0); x++)
+            foreach (var itemPresenter in _itemPresenters)
             {
-                for (int y = 0; y < _itemPresenters.GetLength(1); y++)
-                {
-                    if (_itemPresenters[x, y].ItemView == itemView)
-                        return _itemPresenters[x, y].Item;
-                }
+                if (itemPresenter.Value.ItemView == itemView)
+                    return itemPresenter.Value.Item;
             }
+            return null;
+        }
 
+        private ItemView GetItem(Item item)
+        {
+            foreach (var itemPresenter in _itemPresenters)
+            {
+                if (itemPresenter.Value.Item == item)
+                    return itemPresenter.Value.ItemView;
+            }
             return null;
         }
         
@@ -95,17 +95,17 @@ namespace Game.UI.Game.Match3
             if (!_match3Logic.TrySwap(item1.GridPosition, item2.GridPosition))
                 return;
             var swipeAnimation =
-                new SwapAnimation(_itemPresenters[item1.GridPosition.x,item1.GridPosition.y], _itemPresenters[item2.GridPosition.x,item2.GridPosition.y]);
+                new SwapAnimation(_itemPresenters[item1.GridPosition].ItemView, _itemPresenters[item2.GridPosition].ItemView);
             _animationQueue.Enqueue(swipeAnimation);
             await _animationQueue.Execute();
             
-            (_itemPresenters[item1.GridPosition.x,item1.GridPosition.y], _itemPresenters[item2.GridPosition.x,item2.GridPosition.y]) = (
-                _itemPresenters[item2.GridPosition.x,item2.GridPosition.y], _itemPresenters[item1.GridPosition.x,item1.GridPosition.y]);
-            
-/*
-            var matches = FindMatches();
+            (_itemPresenters[item1.GridPosition], _itemPresenters[item2.GridPosition]) = (
+                _itemPresenters[item2.GridPosition], _itemPresenters[item1.GridPosition]);
+            /*
+            var matches = _match3Logic.FindMatches();
             while (matches.Count > 0)
             {
+                var item = GetItem(matches);
                 var destroyAnimation = new DestroyAnimation(matches);
                 _animationQueue.Enqueue(destroyAnimation);
                 //_soundPlayer.Play(SoundName.Collect);

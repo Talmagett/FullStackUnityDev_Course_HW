@@ -49,5 +49,13 @@ namespace Game.Scripts.UI.Views
         {
             OnSoundSliderChanged?.Invoke(volume);
         }
+        public void SetSoundSliderValue(float value)
+        {
+            soundSlider.SetValue(value);
+        }
+        public void SetMusicSliderValue(float value)
+        {
+            musicSlider.SetValue(value);
+        }
     }
 }

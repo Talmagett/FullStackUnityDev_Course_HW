@@ -13,5 +13,9 @@ namespace Game.Scripts.UI.App.Sliders
             add => slider.onValueChanged.AddListener(value);
             remove => slider.onValueChanged.RemoveListener(value);
         }
+        public void SetValue(float value)
+        {
+            slider.value = value;
+        }
     }
 }

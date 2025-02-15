@@ -27,6 +27,52 @@ namespace Game.System.Gameplay.Match3
             
             return true;
         }
+        
+        public HashSet<Item> FindMatches()
+        {
+            var matchedItems = new HashSet<Item>();
+
+            // Проверка по горизонтали
+            for (int x = 0; x < _grid.GridSize.x; x++)
+            {
+                for (int y = 0; y < _grid.GridSize.y - 2; y++)
+                {
+                    var item1 = _grid.GetItem(new Vector2Int(x, y));
+                    var item2 = _grid.GetItem(new Vector2Int(x, y + 1));
+                    var item3 = _grid.GetItem(new Vector2Int(x, y + 2));
+                    if (AreItemsMatching(item1, item2,item3))
+                    {
+                        matchedItems.Add(item1);
+                        matchedItems.Add(item2);
+                        matchedItems.Add(item3);
+                    }
+                }
+            }
+
+            // Проверка по вертикали
+            for (int y = 0; y < _grid.GridSize.x; y++)
+            {
+                for (int x = 0; x < _grid.GridSize.y - 2; x++)
+                {
+                    var item1 = _grid.GetItem(new Vector2Int(x, y));
+                    var item2 = _grid.GetItem(new Vector2Int(x + 1, y));
+                    var item3 = _grid.GetItem(new Vector2Int(x + 2, y));
+                    if (AreItemsMatching(item1, item2, item3))
+                    {
+                        matchedItems.Add(item1);
+                        matchedItems.Add(item2);
+                        matchedItems.Add(item3);
+                    }
+                }
+            }
+
+            return matchedItems;
+        }
+        
+        private bool AreItemsMatching(Item a, Item b, Item c)
+        {
+            return a != null && b != null && c != null && a.ItemType == b.ItemType && b.ItemType == c.ItemType;
+        }
         //
         // public bool CheckMatches()
         // {

@@ -33,6 +33,12 @@ namespace Game.Scripts.UI.Views
             popupSettingsView.OnMusicSliderChanged -= _musicPlayer.SetVolume;
         }
 
+        protected override void OnShow()
+        {
+            popupSettingsView.SetSoundSliderValue(_soundPlayer.GetVolume());
+            popupSettingsView.SetMusicSliderValue(_musicPlayer.GetVolume());
+        }
+
         private void GoHome()
         {
             Hide();

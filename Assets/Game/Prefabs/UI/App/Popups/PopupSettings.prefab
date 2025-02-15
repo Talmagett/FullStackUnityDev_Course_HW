@@ -328,7 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closeButton: {fileID: 4986120501752365625}
   homeButton: {fileID: 1234314025612893101}
-  soundSlider: {fileID: 362519815634708051}
+  soundSlider: {fileID: 9080704875820002292}
   musicSlider: {fileID: 362519815634708051}
 --- !u!114 &217070487511892899
 MonoBehaviour:
@@ -598,17 +598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1529089170573597695, guid: 24852957e2abc854595757c5b1ad5122,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1529089170573597695, guid: 24852957e2abc854595757c5b1ad5122,
-        type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1529089170573597695, guid: 24852957e2abc854595757c5b1ad5122,
-        type: 3}
-      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6162352027075798605, guid: 24852957e2abc854595757c5b1ad5122,
@@ -724,7 +714,7 @@ PrefabInstance:
     - target: {fileID: 8933019185181504455, guid: 24852957e2abc854595757c5b1ad5122,
         type: 3}
       propertyPath: m_Value
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -737,6 +727,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2619595018833389048}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9080704875820002292 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2711291000212763124, guid: 24852957e2abc854595757c5b1ad5122,
+    type: 3}
+  m_PrefabInstance: {fileID: 2619595018833389048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d173a26c7b43d38cb361c51e45d285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6870349985685743711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -878,7 +880,7 @@ PrefabInstance:
     - target: {fileID: 8933019185181504455, guid: 24852957e2abc854595757c5b1ad5122,
         type: 3}
       propertyPath: m_Value
-      value: 0.452
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

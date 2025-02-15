@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.UI
+namespace Game.UI
 {
     public class GameUIInstaller : MonoInstaller
     {
