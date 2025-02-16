@@ -4,24 +4,26 @@ using Game.UI.Game.Items;
 using Modules.Animations;
 using UnityEngine;
 
-namespace Game.Common
+namespace Game.UI.Game.Animations
 {
     public class FallAnimation : IAnimation
     {
-        private readonly IEnumerable<ItemPresenter> _fallingItems;
-        private const float dropSpeed=20;
+        private readonly List<ItemPresenter> _viewsToAnimate;
+        private readonly List<Vector2Int> _newPositions;
+        private const float DropSpeed=20;
 
-        public FallAnimation(IEnumerable<ItemPresenter> fallingItems)
+        public FallAnimation(List<ItemPresenter> viewsToAnimate, List<Vector2Int> newPositions)
         {
-            _fallingItems = fallingItems;
+            _viewsToAnimate = viewsToAnimate;
+            _newPositions = newPositions;
         }
 
         public async UniTask Execute()
         {
             var tasks = new List<UniTask>();
-            foreach (var item in _fallingItems)
+            for (int i = 0; i < _viewsToAnimate.Count; i++)
             {
-                tasks.Add(item.FallDown(dropSpeed));
+                tasks.Add(_viewsToAnimate[i].FallDown(_newPositions[i],DropSpeed));
             }
             await UniTask.WhenAll(tasks);
         }

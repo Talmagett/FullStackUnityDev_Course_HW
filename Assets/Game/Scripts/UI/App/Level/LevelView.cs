@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using NotImplementedException = System.NotImplementedException;
 
-namespace Game.Scripts.UI.App.Level
+namespace Game.UI.App.Level
 {
     public class LevelView : MonoBehaviour
     {

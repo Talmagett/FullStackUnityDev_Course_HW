@@ -1,15 +1,17 @@
 using Atomic.UI;
-using Game.App;
-using Game.Common;
-using Game.Scripts.System.App.Map;
-using Game.Scripts.UI.App.Level;
-using Game.System.App.Map;
-using Game.System.Gameplay.Quests;
+using Game.App.Audio.Music;
+using Game.App.Audio.Sound;
+using Game.App.Map;
+using Game.Gameplay.Items;
+using Game.Gameplay.Quests;
+using Game.UI.App.Background;
+using Game.UI.App.Level;
+using Game.UI.App.Screens.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Game.UI
+namespace Game.UI.App.Screens
 {
     public class WinScreenPresenter : Presenter
     {

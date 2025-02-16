@@ -3,7 +3,7 @@ using Atomic.UI;
 using UnityEngine;
 using Zenject;
 
-namespace Game.UI
+namespace Game.UI.App.Screens.Manager
 {
     public sealed class ScreenNavigator : IInitializable
     {

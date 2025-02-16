@@ -1,8 +1,9 @@
 using Atomic.UI;
+using Game.UI.App.Background;
 using UnityEngine;
 using Zenject;
 
-namespace Game.UI
+namespace Game.UI.App.Screens
 {
     public class LoadingScreenPresenter : Presenter
     {

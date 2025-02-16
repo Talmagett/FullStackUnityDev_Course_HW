@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Game.App;
 using Game.UI.Game.Items;
+using Game.UI.Game.Match3;
 using Modules.Animations;
 using UnityEngine;
 
-namespace Game.Common
+namespace Game.UI.Game.Animations
 {
     public class DestroyAnimation : IAnimation
     {
@@ -24,15 +24,6 @@ namespace Game.Common
             {
                 tasks.Add(item.FadeOut(FadeDuration));
                 tasks.Add(item.Scale(Vector3.one*1.5f,ScaleDuration));
-                //_grid[item.GridPosition.x,item.GridPosition.y] = null;
-                /*if (_quest.IsQuestTarget(item.ItemType))
-                {
-                    tasks.Add(new QuestMoveAnimation(item, questTarget.position,_quest));
-                }
-                else
-                {
-                    item.Combinate();
-                }*/
             }
             await UniTask.WhenAll(tasks);
             //_soundPlayer.Play(SoundName.Collect);

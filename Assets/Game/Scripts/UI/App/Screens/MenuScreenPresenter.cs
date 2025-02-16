@@ -1,10 +1,12 @@
 using Atomic.UI;
-using Game.App;
+using Game.App.Audio.Music;
+using Game.UI.App.Background;
+using Game.UI.App.Screens.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Game.UI
+namespace Game.UI.App.Screens
 {
     public class MenuScreenPresenter : Presenter
     {

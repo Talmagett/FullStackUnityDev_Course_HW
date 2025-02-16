@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Scripts.UI.Game
+namespace Game.UI.Game
 {
     public class PointGridView : MonoBehaviour
     {

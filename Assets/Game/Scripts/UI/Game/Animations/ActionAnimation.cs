@@ -2,7 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using Modules.Animations;
 
-namespace Game.Common
+namespace Game.UI.Game.Animations
 {
     public class ActionAnimation : IAnimation
     {

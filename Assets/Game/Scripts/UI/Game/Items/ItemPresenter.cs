@@ -1,5 +1,5 @@
 using Cysharp.Threading.Tasks;
-using Game.Common;
+using Game.Gameplay.Items;
 using UnityEngine;
 
 namespace Game.UI.Game.Items
@@ -35,9 +35,9 @@ namespace Game.UI.Game.Items
     
         }
 
-        public async UniTask FallDown(float dropSpeed)
+        public async UniTask FallDown(Vector2 position, float dropSpeed)
         {
-            await ItemView.FallDown(Item.GridPosition+_positionOffset,dropSpeed);
+            await ItemView.FallDown(position+_positionOffset,dropSpeed);
         }
     }
 }

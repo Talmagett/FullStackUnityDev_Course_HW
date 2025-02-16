@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace Game.UI
+namespace Game.UI.App.Background
 {
     public sealed class BackgroundInstaller : MonoInstaller
     {

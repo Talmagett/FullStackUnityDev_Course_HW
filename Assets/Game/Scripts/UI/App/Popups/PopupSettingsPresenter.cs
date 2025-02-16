@@ -1,10 +1,12 @@
 using Atomic.UI;
-using Game.App;
-using Game.UI;
+using Game.App.Audio.Music;
+using Game.App.Audio.Sound;
+using Game.App.Scene;
+using Game.UI.App.Screens.Manager;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.UI.Views
+namespace Game.UI.App.Popups
 {
     public class PopupSettingsPresenter : Presenter
     {

@@ -1,10 +1,10 @@
 using System;
-using Game.Scripts.UI.App.Sliders;
+using Game.UI.App.Sliders;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Game.Scripts.UI.Views
+namespace Game.UI.App.Popups
 {
     public class PopupSettingsView : MonoBehaviour
     {

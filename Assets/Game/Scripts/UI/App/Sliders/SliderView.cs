@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Game.Scripts.UI.App.Sliders
+namespace Game.UI.App.Sliders
 {
     public class SliderView : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-namespace Game.UI
+namespace Game.UI.App.Screens.Manager
 {
     public enum ScreenName
     {

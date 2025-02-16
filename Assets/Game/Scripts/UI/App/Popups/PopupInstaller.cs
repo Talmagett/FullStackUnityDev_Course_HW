@@ -1,8 +1,7 @@
-using Game.Scripts.UI.Views;
 using UnityEngine;
 using Zenject;
 
-namespace Game.UI
+namespace Game.UI.App.Popups
 {
     public sealed class PopupInstaller : MonoInstaller
     {

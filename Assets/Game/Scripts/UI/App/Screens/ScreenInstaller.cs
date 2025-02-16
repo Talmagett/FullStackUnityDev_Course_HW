@@ -1,7 +1,8 @@
+using Game.UI.App.Screens.Manager;
 using UnityEngine;
 using Zenject;
 
-namespace Game.UI
+namespace Game.UI.App.Screens
 {
     public sealed class ScreenInstaller : MonoInstaller
     {

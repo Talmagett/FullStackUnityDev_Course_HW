@@ -1,10 +1,8 @@
-using Game.App;
-using UnityEngine;
+using Game.App.Audio.Sound;
 using UnityEngine.UI;
 using Zenject;
-using NotImplementedException = System.NotImplementedException;
 
-namespace Game.Scripts.UI.App.Buttons
+namespace Game.UI.App.Buttons
 {
     public class AdvancedButton : Button
     {

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
-using Game.Common;
-using Game.System.Gameplay.Items;
-using Game.System.Gameplay.Match3;
+using Game.Gameplay.Items;
+using Game.Gameplay.Match3;
+using Game.UI.App.Screens.Manager;
+using Game.UI.Game.Animations;
 using Game.UI.Game.Items;
+using Game.UI.Game.Quest;
 using Modules.Animations;
 using UnityEngine;
 using Zenject;
@@ -22,8 +24,12 @@ namespace Game.UI.Game.Match3
         private readonly ItemRepository _itemRepository;
         private readonly ItemInputHandler _itemInputHandler;
         private readonly AnimationQueue _animationQueue;
-
-        public LevelGridPresenter(LevelGrid levelGrid, Match3Logic match3Logic, LevelGridView view, ItemSpriteMap itemSpriteMap, ItemInputHandler itemInputHandler)
+        private readonly ScreenNavigator _screenNavigator;
+        private readonly QuestAnimationPresenter _questAnimationPresenter;
+        private readonly Gameplay.Quests.Quest _quest;
+        private bool _isInteractable=true;
+        
+        public LevelGridPresenter(LevelGrid levelGrid, Match3Logic match3Logic, LevelGridView view, ItemSpriteMap itemSpriteMap, ItemInputHandler itemInputHandler, ScreenNavigator screenNavigator, Gameplay.Quests.Quest quest, QuestAnimationPresenter questAnimationPresenter)
         {
             _itemRepository = new ItemRepository();
             _animationQueue = new AnimationQueue();
@@ -33,14 +39,24 @@ namespace Game.UI.Game.Match3
             _view = view;
             _itemSpriteMap = itemSpriteMap;
             _itemInputHandler = itemInputHandler;
+            _screenNavigator = screenNavigator;
+            _quest = quest;
+            _questAnimationPresenter = questAnimationPresenter;
         }
 
         public void Initialize()
         {
             _itemInputHandler.OnItemSwipe+= HandleSwipe;
             _view.SetGridSize(_levelGrid.GridSize);
-            _levelGrid.OnGridChanged += SpawnItems;
             SpawnItems(_levelGrid.GetAllItems());
+            _levelGrid.OnGridChanged += SpawnItems;
+            LoadGameUI();
+        }
+
+        private async UniTask LoadGameUI()
+        {
+            await UniTask.Delay(100);
+            _screenNavigator.ChangeScreen(ScreenName.Game);
         }
 
         public void Dispose()
@@ -73,8 +89,9 @@ namespace Game.UI.Game.Match3
          private async UniTask HandleSwipeAsync(ItemView itemView, Vector2Int direction)
          {
              if (_animationQueue.IsRunning) return;
-             //if (_quest.IsQuestComplete()) return;
-
+             if (_quest.IsQuestComplete()) return;
+             if (!_isInteractable) return;
+             
              var item1 = _itemRepository.GetItem(itemView);
              var item2 = _itemRepository.GetItem(item1.GridPosition + direction);
              if (item2 == null) return;
@@ -86,9 +103,9 @@ namespace Game.UI.Game.Match3
          {
              if (!_match3Logic.TrySwap(item1.GridPosition, item2.GridPosition))
                  return;
-
              var itemView1 = _itemRepository.GetView(item1.GridPosition);
              var itemView2 = _itemRepository.GetView(item2.GridPosition);
+             _isInteractable = false;
 
              var swapAnimation = new SwapAnimation(itemView1, itemView2);
              _animationQueue.Enqueue(swapAnimation);
@@ -105,54 +122,89 @@ namespace Game.UI.Game.Match3
              while (matches.Count > 0)
              {
                  await DestroyMatchesAsync(matches);
+                 await FallItems();
+                 await SpawnNewItems();
                  
-                 //await FallItems();
-
-                 _levelGrid.FillEmptySpaces();
-                 
-                 await UniTask.Delay(600);
                  matches = _match3Logic.FindMatches();
              }
+
+             _isInteractable = true;
+         }
+
+         private async UniTask SpawnNewItems()
+         {
+             _levelGrid.FillEmptySpaces();
+             await UniTask.DelayFrame(1);
          }
 
          private async Task FallItems()
          {
              var fallingItems = _match3Logic.FallDownItems();
-             var items = new List<ItemPresenter>();
-             foreach (var fallingData in fallingItems)
+             if (fallingItems.Count == 0) return;
+             
+             List<ItemPresenter> viewsToAnimate = new();
+             List<Vector2Int> newPositions = new();
+             
+             foreach (var (from, to) in fallingItems)
              {
-                 var presenter = _itemRepository.GetPresenter(fallingData.PreviousPosition);
-                 _itemRepository.Remove(fallingData.PreviousPosition);
-                 _itemRepository.Add(fallingData.NextPosition, presenter);
-                 items.Add(_itemRepository.GetPresenter(fallingData.NextPosition));
+                 var itemPresenter = _itemRepository.GetPresenter(from);
+                 if (itemPresenter == null) continue;
+
+                 viewsToAnimate.Add(itemPresenter);
+                 newPositions.Add(to);
              }
              
-             if (fallingItems.Count > 0)
+             var fallAnimation = new FallAnimation(viewsToAnimate, newPositions);
+             _animationQueue.Enqueue(fallAnimation);
+             await _animationQueue.Execute();
+             
+             foreach (var (from, to) in fallingItems)
              {
-                 var fallAnimation = new FallAnimation(items);
-                 _animationQueue.Enqueue(fallAnimation);
-                 await _animationQueue.Execute();
+                 var itemPresenter = _itemRepository.GetPresenter(from);
+                 if (itemPresenter != null)
+                 {
+                     _itemRepository.Remove(from);
+                     itemPresenter.UpdateGridPosition(to);
+                     _itemRepository.Add(to, itemPresenter);
+                 }
              }
          }
-
+         
          private async UniTask DestroyMatchesAsync(IEnumerable<Item> matches)
          {
              var matchedItems = matches as Item[] ?? matches.ToArray();
-             var itemViews = _itemRepository.GetItemViews(matchedItems);
-             var destroyAnimation = new DestroyAnimation(itemViews);
-             _animationQueue.Enqueue(destroyAnimation);
-             await _animationQueue.Execute();
-             
-             foreach (var itemView in itemViews)
+             var itemPresenters = _itemRepository.GetItems(matchedItems);
+
+             var questItems = _match3Logic.RemoveMatches(matchedItems);
+    
+             List<ItemView> itemViews = new();
+             List<ItemPresenter> questItemViews = new();
+
+             foreach (var itemPresenter in itemPresenters)
              {
-                 _view.DestroyItem(itemView);
+                 itemViews.Add(itemPresenter.ItemView);
+                 
+                 if (questItems.Contains(itemPresenter.Item))
+                     questItemViews.Add(itemPresenter);
              }
+
+             var questAnimation = new QuestItemAnimation(questItemViews, _questAnimationPresenter);
+             var destroyAnimation = new DestroyAnimation(itemViews);
              
+             var parallelAnimation = new ParallelAnimation(questAnimation, destroyAnimation);
+             _animationQueue.Enqueue(parallelAnimation);
+             
+             await _animationQueue.Execute();
+
+             foreach (var itemPresenter in itemPresenters)
+             {
+                 _view.DestroyItem(itemPresenter.ItemView);
+             }
+
              foreach (var item in matchedItems)
              {
                  _itemRepository.Remove(item.GridPosition);
              }
-             _match3Logic.RemoveMatches(matchedItems);
          }
     }
 }

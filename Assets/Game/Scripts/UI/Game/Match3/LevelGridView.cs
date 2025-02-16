@@ -1,3 +1,4 @@
+using Game.Gameplay.Items;
 using Game.UI.Game.Items;
 using UnityEngine;
 using Zenject;
@@ -8,7 +9,7 @@ namespace Game.UI.Game.Match3
     {
         [SerializeField] private float offsetY;
         [Inject] private ItemView.Pool _pool;
-
+        
         public Vector2 PositionOffset { get; private set; }
 
         public void SetGridSize(Vector2Int size)

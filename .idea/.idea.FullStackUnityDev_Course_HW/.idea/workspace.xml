@@ -4,24 +4,133 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ef70682-a367-4dd9-8815-63b440c34fb2" name="Changes" comment="">
+    <list default="true" id="2ef70682-a367-4dd9-8815-63b440c34fb2" name="Changes" comment="update, make quest, fall down">
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/GameUIPresenter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/GameUIPresenter.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Quest/QuestAnimationPresenter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Quest/QuestAnimationPresenter.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Quest/QuestItemParticleView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Quest/QuestItemParticleView.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/GameInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/GameInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemFeatureInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemFeatureInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemInputHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemInputHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/LevelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/LevelController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/LevelGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/LevelGrid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/Match3Logic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/Match3Logic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Screens/ScreenGame.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/App/Screens/ScreenGame.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/Game/ItemParticle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/Game/ItemParticle.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/Game/QuestWidget.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/UI/Game/QuestWidget.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/AudioInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/AudioInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/AudioInstaller.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/AudioInstaller.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/AudioRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/AudioRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/AudioRepository.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/AudioRepository.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/AudioSaveLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/AudioSaveLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/AudioSaveLoader.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/AudioSaveLoader.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Music.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Music.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Music/MusicCatalog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Music/MusicCatalog.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Music/MusicCatalog.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Music/MusicCatalog.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Music/MusicName.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Music/MusicName.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Music/MusicName.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Music/MusicName.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Music/MusicPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Music/MusicPlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Music/MusicPlayer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Music/MusicPlayer.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Sound.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Sound.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Sound/SoundCatalog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Sound/SoundCatalog.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Sound/SoundCatalog.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Sound/SoundCatalog.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Sound/SoundName.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Sound/SoundName.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Sound/SoundName.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Sound/SoundName.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Sound/SoundPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Sound/SoundPlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Audio/Sound/SoundPlayer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Audio/Sound/SoundPlayer.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Levels.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelCatalog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Levels/LevelCatalog.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelCatalog.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Levels/LevelCatalog.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelCatalogInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Levels/LevelCatalogInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelCatalogInstaller.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Levels/LevelCatalogInstaller.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Levels/LevelConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelConfig.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Levels/LevelConfig.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Levels/LevelInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelInstaller.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Levels/LevelInstaller.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Levels/LevelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Levels/LevelSnapshot.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Levels/LevelSnapshot.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Map.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/Map.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Map/Map.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/Map.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Map/Map.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/MapData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Map/MapData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/MapData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Map/MapData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/MapInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Map/MapInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/MapInstaller.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Map/MapInstaller.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/MapSerializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Map/MapSerializer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Map/MapSerializer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Map/MapSerializer.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/SaveLoadInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/SaveLoadInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/SaveLoadInstaller.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/SaveLoadInstaller.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Scene.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Scene.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Scene/SceneNavigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Scene/SceneNavigator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Scene/SceneNavigator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Scene/SceneNavigator.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Scene/SceneNavigatorInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Scene/SceneNavigatorInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/App/Scene/SceneNavigatorInstaller.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/App/Scene/SceneNavigatorInstaller.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/GameInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/GameInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/GameInstaller.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/GameInstaller.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Items.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Items/Item.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/Item.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Items/Item.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemFeatureInstaller.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemFeatureInstaller.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemInputHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Items/ItemInputHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemInputHandler.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Items/ItemInputHandler.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Items/ItemRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemRepository.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Items/ItemRepository.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemSpriteMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Items/ItemSpriteMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemSpriteMap.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Items/ItemSpriteMap.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Items/ItemType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Items/ItemType.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Items/ItemType.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Match3.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/LevelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Match3/LevelController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/LevelController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Match3/LevelController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/LevelGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Match3/LevelGrid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/LevelGrid.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Match3/LevelGrid.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/Match3Logic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Match3/Match3Logic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Match3/Match3Logic.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Match3/Match3Logic.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Quests.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Quests.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Quests/Quest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Quests/Quest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/System/Gameplay/Quests/Quest.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Systems/Gameplay/Quests/Quest.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Background/BackgroundInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Background/BackgroundInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Background/BackgroundView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Background/BackgroundView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Buttons/AdvancedButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Buttons/AdvancedButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Buttons/SettingsButtonView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Buttons/SettingsButtonView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Level/LevelNumberView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Level/LevelNumberView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Level/LevelView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Level/LevelView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Level/QuestPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Level/QuestPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupSettingsView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/GameScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/GameScreenPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/LevelsScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/LevelsScreenPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/LoadingScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/LoadingScreenPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/Manager/ScreenCatalog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/Manager/ScreenCatalog.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/Manager/ScreenName.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/Manager/ScreenName.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/Manager/ScreenNavigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/Manager/ScreenNavigator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/MenuScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/MenuScreenPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/QuestScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/QuestScreenPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/ScreenInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/ScreenInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/WinScreenPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Screens/WinScreenPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Sliders/SliderView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Sliders/SliderView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/ActionAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/ActionAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/DelayAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/DelayAnimation.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/DestroyAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/DestroyAnimation.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/FallAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/FallAnimation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/QuestMoveAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/QuestMoveAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/QuestMoveAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/QuestItemAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/QuestMoveAnimation.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/QuestItemAnimation.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/SwapAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Animations/SwapAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Input.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Input/PlayerInput.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Input/PlayerInput.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Items/ItemPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Items/ItemPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Items/ItemView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Items/ItemView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Match3/LevelGridPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Match3/LevelGridPresenter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Match3/LevelGridView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Match3/LevelGridView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/PointGridView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/PointGridView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Quest/QuestView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Quest/QuestView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI/GameUIInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/GameUIInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/GameState.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/GameState.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game.csproj.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/Game.csproj.DotSettings" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +143,8 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -54,26 +159,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/54724222b7684530a2810ae1eac94ec7176000/95/3b46fdfa/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/6b/81d52114/Array.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/7a/8bd2ddf8/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/Конец урока/Assets/Game/Scripts/Gameplay/Money/MoneyInstaller.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/Конец урока/Assets/Modules/MoneyStorage/Scripts/IMoneyStorage.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/Конец урока/Assets/Modules/MoneyStorage/Scripts/MoneyStorage.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/Assets/Game/Scripts/System/App/Levels/LevelInstaller.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/Assets/Game/Scripts/System/App/Map/Map.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/Assets/Game/Scripts/System/App/Map/MapInstaller.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/Assets/Game/Scripts/System/App/Map/MapSerializer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/Assets/Game/Scripts/System/Gameplay/Match3/LevelGrid.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/UnityProjects/Education/FullStackUnityDev_Course_HW/Assets/Game/Scripts/System/Gameplay/Quests/Quest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Game/Scripts/UI/App/Popups/PopupInstaller.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Game/Scripts/UI/Game/Input/PlayerInput.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Modules/SaveSystem/Main/ApplicationEvents.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Modules/SaveSystem/Main/MainInstaller.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Selectable.cs" root0="SKIP_HIGHLIGHTING" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -89,23 +175,16 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;HW__Match3&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\User\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\User\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\User\\AppData\\Local\\Symbols\\src&quot;
+      &quot;C:\\Users\\talma\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\talma\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\talma\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
 }</component>
@@ -148,242 +227,6 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="2ef70682-a367-4dd9-8815-63b440c34fb2" name="Changes" comment="finished planet presenter" />
-      <created>1736838377199</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1736838377199</updated>
-      <workItem from="1736838379581" duration="25000" />
-      <workItem from="1736838428217" duration="3676000" />
-      <workItem from="1737185871393" duration="440000" />
-      <workItem from="1737186340149" duration="10851000" />
-      <workItem from="1737533077098" duration="2656000" />
-      <workItem from="1737798604281" duration="1424000" />
-      <workItem from="1738236777653" duration="2690000" />
-      <workItem from="1738491520077" duration="1072000" />
-      <workItem from="1739079434259" duration="1892000" />
-      <workItem from="1739081399030" duration="3300000" />
-      <workItem from="1739088995152" duration="5349000" />
-      <workItem from="1739242248441" duration="3329000" />
-      <workItem from="1739246191337" duration="1931000" />
-      <workItem from="1739252139312" duration="7369000" />
-      <workItem from="1739263860559" duration="27000" />
-      <workItem from="1739263897414" duration="7430000" />
-      <workItem from="1739334242574" duration="10108000" />
-      <workItem from="1739418204570" duration="3032000" />
-      <workItem from="1739524361701" duration="11746000" />
-      <workItem from="1739595830139" duration="1225000" />
-      <workItem from="1739600039383" duration="15558000" />
-      <workItem from="1739685906481" duration="14630000" />
-    </task>
-    <task id="LOCAL-00001" summary="animation, others">
-      <option name="closed" value="true" />
-      <created>1736843340805</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1736843340805</updated>
-    </task>
-    <task id="LOCAL-00002" summary="update">
-      <option name="closed" value="true" />
-      <created>1737188124476</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1737188124476</updated>
-    </task>
-    <task id="LOCAL-00003" summary="update, planet popup presenter">
-      <option name="closed" value="true" />
-      <created>1737199516933</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1737199516933</updated>
-    </task>
-    <task id="LOCAL-00004" summary="question">
-      <option name="closed" value="true" />
-      <created>1737199727379</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1737199727379</updated>
-    </task>
-    <task id="LOCAL-00005" summary="update, finished, remake into PM">
-      <option name="closed" value="true" />
-      <created>1737793558485</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1737793558485</updated>
-    </task>
-    <task id="LOCAL-00006" summary="update, bug fix">
-      <option name="closed" value="true" />
-      <created>1737793915732</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1737793915732</updated>
-    </task>
-    <task id="LOCAL-00007" summary="init 2">
-      <option name="closed" value="true" />
-      <created>1737794765061</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1737794765061</updated>
-    </task>
-    <task id="LOCAL-00008" summary="init">
-      <option name="closed" value="true" />
-      <created>1737795083705</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1737795083705</updated>
-    </task>
-    <task id="LOCAL-00009" summary="base">
-      <option name="closed" value="true" />
-      <created>1737800019097</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1737800019097</updated>
-    </task>
-    <task id="LOCAL-00010" summary="making presenters">
-      <option name="closed" value="true" />
-      <created>1738242970904</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1738242970904</updated>
-    </task>
-    <task id="LOCAL-00011" summary="added screens">
-      <option name="closed" value="true" />
-      <created>1738492585393</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1738492585394</updated>
-    </task>
-    <task id="LOCAL-00012" summary="adding presenters">
-      <option name="closed" value="true" />
-      <created>1739082308963</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1739082308963</updated>
-    </task>
-    <task id="LOCAL-00013" summary="moved files">
-      <option name="closed" value="true" />
-      <created>1739088517785</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1739088517785</updated>
-    </task>
-    <task id="LOCAL-00014" summary="added level controller">
-      <option name="closed" value="true" />
-      <created>1739095338400</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1739095338400</updated>
-    </task>
-    <task id="LOCAL-00015" summary="added save system, and levels are opened and locked">
-      <option name="closed" value="true" />
-      <created>1739248100541</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1739248100541</updated>
-    </task>
-    <task id="LOCAL-00016" summary="made basic match3">
-      <option name="closed" value="true" />
-      <created>1739266652151</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1739266652151</updated>
-    </task>
-    <task id="LOCAL-00017" summary="update match3, remove, no drop">
-      <option name="closed" value="true" />
-      <created>1739267539653</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1739267539653</updated>
-    </task>
-    <task id="LOCAL-00018" summary="adding settings popup, need to make catalog, &amp; others">
-      <option name="closed" value="true" />
-      <created>1739271884932</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1739271884932</updated>
-    </task>
-    <task id="LOCAL-00019" summary="added win, game ready. need to polish, with animations, clean up">
-      <option name="closed" value="true" />
-      <created>1739340688009</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1739340688009</updated>
-    </task>
-    <task id="LOCAL-00020" summary="added some scripts">
-      <option name="closed" value="true" />
-      <created>1739358533158</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1739358533158</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Changing to MVC pattern">
-      <option name="closed" value="true" />
-      <created>1739430039021</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1739430039021</updated>
-    </task>
-    <task id="LOCAL-00022" summary="changing all to mvc pattern">
-      <option name="closed" value="true" />
-      <created>1739541321001</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1739541321001</updated>
-    </task>
-    <task id="LOCAL-00023" summary="mvc changing, made swap">
-      <option name="closed" value="true" />
-      <created>1739613646237</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1739613646237</updated>
-    </task>
-    <task id="LOCAL-00024" summary="basic swap. + settings">
-      <option name="closed" value="true" />
-      <created>1739616390993</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1739616390993</updated>
-    </task>
-    <task id="LOCAL-00025" summary="added item repository">
-      <option name="closed" value="true" />
-      <created>1739618193100</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1739618193100</updated>
-    </task>
-    <option name="localTasksCounter" value="26" />
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
@@ -405,35 +248,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="animation, others" />
-    <MESSAGE value="update" />
-    <MESSAGE value="update, planet popup presenter" />
-    <MESSAGE value="question" />
-    <MESSAGE value="update, finished, remake into PM" />
-    <MESSAGE value="update, bug fix" />
-    <MESSAGE value="init 2" />
-    <MESSAGE value="init" />
-    <MESSAGE value="base" />
-    <MESSAGE value="making presenters" />
-    <MESSAGE value="added screens" />
-    <MESSAGE value="adding presenters" />
-    <MESSAGE value="moved files" />
-    <MESSAGE value="added level controller" />
-    <MESSAGE value="added save system, and levels are opened and locked" />
-    <MESSAGE value="made basic match3" />
-    <MESSAGE value="update match3, remove, no drop" />
-    <MESSAGE value="adding settings popup, need to make catalog, &amp; others" />
-    <MESSAGE value="added win, game ready. need to polish, with animations, clean up" />
-    <MESSAGE value="added some scripts" />
-    <MESSAGE value="Changing to MVC pattern" />
-    <MESSAGE value="changing all to mvc pattern" />
-    <MESSAGE value="mvc changing, made swap" />
-    <MESSAGE value="basic swap. + settings" />
-    <MESSAGE value="added item repository" />
-    <option name="LAST_COMMIT_MESSAGE" value="added item repository" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+    <MESSAGE value="init, converter base + zone" />
+    <MESSAGE value="init no zenject extras bug, money view" />
+    <MESSAGE value="added zenject extra, fixed bug" />
+    <MESSAGE value="added base planet view" />
+    <MESSAGE value="basic presenters for planets" />
+    <MESSAGE value="made basic link to presenters" />
+    <MESSAGE value="finished planet presenter" />
+    <MESSAGE value="downloaded files" />
+    <MESSAGE value="update, make quest, fall down" />
+    <option name="LAST_COMMIT_MESSAGE" value="update, make quest, fall down" />
   </component>
 </project>

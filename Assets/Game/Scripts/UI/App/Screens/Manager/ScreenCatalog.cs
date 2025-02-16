@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Atomic.UI;
 using UnityEngine;
 
-namespace Game.UI
+namespace Game.UI.App.Screens.Manager
 {
     [CreateAssetMenu(
         fileName = "ScreenCatalog",

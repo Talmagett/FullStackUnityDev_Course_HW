@@ -1,9 +1,8 @@
 using Cysharp.Threading.Tasks;
 using Game.UI.Game.Items;
 using Modules.Animations;
-using UnityEngine;
 
-namespace Game.Common
+namespace Game.UI.Game.Animations
 {
     public class SwapAnimation : IAnimation
     {

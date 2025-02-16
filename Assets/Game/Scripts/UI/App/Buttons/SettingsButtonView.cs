@@ -1,11 +1,10 @@
-using System;
-using Game.Scripts.UI.Views;
+using Game.UI.App.Popups;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Game.Scripts.UI.App.Buttons
+namespace Game.UI.App.Buttons
 {
     public class SettingsButtonView : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Scripts.UI.App.Level
+namespace Game.UI.App.Level
 {
     public class LevelNumberView : MonoBehaviour
     {
