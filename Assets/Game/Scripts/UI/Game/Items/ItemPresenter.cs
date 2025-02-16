@@ -1,19 +1,20 @@
 using Cysharp.Threading.Tasks;
 using Game.Common;
-using Game.Scripts.UI.Game.Items;
 using UnityEngine;
 
 namespace Game.UI.Game.Items
 {
     public class ItemPresenter
     {
+        private readonly Vector2 _positionOffset;
         public Item Item { get; }
         public ItemView ItemView { get; }
         
-        public Vector2Int GridPosition => Item.GridPosition; // Получаем позицию из логики
+        public Vector2Int GridPosition => Item.GridPosition;
 
-        public ItemPresenter(Item item, ItemView itemView)
+        public ItemPresenter(Item item, ItemView itemView, Vector2 positionOffset)
         {
+            _positionOffset = positionOffset;
             Item = item;
             ItemView = itemView;
         }
@@ -29,5 +30,14 @@ namespace Game.UI.Game.Items
             await ItemView.PlayDestroyAnimation();
         }*/
 
+        public void UpdateGridPosition(Vector2Int pos2)
+        {
+    
+        }
+
+        public async UniTask FallDown(float dropSpeed)
+        {
+            await ItemView.FallDown(Item.GridPosition+_positionOffset,dropSpeed);
+        }
     }
 }

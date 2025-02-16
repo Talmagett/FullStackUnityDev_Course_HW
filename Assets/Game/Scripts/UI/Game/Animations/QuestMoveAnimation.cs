@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Game.Scripts.UI.Game.Items;
 using Game.System.Gameplay.Quests;
+using Game.UI.Game.Items;
 using Modules.Animations;
 using UnityEngine;
 

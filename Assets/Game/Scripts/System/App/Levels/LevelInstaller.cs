@@ -1,8 +1,8 @@
 using Game.Common;
-using Game.Scripts.UI.Game.Items;
-using Game.Scripts.UI.Game.Match3;
+using Game.System.Gameplay.Items;
 using Game.System.Gameplay.Match3;
 using Game.System.Gameplay.Quests;
+using Game.UI.Game.Items;
 using Game.UI.Game.Match3;
 using Modules.Inputs;
 using UnityEngine;

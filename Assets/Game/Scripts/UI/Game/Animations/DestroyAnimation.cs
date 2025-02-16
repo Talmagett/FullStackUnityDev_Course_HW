@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Game.App;
-using Game.Scripts.UI.Game.Items;
+using Game.UI.Game.Items;
 using Modules.Animations;
 using UnityEngine;
 

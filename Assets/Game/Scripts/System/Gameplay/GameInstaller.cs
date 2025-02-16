@@ -1,6 +1,6 @@
 using Game.Common;
 using Game.Scripts.System.App.Map;
-using Game.Scripts.UI.Game.Items;
+using Game.UI.Game.Items;
 using UnityEngine;
 using Zenject;
 

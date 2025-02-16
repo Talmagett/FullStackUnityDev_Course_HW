@@ -1,15 +1,19 @@
-using UnityEngine;
-using DG.Tweening;
-using Game.Common;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
+using UnityEngine;
 using Zenject;
-using NotImplementedException = System.NotImplementedException;
 
-namespace Game.Scripts.UI.Game.Items
+namespace Game.UI.Game.Items
 {
     public class ItemView : MonoBehaviour, IPoolable
     {
         [SerializeField] private SpriteRenderer itemSpriteRenderer;
+
+        public void Reset()
+        {
+            itemSpriteRenderer.color=Color.white;
+            transform.localScale = Vector3.one;
+        }
         
         public void SetSprite(Sprite icon)
         {
@@ -22,7 +26,7 @@ namespace Game.Scripts.UI.Game.Items
             return transform.DOLocalMove((Vector2)position, swipeAnimationDuration).ToUniTask();
         }
 
-        public UniTask DropDown(Vector2Int position, float dropSpeed)
+        public UniTask FallDown(Vector2 position, float dropSpeed)
         {
             return transform.DOLocalMove((Vector2)position, dropSpeed).SetSpeedBased().ToUniTask();
         }

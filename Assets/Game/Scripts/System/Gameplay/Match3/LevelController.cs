@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Game.Common;
 using Game.Scripts.System.App.Map;
-using Game.Scripts.UI.Game.Items;
 using Game.System.Gameplay.Quests;
 using Modules.Animations;
 using UnityEngine;

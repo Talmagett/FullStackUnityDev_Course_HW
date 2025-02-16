@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Game.Common;
 using Game.System.Gameplay.Quests;
 using UnityEngine;
@@ -22,8 +23,8 @@ namespace Game.System.Gameplay.Match3
             var item2 = _grid.GetItem(pos2);
             if (item1 == null || item2 == null) return false;
 
-            _grid.SetItem(pos1, item2);
-            _grid.SetItem(pos2, item1);
+            _grid.MoveItem(pos1, item2);
+            _grid.MoveItem(pos2, item1);
             
             return true;
         }
@@ -78,14 +79,50 @@ namespace Game.System.Gameplay.Match3
         {
             foreach (var item in matchedItems)
             {
-                _grid.SetItem(item.GridPosition, null);
+                _grid.RemoveItem(item.GridPosition);
                 //_questTracker.CheckItem(item); // Отслеживаем квестовые фишки
             }
         }
 
-        public void ApplyGravity()
+        public HashSet<FallingData> FallDownItems()
         {
-            // Логика падения фишек вниз
+            var fallingItems = new HashSet<FallingData>();
+
+            for (int x = 0; x < _grid.GridSize.x; x++)
+            {
+                for (int y = 0; y < _grid.GridSize.y; y++)
+                {
+                    var pos=new Vector2Int(x, y);
+                    var item = _grid.GetItem(pos);
+                    if (item!=null) continue;
+                    
+                    for (int dropY = y + 1; dropY < _grid.GridSize.y; dropY++)
+                    {
+                        var itemPositionAbove = new Vector2Int(pos.x, pos.y + dropY);
+                        var itemAbove = _grid.GetItem(itemPositionAbove);
+                        if (itemAbove==null) continue;
+                        _grid.MoveItem(pos,itemAbove);
+                        fallingItems.Add(new FallingData(itemPositionAbove,pos,itemAbove));
+                        break;
+                    }
+                }
+            }
+
+            return fallingItems;
+        }
+
+        public struct FallingData
+        {
+            public FallingData(Vector2Int previousPosition, Vector2Int nextPosition, Item item)
+            {
+                this.PreviousPosition = previousPosition;
+                this.NextPosition = nextPosition;
+                this.Item = item;
+            }
+
+            public Vector2Int PreviousPosition { get; }
+            public Vector2Int NextPosition { get; }
+            public Item Item { get; }
         }
     }
 }
