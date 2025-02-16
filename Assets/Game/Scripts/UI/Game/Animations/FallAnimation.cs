@@ -10,7 +10,7 @@ namespace Game.UI.Game.Animations
     {
         private readonly List<ItemPresenter> _viewsToAnimate;
         private readonly List<Vector2Int> _newPositions;
-        private const float DropSpeed=20;
+        private const float DropSpeed=10;
 
         public FallAnimation(List<ItemPresenter> viewsToAnimate, List<Vector2Int> newPositions)
         {

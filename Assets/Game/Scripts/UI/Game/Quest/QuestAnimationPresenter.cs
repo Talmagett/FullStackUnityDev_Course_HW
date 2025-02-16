@@ -24,7 +24,7 @@ namespace Game.UI.Game.Quest
             itemParticle.transform.position = pos;
             itemParticle.SetImage(itemSpriteMap.GetItemSprite(type));
             itemParticle.transform.localScale=Vector3.one;
-            var randDur = Random.Range(0.7f, 1.2f);
+            var randDur = Random.Range(0.4f, 0.7f);
             await itemParticle.transform.DOMove(questView.Position, randDur);
             questView.Bounce();
             quest.AddProgress();

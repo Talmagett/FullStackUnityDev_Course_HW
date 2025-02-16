@@ -27,9 +27,15 @@ namespace Game.UI.Game.Match3
         private readonly ScreenNavigator _screenNavigator;
         private readonly QuestAnimationPresenter _questAnimationPresenter;
         private readonly Gameplay.Quests.Quest _quest;
+        private readonly GameUIPresenter _gameUIPresenter;
         private bool _isInteractable=true;
         
-        public LevelGridPresenter(LevelGrid levelGrid, Match3Logic match3Logic, LevelGridView view, ItemSpriteMap itemSpriteMap, ItemInputHandler itemInputHandler, ScreenNavigator screenNavigator, Gameplay.Quests.Quest quest, QuestAnimationPresenter questAnimationPresenter)
+        public LevelGridPresenter(
+            LevelGrid levelGrid, Match3Logic match3Logic, 
+            LevelGridView view, ItemSpriteMap itemSpriteMap, 
+            ItemInputHandler itemInputHandler, ScreenNavigator screenNavigator, 
+            Gameplay.Quests.Quest quest, 
+            QuestAnimationPresenter questAnimationPresenter, GameUIPresenter gameUIPresenter)
         {
             _itemRepository = new ItemRepository();
             _animationQueue = new AnimationQueue();
@@ -42,43 +48,46 @@ namespace Game.UI.Game.Match3
             _screenNavigator = screenNavigator;
             _quest = quest;
             _questAnimationPresenter = questAnimationPresenter;
+            _gameUIPresenter = gameUIPresenter;
         }
 
         public void Initialize()
         {
             _itemInputHandler.OnItemSwipe+= HandleSwipe;
             _view.SetGridSize(_levelGrid.GridSize);
-            SpawnItems(_levelGrid.GetAllItems());
+            SpawnInitialItems(_levelGrid.GetAllItems());
             _levelGrid.OnGridChanged += SpawnItems;
-            LoadGameUI();
-        }
-
-        private async UniTask LoadGameUI()
-        {
-            await UniTask.Delay(100);
             _screenNavigator.ChangeScreen(ScreenName.Game);
         }
 
+        private void SpawnItems(IEnumerable<Item> getAllItems)
+        {
+            foreach (var item in getAllItems)
+            {
+                SpawnItem(item,true);
+            }
+        }
+
+        private void SpawnInitialItems(IEnumerable<Item> getAllItems)
+        {
+            foreach (var item in getAllItems)
+            {
+                SpawnItem(item);
+            }
+        }
         public void Dispose()
         {
             _itemInputHandler.OnItemSwipe-= HandleSwipe;
             _levelGrid.OnGridChanged -= SpawnItems;
         }
 
-        private void SpawnItems(IEnumerable<Item> enumerable)
-        {
-            foreach (var item in enumerable)
-            {
-                SpawnItem(item);
-            }
-        }
-
-        private void SpawnItem(Item item)
+        private async UniTask SpawnItem(Item item, bool fromUp = false)
         {
             var itemSprite = _itemSpriteMap.GetItemSprite(item.ItemType);
-            var itemView = _view.SpawnItem(item.GridPosition, itemSprite);
+            var itemView = _view.SpawnItem(item.GridPosition, itemSprite,fromUp);
             var itemPresenter = new ItemPresenter(item, itemView,_view.PositionOffset);
             _itemRepository.Add(item.GridPosition,itemPresenter);
+            await itemView.FadeIn(0.3f);
         }
         
         private void HandleSwipe(ItemView itemView, Vector2Int direction)
@@ -122,20 +131,39 @@ namespace Game.UI.Game.Match3
              while (matches.Count > 0)
              {
                  await DestroyMatchesAsync(matches);
-                 await FallItems();
+                 FallItems();
                  await SpawnNewItems();
                  
                  matches = _match3Logic.FindMatches();
              }
 
-             _isInteractable = true;
+             if (_quest.IsQuestComplete())
+             {
+                 await UniTask.Delay(1000);
+                 _gameUIPresenter.FinishLevel();
+             }
+             else
+                 _isInteractable = true;
          }
 
          private async UniTask SpawnNewItems()
          {
-             _levelGrid.FillEmptySpaces();
-             await UniTask.DelayFrame(1);
+             var newFallingItems = _levelGrid.FillEmptySpaces(); // Получаем новые предметы
+
+             List<ItemPresenter> viewsToAnimate = new();
+             List<Vector2Int> newPositions = new();
+             foreach (var item in newFallingItems)
+             {
+                 var itemPresenter = _itemRepository.GetPresenter(item.GridPosition);
+                 viewsToAnimate.Add(itemPresenter);
+                 newPositions.Add(item.GridPosition);
+             }
+             
+             var fallAnimation = new FallAnimation(viewsToAnimate, newPositions);
+             _animationQueue.Enqueue(fallAnimation);
+             await _animationQueue.Execute();
          }
+
 
          private async Task FallItems()
          {
@@ -156,7 +184,7 @@ namespace Game.UI.Game.Match3
              
              var fallAnimation = new FallAnimation(viewsToAnimate, newPositions);
              _animationQueue.Enqueue(fallAnimation);
-             await _animationQueue.Execute();
+             //await _animationQueue.Execute();
              
              foreach (var (from, to) in fallingItems)
              {

@@ -24,7 +24,7 @@ namespace Game.UI.Game
         
         private QuestPresenter _questPresenter;
 
-        private void FinishLevel()
+        public void FinishLevel()
         {
             _screenNavigator.ChangeScreen(ScreenName.Win);
             sceneNavigator.OpenMenu();
@@ -36,13 +36,11 @@ namespace Game.UI.Game
             questView.SetQuestTask(_itemSpriteMap.GetBaseSprite(_map.CurrentLevel.GoalType));
             
             _questPresenter = new QuestPresenter(questView, _quest);
-            _quest.OnQuestFinished+=FinishLevel;
         }
 
         public void Dispose()
         {
             _questPresenter.Dispose();
-            _quest.OnQuestFinished-=FinishLevel;
         }
     }
 }

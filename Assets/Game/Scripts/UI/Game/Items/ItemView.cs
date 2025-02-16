@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -35,6 +36,11 @@ namespace Game.UI.Game.Items
         {
             return itemSpriteRenderer.DOFade(0, duration).ToUniTask();
         }
+        
+        public UniTask FadeIn(float duration)
+        {
+            return itemSpriteRenderer.DOFade(0, duration).From().ToUniTask();
+        }
         public UniTask Scale(Vector3 scale, float scaleDuration)
         {
             return transform.DOScale(scale, scaleDuration).ToUniTask();
@@ -59,5 +65,6 @@ namespace Game.UI.Game.Items
         {
             
         }
+
     }
 }

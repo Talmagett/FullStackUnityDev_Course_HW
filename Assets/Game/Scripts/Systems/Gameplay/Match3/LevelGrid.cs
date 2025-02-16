@@ -89,7 +89,7 @@ namespace Game.Gameplay.Match3
             OnGridChanged?.Invoke(_gridItems.Values);
         }
         
-        public void FillEmptySpaces()
+        public List<Item> FillEmptySpaces()
         {
             var newItems = new List<Item>();
             for (int x = 0; x < GridSize.x; x++)
@@ -106,6 +106,7 @@ namespace Game.Gameplay.Match3
                 }
             }
             OnGridChanged?.Invoke(newItems);
+            return newItems;
         }
 
         private Item CreateItem(ItemType type, Vector2Int pos)
