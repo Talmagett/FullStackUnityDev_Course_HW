@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Components
 {
-    public class HealthComponent : MonoBehaviour
+    public class HealthComponent : MonoBehaviour, IDamageable
     {
         public event Action OnDead;
         public event Action OnTakeDamage;

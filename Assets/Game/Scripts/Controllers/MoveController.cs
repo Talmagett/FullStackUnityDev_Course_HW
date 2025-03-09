@@ -25,12 +25,7 @@ namespace Game.Controllers
         {
             var horInput = Input.GetAxisRaw("Horizontal");
             
-            Move(new Vector3());
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-                Move(Vector3.left);
-            else if (Input.GetKey(KeyCode.RightArrow)) 
-                Move(Vector3.right);
+            Move(new Vector3(horInput,0));
         }
 
         private void Move(Vector3 direction)

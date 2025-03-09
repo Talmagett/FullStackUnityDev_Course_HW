@@ -261,7 +261,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1114773270552738056}
+  - component: {fileID: 559320175754629068}
   - component: {fileID: 2666023731686571535}
+  - component: {fileID: 3229617545650674624}
+  - component: {fileID: 2143484564852756065}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -287,6 +290,19 @@ Transform:
   - {fileID: 4629981065635871775}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &559320175754629068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554046834176312192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc5507973854cff8893e0fd3410cb31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthComponent: {fileID: 2666023731686571535}
 --- !u!114 &2666023731686571535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +318,41 @@ MonoBehaviour:
   maxHealth: 3
   currentHealth: 3
   _isDead: 0
+--- !u!114 &3229617545650674624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554046834176312192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8304911ec5964b8fbf18963459ee24fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveComponent: {fileID: 2143484564852756065}
+  movingTransform: {fileID: 3105770917179402914}
+  wayPoints:
+  - {fileID: 3929516699554365295}
+  - {fileID: 4629981065635871775}
+  currentPoint: 0
+  stoppingDistance: 0.25
+--- !u!114 &2143484564852756065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554046834176312192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9ac79978dd98c4c95792892c0bd3c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rigidbody2D: {fileID: 4015829716640782646}
+  speed: 1.5
+  moveDirection: {x: 0, y: 0, z: 0}
+  canMove: 1
 --- !u!1 &7187152835411801990
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,6 +514,7 @@ GameObject:
   - component: {fileID: 4015829716640782646}
   - component: {fileID: 7422560000825944449}
   - component: {fileID: 7073503754261842485}
+  - component: {fileID: 8087549662394459318}
   m_Layer: 8
   m_Name: <Spider>
   m_TagString: Untagged
@@ -603,3 +655,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.75}
   m_EdgeRadius: 0
+--- !u!114 &8087549662394459318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8665529919726988981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05ec6b5426631094188cbbbbcf4d602b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeComponent: {fileID: 2666023731686571535}

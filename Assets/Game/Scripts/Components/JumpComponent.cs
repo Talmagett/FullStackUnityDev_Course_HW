@@ -6,6 +6,7 @@ namespace Game.Components
 {
     public class JumpComponent : MonoBehaviour
     {
+        public event Action OnJump;
         [SerializeField] private Rigidbody2D rigidbody2D;
         [SerializeField] private float jumpPower = 10f;
         [SerializeField] private bool canJump = true;
@@ -18,6 +19,7 @@ namespace Game.Components
                 return;
 
             rigidbody2D.AddForce(Vector2.up*jumpPower,ForceMode2D.Impulse);
+            OnJump?.Invoke();
         }
 
         public void AddCondition(Func<bool> condition)

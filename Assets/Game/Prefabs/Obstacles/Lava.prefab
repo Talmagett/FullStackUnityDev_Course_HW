@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f259971b9ecb464599c596e529048db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lavaAudioSource: {fileID: 8807684224348490779}
 --- !u!212 &790263129781726672
 SpriteRenderer:
   m_ObjectHideFlags: 0

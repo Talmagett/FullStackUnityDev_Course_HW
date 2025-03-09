@@ -6,7 +6,7 @@ namespace Game.Components
 {
     public class MoveComponent : MonoBehaviour
     {
-        [SerializeField] private Transform root;
+        [SerializeField] private Rigidbody2D m_rigidbody2D;
         [SerializeField] private float speed = 3f;
         [SerializeField] private Vector3 moveDirection;
         [SerializeField] private bool canMove = true;
@@ -28,7 +28,7 @@ namespace Game.Components
             if (!canMove || !_andCondition.IsTrue())
                 return;
 
-            root.position += moveDirection * (speed * Time.deltaTime);
+            m_rigidbody2D.velocity = new Vector2(moveDirection.x * speed, m_rigidbody2D.velocity.y);
         }
 
         public void AddCondition(Func<bool> condition)

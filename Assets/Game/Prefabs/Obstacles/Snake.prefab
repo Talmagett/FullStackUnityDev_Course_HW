@@ -379,7 +379,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7302201298826456237}
+  - component: {fileID: -651587394409891682}
   - component: {fileID: 6404040054766630721}
+  - component: {fileID: 5102825416081363409}
+  - component: {fileID: 4471295088971820209}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -405,6 +408,19 @@ Transform:
   - {fileID: 3188779134163127405}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-651587394409891682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630584940079141506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2716604ebba649738fe8b883342ed8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthComponent: {fileID: 6404040054766630721}
 --- !u!114 &6404040054766630721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +436,41 @@ MonoBehaviour:
   maxHealth: 3
   currentHealth: 3
   _isDead: 0
+--- !u!114 &5102825416081363409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630584940079141506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8304911ec5964b8fbf18963459ee24fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveComponent: {fileID: 4471295088971820209}
+  movingTransform: {fileID: 1819249752555060710}
+  wayPoints:
+  - {fileID: 7836685165928915669}
+  - {fileID: 3188779134163127405}
+  currentPoint: 0
+  stoppingDistance: 0.25
+--- !u!114 &4471295088971820209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630584940079141506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9ac79978dd98c4c95792892c0bd3c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rigidbody2D: {fileID: 1745589832700849}
+  speed: 2
+  moveDirection: {x: 0, y: 0, z: 0}
+  canMove: 1
 --- !u!1 &7469774354018702093
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,6 +514,7 @@ GameObject:
   - component: {fileID: 1745589832700849}
   - component: {fileID: 519640766865834813}
   - component: {fileID: 464711613102087323}
+  - component: {fileID: 6907065976043305669}
   m_Layer: 8
   m_Name: <Snake>
   m_TagString: Untagged
@@ -604,6 +656,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 0.75}
   m_EdgeRadius: 0
+--- !u!114 &6907065976043305669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8521204571576199944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05ec6b5426631094188cbbbbcf4d602b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeComponent: {fileID: 6404040054766630721}
 --- !u!1 &9168432786817898581
 GameObject:
   m_ObjectHideFlags: 0
