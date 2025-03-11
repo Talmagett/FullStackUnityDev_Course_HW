@@ -7,13 +7,11 @@ namespace Game.Controllers
     {
         [SerializeField] private GameObject character;
 
-        private MoveComponent _moveComponent;
-        private RotateComponent _rotateComponent;
+        private MoveComponent _horizontalMoveComponent;
 
         private void Awake()
         {
-            _moveComponent = character.GetComponent<MoveComponent>();
-            _rotateComponent = character.GetComponent<RotateComponent>();
+            _horizontalMoveComponent = character.GetComponent<MoveComponent>();
         }
 
         private void Update()
@@ -30,8 +28,7 @@ namespace Game.Controllers
 
         private void Move(Vector3 direction)
         {
-            _moveComponent.SetDirection(direction);
-            _rotateComponent.SetDirection(direction);
+            _horizontalMoveComponent.SetDirection(direction);
         }
     }
 }

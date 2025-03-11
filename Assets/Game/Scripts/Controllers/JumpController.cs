@@ -8,7 +8,7 @@ namespace Game.Controllers
         [SerializeField] private GameObject character;
 
         private JumpComponent jumpComponent;
-        private RotateComponent _rotateComponent;
+        private LookComponent _lookComponent;
 
         private void Awake()
         {

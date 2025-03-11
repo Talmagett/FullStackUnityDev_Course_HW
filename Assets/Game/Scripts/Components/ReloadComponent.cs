@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SampleGame
+namespace Game.Components
 {
     public class ReloadComponent : MonoBehaviour
     {

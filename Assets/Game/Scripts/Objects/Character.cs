@@ -1,21 +1,23 @@
 using Game.Components;
-using SampleGame;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Game.Objects
 {
     //Mediator, Facade
-    public class Character : MonoBehaviour//, ShootComponent.ICondition
+    public class Character : MonoBehaviour
     {
         [SerializeField] private HealthComponent healthComponent;
         
-        [SerializeField] private RotateComponent rotateComponent;
-        [SerializeField] private MoveComponent moveComponent;
+        [SerializeField] private LookComponent lookComponent;
+        [SerializeField] private MoveComponent horizontalMoveComponent;
         
         [SerializeField] private JumpComponent jumpComponent;
         [SerializeField] private GroundedComponent groundedComponent;
         [SerializeField] private ReloadComponent jumpReloadComponent;
+
+        [SerializeField] private PushDetector pushDetector;
+        [SerializeField] private PushDetector tossDetector;
         
         [SerializeField] private PushComponent pushComponent;
         [SerializeField] private ReloadComponent pushReloadComponent;
@@ -25,19 +27,19 @@ namespace Game.Objects
         
         private void Awake()
         {
-            rotateComponent.AddCondition(healthComponent.IsAlive);
-            moveComponent.AddCondition(healthComponent.IsAlive);
+            lookComponent.AddCondition(healthComponent.IsAlive);
+            horizontalMoveComponent.AddCondition(healthComponent.IsAlive);
             
             jumpComponent.AddCondition(healthComponent.IsAlive);
             jumpComponent.AddCondition(groundedComponent.IsGrounded);
             jumpComponent.AddCondition(jumpReloadComponent.IsReady);
             
-            pushComponent.AddCondition(healthComponent.IsAlive);
-            pushComponent.AddCondition(pushReloadComponent.IsReady);
+            pushDetector.AddCondition(healthComponent.IsAlive);
+            pushDetector.AddCondition(pushReloadComponent.IsReady);
             
-            tossComponent.AddCondition(healthComponent.IsAlive);
-            tossComponent.AddCondition(groundedComponent.IsGrounded);
-            tossComponent.AddCondition(tossReloadComponent.IsReady);
+            tossDetector.AddCondition(healthComponent.IsAlive);
+            tossDetector.AddCondition(groundedComponent.IsGrounded);
+            tossDetector.AddCondition(tossReloadComponent.IsReady);
         }
 
         private void OnEnable()

@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 3668710829551897651}
   - component: {fileID: 1650171991482105198}
   - component: {fileID: 8320438562223812922}
+  - component: {fileID: 1947868675443074363}
   m_Layer: 8
   m_Name: Trap
   m_TagString: Untagged
@@ -224,3 +225,20 @@ PolygonCollider2D:
       - {x: -0.5644675, y: 0.0016976148}
       - {x: 0.5652342, y: 0.0005790591}
   m_UseDelaunayMesh: 0
+--- !u!114 &1947868675443074363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331236207197526835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee07bf1e6fdf71a4c970aeef03477150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundPoint: {fileID: 3075001735327464809}
+  groundCheckRadius: 0.5
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 8

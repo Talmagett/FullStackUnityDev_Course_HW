@@ -657,13 +657,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8665529919726988981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc9ac79978dd98c4c95792892c0bd3c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6412e799cccd451e892e72e91d95b31f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_rigidbody2D: {fileID: 4015829716640782646}
   speed: 1.5
   moveDirection: {x: 0, y: 0, z: 0}
   canMove: 1
+  moveY: 0
 --- !u!114 &3565804327949251288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,9 +677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebae3cea3d464b96b5e57ff274adb30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushPower: 100
-  pushPoint: {fileID: 3105770917179402914}
-  checkRadius: 1
+  pushPower: 30
 --- !u!114 &2969822287983885944
 MonoBehaviour:
   m_ObjectHideFlags: 0
