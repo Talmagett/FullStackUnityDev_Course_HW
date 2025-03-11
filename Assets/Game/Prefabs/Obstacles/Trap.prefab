@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 3668710829551897651}
+  damage: 1
 --- !u!114 &3668710829551897651
 MonoBehaviour:
   m_ObjectHideFlags: 0

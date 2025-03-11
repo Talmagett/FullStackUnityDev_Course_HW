@@ -20,7 +20,7 @@ namespace Game.Objects
         [SerializeField] private PushComponent pushComponent;
         [SerializeField] private ReloadComponent pushReloadComponent;
         
-        [SerializeField] private TossComponent tossComponent;
+        [SerializeField] private PushComponent tossComponent;
         [SerializeField] private ReloadComponent tossReloadComponent;
         
         private void Awake()
@@ -44,6 +44,7 @@ namespace Game.Objects
         {
             healthComponent.OnDead += OnHealthEmpty;
             pushComponent.OnPush += pushReloadComponent.Reload;
+            tossComponent.OnPush += tossReloadComponent.Reload;
             jumpComponent.OnJump += jumpReloadComponent.Reload;
         }
 
@@ -51,6 +52,7 @@ namespace Game.Objects
         {
             healthComponent.OnDead -= OnHealthEmpty;
             pushComponent.OnPush -= pushReloadComponent.Reload;
+            tossComponent.OnPush -= tossReloadComponent.Reload;
             jumpComponent.OnJump -= jumpReloadComponent.Reload;
         }
 

@@ -24,10 +24,15 @@ namespace Game.Components
             {
                 if (hit.TryGetComponent(out Rigidbody2D targetRb2d))
                 {
-                    targetRb2d.AddForce(direction*pushPower,ForceMode2D.Impulse);
+                    Push(targetRb2d,direction);
                 }
             }
             OnPush?.Invoke();
+        }
+
+        public void Push(Rigidbody2D target, Vector3 direction)
+        {
+            target.AddForce(direction*pushPower, ForceMode2D.Impulse);
         }
         
         public void AddCondition(Func<bool> condition)

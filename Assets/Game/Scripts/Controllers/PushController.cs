@@ -8,12 +8,13 @@ namespace Game.Controllers
         [SerializeField] private GameObject character;
 
         private PushComponent _pushComponent;
-        private TossComponent _tossComponent;
+        private PushComponent _tossComponent;
 
         private void Awake()
         {
-            _pushComponent = character.GetComponent<PushComponent>();
-            _tossComponent = character.GetComponent<TossComponent>();
+            var pushComponents = character.GetComponents<PushComponent>();
+            _pushComponent = pushComponents[0];
+            _tossComponent = pushComponents[1];
         }
 
         private void Update()
@@ -29,7 +30,7 @@ namespace Game.Controllers
             }
             else if (Input.GetMouseButtonDown(1))
             {
-                _tossComponent.Toss();
+                _tossComponent.Push(character.transform.up);
             }
         }
     }
