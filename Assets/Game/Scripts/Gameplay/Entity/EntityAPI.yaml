@@ -1,0 +1,82 @@
+header: EntityAPI
+entityType: IEntity
+aggressiveInlining: true
+
+namespace: SampleGame
+className: EntityAPI
+directory: Assets/Game/Scripts/Gameplay/Entity/
+ 
+imports:
+- UnityEngine
+- Atomic.Entities
+- System
+- Atomic.Elements
+- Modules.Gameplay
+- Atomic.Extensions
+
+tags:
+- Player
+- Enemy
+- Resource
+- Damageable
+- Moveable
+- Interactible
+
+
+values:
+
+# Main
+- GameObject: GameObject
+- Transform: Transform
+- Rigidbody: Rigidbody
+  
+#Movement  
+- MoveSpeed: IReactiveVariable<float>
+- MoveCondition: IExpression<bool>
+- MoveDirection: IReactiveVariable<Vector3>
+- ForwardDirection: IReactiveVariable<float>
+
+#Rotation
+- AngularSpeed: IValue<float>
+- AngularDirection: IReactiveVariable<Vector3>
+- TurnDirection: IReactiveVariable<float>
+  
+#Life
+- Health: IReactiveVariable<int>
+- Lifetime: Cooldown
+- DestroyAction: IAction
+
+#Combat
+- CurrentWeapon: IReactiveVariable<IEntity>
+- Damage: IReactiveVariable<int>
+- ExtraDamage: IExpression<int>
+- Target: IReactiveVariable<IEntity>  
+
+#Weapon
+- Ammo: Ammo
+- PickUpPrefab: SceneEntity
+- WeaponPrefab: SceneEntity
+- WeaponContainer: Transform
+
+#Fire  
+- FireCooldown: Cooldown
+- FirePoint: Transform
+- FireEvent: IEvent
+- FireAction: IAction
+- FireRequest: IEvent
+- FireCondition: IExpression<bool>
+
+#Interact
+- InteractAction: IAction<IEntity> #IEntity — Character
+- TargetInteractible: IReactiveVariable<IEntity> #Entity — current interactible item
+
+#Other
+- Owner: IReactiveVariable<IEntity>
+
+#Physics
+- TriggerReceiver: TriggerEventReceiver
+- ColliderReceiver: CollisionEventReceiver
+
+#Visual
+- Animator: Animator
+  
