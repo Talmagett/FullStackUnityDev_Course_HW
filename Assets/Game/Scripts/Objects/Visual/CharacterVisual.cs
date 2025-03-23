@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Game.Components;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Objects.Visual
 {
@@ -9,8 +10,8 @@ namespace Game.Objects.Visual
         [SerializeField] private HealthComponent healthComponent;
         
         [SerializeField] private JumpComponent jumpComponent;
-        [SerializeField] private PushComponent pushComponent;
-        [SerializeField] private PushComponent tossComponent;
+        [SerializeField] private ForceComponent forceComponent;
+        [SerializeField] private ForceComponent tossComponent;
         
         [Space]
         [SerializeField] private Animator animator;
@@ -31,7 +32,7 @@ namespace Game.Objects.Visual
         private void OnEnable()
         {
             jumpComponent.OnJump += OnJump;
-            pushComponent.OnPush += OnPush;
+            forceComponent.OnPush += OnForce;
             tossComponent.OnPush += OnToss;
             healthComponent.OnTakeDamage += OnTakeDamage;
         }
@@ -39,12 +40,12 @@ namespace Game.Objects.Visual
         private void OnDisable()
         {
             jumpComponent.OnJump -= OnJump;
-            pushComponent.OnPush -= OnPush;
+            forceComponent.OnPush -= OnForce;
             tossComponent.OnPush -= OnToss;
             healthComponent.OnTakeDamage -= OnTakeDamage;
         }
 
-        private void OnPush()
+        private void OnForce()
         {
             pushParticle.Play();            
             audioSource.PlayOneShot(pushClip);

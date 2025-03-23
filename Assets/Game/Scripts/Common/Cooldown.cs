@@ -1,18 +1,22 @@
 using UnityEngine;
 
-namespace Game.Components
+namespace Game.Common
 {
-    public class ReloadComponent : MonoBehaviour
+    [System.Serializable]
+    public class Cooldown
     {
-        [SerializeField] private float _maxTime;
+        [SerializeField] private float maxTime;
         private float _currentTime;
         private bool _isReady;
 
-        private void Update()
+        public void TickUpdate(float deltaTime)
         {
-            _currentTime += Time.deltaTime;
+            if (IsReady())
+                return;
+            
+            _currentTime += deltaTime;
 
-            if (_currentTime > _maxTime && !_isReady)
+            if (_currentTime > maxTime && !_isReady)
             {
                 _isReady = true;
             }

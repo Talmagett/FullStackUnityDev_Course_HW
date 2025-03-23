@@ -1,13 +1,14 @@
 using System;
 using Game.Components;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Objects
 {
     public class Snake : MonoBehaviour
     {
         [SerializeField] private HealthComponent healthComponent;
-        [SerializeField] private PushComponent pushComponent;
+        [SerializeField] private ForceComponent forceComponent;
         [SerializeField] private Animator animator;
         [SerializeField] private AudioSource takeDamageSource;
         
@@ -43,7 +44,7 @@ namespace Game.Objects
             damageable.TakeDamage(damage);
 
             if (!other.transform.TryGetComponent(out Rigidbody2D rigidbody2DTarget)) return;
-            pushComponent.Push(rigidbody2DTarget, Vector3.up);
+            forceComponent.Force(rigidbody2DTarget, Vector3.up);
         }
     }
 }

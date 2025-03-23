@@ -678,6 +678,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushPower: 30
+  forceDetector:
+    pushPoint: {fileID: 0}
+    checkRadius: 0
+  cooldown:
+    maxTime: 0
 --- !u!114 &2969822287983885944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,6 +696,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 5975396294298253252}
-  pushComponent: {fileID: 3565804327949251288}
+  forceComponent: {fileID: 3565804327949251288}
   animator: {fileID: 232471739611255772}
   damage: 1

@@ -1,13 +1,14 @@
 using System;
 using Game.Components;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Objects
 {
     public class Spider : MonoBehaviour
     {
         [SerializeField] private HealthComponent healthComponent;
-        [SerializeField] private PushComponent pushComponent;
+        [SerializeField] private ForceComponent forceComponent;
         [SerializeField] private Animator animator;
         [SerializeField] private int damage;
         
@@ -42,8 +43,7 @@ namespace Game.Objects
 
             if (!other.transform.TryGetComponent(out Rigidbody2D rigidbody2DTarget)) return;
             var dir = new Vector3(other.transform.position.x - transform.position.x, 0);
-            dir.Normalize();
-            pushComponent.Push(rigidbody2DTarget, dir);
+            forceComponent.Force(rigidbody2DTarget, dir);
         }
     }
 }

@@ -1,11 +1,10 @@
 using Game.Components;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Objects
 {
     //Mediator, Facade
-    public class Character : MonoBehaviour
+    public class Character : MonoBehaviour, IPushComponent, ITossComponent
     {
         [SerializeField] private HealthComponent healthComponent;
         
@@ -14,16 +13,9 @@ namespace Game.Objects
         
         [SerializeField] private JumpComponent jumpComponent;
         [SerializeField] private GroundedComponent groundedComponent;
-        [SerializeField] private ReloadComponent jumpReloadComponent;
-
-        [SerializeField] private PushDetector pushDetector;
-        [SerializeField] private PushDetector tossDetector;
-        
-        [SerializeField] private PushComponent pushComponent;
-        [SerializeField] private ReloadComponent pushReloadComponent;
-        
-        [SerializeField] private PushComponent tossComponent;
-        [SerializeField] private ReloadComponent tossReloadComponent;
+       
+        [SerializeField] private ForceComponent pushComponent;
+        [SerializeField] private ForceComponent tossComponent;
         
         private void Awake()
         {
@@ -32,36 +24,36 @@ namespace Game.Objects
             
             jumpComponent.AddCondition(healthComponent.IsAlive);
             jumpComponent.AddCondition(groundedComponent.IsGrounded);
-            jumpComponent.AddCondition(jumpReloadComponent.IsReady);
             
-            pushDetector.AddCondition(healthComponent.IsAlive);
-            pushDetector.AddCondition(pushReloadComponent.IsReady);
+            pushComponent.AddCondition(healthComponent.IsAlive);
             
-            tossDetector.AddCondition(healthComponent.IsAlive);
-            tossDetector.AddCondition(groundedComponent.IsGrounded);
-            tossDetector.AddCondition(tossReloadComponent.IsReady);
+            tossComponent.AddCondition(healthComponent.IsAlive);
+            tossComponent.AddCondition(groundedComponent.IsGrounded);
         }
 
         private void OnEnable()
         {
             healthComponent.OnDead += OnHealthEmpty;
-            pushComponent.OnPush += pushReloadComponent.Reload;
-            tossComponent.OnPush += tossReloadComponent.Reload;
-            jumpComponent.OnJump += jumpReloadComponent.Reload;
         }
 
         private void OnDisable()
         {
             healthComponent.OnDead -= OnHealthEmpty;
-            pushComponent.OnPush -= pushReloadComponent.Reload;
-            tossComponent.OnPush -= tossReloadComponent.Reload;
-            jumpComponent.OnJump -= jumpReloadComponent.Reload;
         }
-
 
         private void OnHealthEmpty()
         {
             gameObject.SetActive(false);
+        }
+
+        public void Push()
+        {
+            pushComponent.Force(transform.right);
+        }
+
+        public void Toss()
+        {
+            tossComponent.Force(transform.up);
         }
     }
 }
