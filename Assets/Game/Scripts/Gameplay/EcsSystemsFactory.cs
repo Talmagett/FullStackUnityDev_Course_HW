@@ -30,12 +30,12 @@ namespace SampleGame
             systems
 
                 //Input:
-                .Add(new InputSystem(_inputMap))
+  /*              .Add(new InputSystem(_inputMap))
                 .Add(new PlayerMoveController())
                 .Add(new PlayerFireController())
-
+*/
                 //Game Logic
-                .Add(new MoveSystem())
+  /*              .Add(new MoveSystem())
                 .Add(new RotationSystem())
                 .Add(new BulletSpawnSystem())
                 .Add(new BulletCollisionSystem())
@@ -46,14 +46,14 @@ namespace SampleGame
                 .Add(new CharacterMoveSystem())
                 .Add(new CharacterRotateSystem())
                 .Add(new CharacterFireSystem(_bulletPrefab))
-
+*/
                 //Rendering:
-                .Add(new TransformViewSystem())
+  /*              .Add(new TransformViewSystem())
                 .Add(new TeamViewSystem(_teamViewConfig))
                 .Add(new FireAnimSystem())
                 .Add(new TakeDamageAnimSystem())
                 .Add(new MoveAnimSystem())
-
+*/
                 //Clear:
                 .ClearEvents<FireEvent>()
                 .ClearEvents<TakeDamageEvent>()

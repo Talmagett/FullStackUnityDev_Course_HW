@@ -8,7 +8,6 @@ namespace SampleGame
         private readonly EcsSingletonInject<InputData> _inputData;
         private readonly EcsFilterInject<Inc<UnitFireRequired>> _units;
         private readonly EcsUseCaseInject<TeamUseCase> _teamUseCase;
-        private readonly EcsPoolInject<TeamType> _teamTypes;
         
         void IEcsRunSystem.Run(IEcsSystems systems)
         {
