@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4095a1fd4e4142fbb8b341ef4d38bfb5, type: 3}
-  m_Name: EcsSystems
+  m_Script: {fileID: 11500000, guid: ccdbe448d54c0e743886ce62c23bbf9f, type: 3}
+  m_Name: Swordman
   m_EditorClassIdentifier: 
-  _inputMap: {fileID: 0}
-  _teamViewConfig: {fileID: 11400000, guid: 4f56caba0d264e940ae691709bf0fcbc, type: 2}
-  _bulletPrefab: {fileID: 11400000, guid: d24a6dbe794474a43bfa70757332752f, type: 2}
+  _moveSpeed: 3
+  _rotationSpeed: 0.2
+  _fireOffset:
+    x: 0
+    y: 1
+    z: 1
+  _health: 5

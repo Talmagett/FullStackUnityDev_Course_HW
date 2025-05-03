@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 179348548650888944, guid: 9efe60d89fb4b4fa882e16b1af2b6b1a,
@@ -51,6 +52,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607533136925295576, guid: 9efe60d89fb4b4fa882e16b1af2b6b1a,
+        type: 3}
+      propertyPath: _teamType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2026716548755305749, guid: 9efe60d89fb4b4fa882e16b1af2b6b1a,
         type: 3}
@@ -2108,4 +2114,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 17f247a8089f2954db18400771cfd037, type: 2}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9efe60d89fb4b4fa882e16b1af2b6b1a, type: 3}

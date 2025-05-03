@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035b3b4f3ea9433ba244953a755c0fbc, type: 3}
   m_Name: EcsPrototypeCatalog
   m_EditorClassIdentifier: 
-  _prefabs: []
+  _prefabs:
+  - {fileID: 11400000, guid: d24a6dbe794474a43bfa70757332752f, type: 2}
+  - {fileID: 11400000, guid: 3f7f43360585d724987cfb8459e3b07b, type: 2}
+  - {fileID: 11400000, guid: b002709509404504390a9d53e0c91b07, type: 2}
