@@ -11,6 +11,9 @@ public class MoveJoystick : MonoBehaviour
     private void Update()
     {
         var move = playerEntity.GetMoveDirection();
-        move.Value=new Vector3(joystick.Direction.x,0,joystick.Direction.y);
+        var rotate = playerEntity.GetAngularDirection();
+        var direction=new Vector3(joystick.Direction.x,0,joystick.Direction.y);
+        move.Value=direction;
+        rotate.Value=direction;
     }
 }

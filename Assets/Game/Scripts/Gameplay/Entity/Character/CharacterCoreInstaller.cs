@@ -12,7 +12,7 @@ namespace Game.Gameplay
         
         [SerializeField] private float moveSpeed = 3;
         [SerializeField] private float angularSpeed = 15;
-        [SerializeField] private int health = 3;
+        [SerializeField] private int health = 10;
         [SerializeField] private SceneEntity initialWeapon;
         [SerializeField] private Transform weaponContainer;
         [SerializeField] private TriggerEventReceiver triggerEventReceiver;
@@ -28,8 +28,6 @@ namespace Game.Gameplay
             
             entity.AddPlayerTag();
             entity.AddMoveableTag();
-            
-            
         }
 
         private void InstallMain(IEntity entity)
@@ -43,6 +41,7 @@ namespace Game.Gameplay
         private void InstallLife(IEntity entity)
         {
             entity.AddDamageableTag();
+            entity.AddMaxHealth(new Const<int>(health));
             entity.AddHealth(new ReactiveVariable<int>(health));
             entity.AddBehaviour<DeathBehaviour>();
         }

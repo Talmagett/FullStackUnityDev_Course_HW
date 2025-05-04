@@ -43,6 +43,7 @@ values:
   
 #Life
 - Health: IReactiveVariable<int>
+- MaxHealth: IValue<int>
 - Lifetime: Cooldown
 - DestroyAction: IAction
 

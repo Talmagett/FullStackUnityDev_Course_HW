@@ -1699,6 +1699,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.4999998, y: 0.27415082, z: 2.5000048}
   m_Center: {x: -1.2499853, y: 0.13707541, z: 1.25}
+--- !u!1 &108295353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1662961120376883895, guid: ec84880a8eeb045f781ce1bd97daf080, type: 3}
+  m_PrefabInstance: {fileID: 548561269895222115}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &110230586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26979,10 +26984,14 @@ PrefabInstance:
       propertyPath: healthDisplay
       value: 
       objectReference: {fileID: 548561269895222117}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3008561469758032239, guid: ec84880a8eeb045f781ce1bd97daf080, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1662961120376883895, guid: ec84880a8eeb045f781ce1bd97daf080, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 548561269895222121}
   m_SourcePrefab: {fileID: 100100000, guid: ec84880a8eeb045f781ce1bd97daf080, type: 3}
 --- !u!224 &548561269895222116 stripped
 RectTransform:
@@ -26994,12 +27003,26 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1662961120376883899, guid: ec84880a8eeb045f781ce1bd97daf080, type: 3}
   m_PrefabInstance: {fileID: 548561269895222115}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 108295353}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f2f9d9673434683b8d81a39b490c15b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &548561269895222121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108295353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae31aacc541f6f4ea89e4a9c787ece1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthScreen: {fileID: 548561269895222117}
+  playerEntity: {fileID: 2120899287}
 --- !u!1001 &757640612756630599
 PrefabInstance:
   m_ObjectHideFlags: 0
