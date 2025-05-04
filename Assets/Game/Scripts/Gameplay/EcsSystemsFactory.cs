@@ -9,15 +9,12 @@ namespace SampleGame
         menuName = "SampleGame/New EcsSystems"
     )]
     public sealed class EcsSystemsFactory : ScriptableObject
-    {
-        [SerializeField]
-        private InputMap _inputMap;
-        
+    {        
         [SerializeField]
         private TeamViewConfig _teamViewConfig;
 
         [SerializeField]
-        private EcsPrototype _bulletPrefab;
+        private EcsPrototypeCatalog _prefabCatalog;
 
         public IEcsSystems Create()
         {
@@ -30,30 +27,31 @@ namespace SampleGame
             systems
 
                 //Input:
-  /*              .Add(new InputSystem(_inputMap))
-                .Add(new PlayerMoveController())
+                //.Add(new PlayerMoveController())
                 .Add(new PlayerFireController())
-*/
+
                 //Game Logic
-  /*              .Add(new MoveSystem())
+                .Add(new MoveSystem())
                 .Add(new RotationSystem())
+                .Add(new BaseSpawnSystem(_prefabCatalog))
+                .Add(new UnitSpawnSystem())
                 .Add(new BulletSpawnSystem())
-                .Add(new BulletCollisionSystem())
+                // .Add(new BulletCollisionSystem())
                 .Add(new LifetimeSystem())
                 .Add(new DeathSystem())
                 .Add(new DestroySystem())
                 
-                .Add(new CharacterMoveSystem())
-                .Add(new CharacterRotateSystem())
-                .Add(new CharacterFireSystem(_bulletPrefab))
-*/
+                // .Add(new CharacterMoveSystem())
+                // .Add(new CharacterRotateSystem())
+                //.Add(new CharacterFireSystem(_bulletPrefab))
+
                 //Rendering:
-  /*              .Add(new TransformViewSystem())
+                .Add(new TransformViewSystem())
                 .Add(new TeamViewSystem(_teamViewConfig))
                 .Add(new FireAnimSystem())
                 .Add(new TakeDamageAnimSystem())
                 .Add(new MoveAnimSystem())
-*/
+
                 //Clear:
                 .ClearEvents<FireEvent>()
                 .ClearEvents<TakeDamageEvent>()
