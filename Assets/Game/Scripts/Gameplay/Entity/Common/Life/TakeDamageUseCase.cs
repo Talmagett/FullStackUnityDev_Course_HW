@@ -1,6 +1,7 @@
 using System;
 using Atomic.Elements;
 using Atomic.Entities;
+using Modules.Gameplay;
 
 namespace SampleGame
 {
@@ -11,13 +12,13 @@ namespace SampleGame
             if (!target.HasDamageableTag())
                 return false;
 
-            IReactiveVariable<int> health = target.GetHealth();
+            Health health = target.GetHealth();
             
-            int current = health.Value;
+            int current = health.GetCurrent();
             if (current <= 0)
                 return false;
 
-            health.Value = Math.Max(0, current - damage);
+            health.Reduce(damage);
             return true;
         }
     }

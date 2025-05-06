@@ -1,29 +1,31 @@
+using System;
 using Atomic.Elements;
 using Atomic.Entities;
+using Modules.Gameplay;
 using UnityEngine;
 
 namespace SampleGame
 {
     public sealed class DeathBehaviour : IEntityInit, IEntityDispose
     {
-        private IReactiveValue<int> _health;
+        private Health _health;
         private GameObject _gameObject;
         
         public void Init(in IEntity entity)
         {
             _gameObject = entity.GetGameObject();
             _health = entity.GetHealth();
-            _health.Subscribe(this.OnHealthChanged);
+            _health.OnHealthEmpty+=OnHealthEmpty;
         }
-        
+
+
         public void Dispose(in IEntity entity)
         {
-            _health.Unsubscribe(this.OnHealthChanged);
+            _health.OnHealthEmpty-=OnHealthEmpty;
         }
     
-        private void OnHealthChanged(int health)
+        private void OnHealthEmpty()
         {
-            if (health <= 0) 
                 _gameObject.SetActive(false);
         }
     }

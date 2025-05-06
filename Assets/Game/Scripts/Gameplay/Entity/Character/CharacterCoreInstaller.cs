@@ -41,8 +41,7 @@ namespace Game.Gameplay
         private void InstallLife(IEntity entity)
         {
             entity.AddDamageableTag();
-            entity.AddMaxHealth(new Const<int>(health));
-            entity.AddHealth(new ReactiveVariable<int>(health));
+            entity.AddHealth(new Health(health,health));
             entity.AddBehaviour<DeathBehaviour>();
         }
 

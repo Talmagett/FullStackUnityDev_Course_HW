@@ -42,8 +42,7 @@ values:
 - TurnDirection: IReactiveVariable<float>
   
 #Life
-- Health: IReactiveVariable<int>
-- MaxHealth: IValue<int>
+- Health: Health
 - Lifetime: Cooldown
 - DestroyAction: IAction
 

@@ -19,23 +19,33 @@ namespace SampleGame
             _owner = entity.GetOwner();
 
             _trigger = entity.GetColliderReceiver();
-            _trigger.OnEntered += this.OnTriggerEntered;
+            _trigger.OnEntered += OnCollisionEntered;
         }
 
         public void Dispose(in IEntity entity)
         {
-            _trigger.OnEntered -= this.OnTriggerEntered;
+            _trigger.OnEntered -= OnCollisionEntered;
         }
 
-        private void OnTriggerEntered(Collision collider)
+        private void OnCollisionEntered(Collision collision)
         {
+            Debug.Log($"BulletCollisionBehaviour: {collision.gameObject.name}");
+            if(collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+            {
+                _destroyAction.Invoke();
+                return;
+            }
+            
+            if(!collision.TryGetEntity(out IEntity target))
+                return;
+            
             int damage = _damage.Value;
            
             IEntity owner = _owner.Value;
             if (owner != null && owner.TryGetExtraDamage(out IExpression<int> extraDamage))
                 damage += extraDamage.Value;
             
-            if (collider.collider.TryGetComponent(out IEntity target)&&target!=owner && TakeDamageUseCase.TakeDamage(target, damage, owner))
+            if (target!=owner && TakeDamageUseCase.TakeDamage(target, damage, owner))
                 _destroyAction.Invoke();
         }
     }

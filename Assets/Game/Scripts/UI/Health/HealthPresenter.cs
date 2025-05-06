@@ -1,5 +1,7 @@
+using System;
 using Atomic.Entities;
 using Modules.Common;
+using Modules.Gameplay;
 using SampleGame;
 using UnityEngine;
 
@@ -9,21 +11,33 @@ namespace Game.UI
     {
         [SerializeField] private HealthScreen healthScreen;
         [SerializeField] private SceneEntity playerEntity;
+        private Health _health;
+        
+        private void Awake()
+        {
+            _health = playerEntity.GetHealth();
+        }
 
         private void OnEnable()
         {
-            playerEntity.GetHealth().Subscribe(OnHealthChanged);
+            _health.OnStateChanged+=OnStateChanged;
+            _health.OnHealthChanged+=OnHealthChanged;
         }
 
         private void OnDisable()
         {
-            playerEntity.GetHealth().Unsubscribe(OnHealthChanged);
+            _health.OnStateChanged-=OnStateChanged;
+            _health.OnHealthChanged-=OnHealthChanged;
         }
-        
+
         private void OnHealthChanged(int health)
         {
-            var healthPercent = (float)health / playerEntity.GetMaxHealth().Value;
             healthScreen.TakeDamage(health);
+        }
+
+        private void OnStateChanged()
+        {
+            var healthPercent = _health.GetPercent();
             healthScreen.ChangePercent(healthPercent);
         }
     }

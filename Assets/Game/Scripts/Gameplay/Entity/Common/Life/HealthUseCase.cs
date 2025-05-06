@@ -11,7 +11,7 @@ namespace SampleGame
     {
         public static bool IsAlive(in IEntity entity)
         {
-            return entity.GetHealth().Value > 0;
+            return !entity.GetHealth().IsEmpty();
         }
     }
 }

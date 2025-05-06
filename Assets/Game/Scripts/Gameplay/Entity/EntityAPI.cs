@@ -35,8 +35,7 @@ namespace SampleGame
 		public const int AngularSpeed = -1089183267; // IValue<float>
 		public const int AngularDirection = -1725439556; // IReactiveVariable<Vector3>
 		public const int TurnDirection = 1232893390; // IReactiveVariable<float>
-		public const int Health = -915003867; // IReactiveVariable<int>
-		public const int MaxHealth = 1923500305; // IValue<int>
+		public const int Health = -915003867; // Health
 		public const int Lifetime = -997109026; // Cooldown
 		public const int DestroyAction = 85938956; // IAction
 		public const int CurrentWeapon = -205032771; // IReactiveVariable<IEntity>
@@ -301,13 +300,13 @@ namespace SampleGame
 		public static void SetTurnDirection(this IEntity obj, IReactiveVariable<float> value) => obj.SetValue(TurnDirection, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IReactiveVariable<int> GetHealth(this IEntity obj) => obj.GetValue<IReactiveVariable<int>>(Health);
+		public static Health GetHealth(this IEntity obj) => obj.GetValue<Health>(Health);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetHealth(this IEntity obj, out IReactiveVariable<int> value) => obj.TryGetValue(Health, out value);
+		public static bool TryGetHealth(this IEntity obj, out Health value) => obj.TryGetValue(Health, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddHealth(this IEntity obj, IReactiveVariable<int> value) => obj.AddValue(Health, value);
+		public static bool AddHealth(this IEntity obj, Health value) => obj.AddValue(Health, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasHealth(this IEntity obj) => obj.HasValue(Health);
@@ -316,25 +315,7 @@ namespace SampleGame
 		public static bool DelHealth(this IEntity obj) => obj.DelValue(Health);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetHealth(this IEntity obj, IReactiveVariable<int> value) => obj.SetValue(Health, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IValue<int> GetMaxHealth(this IEntity obj) => obj.GetValue<IValue<int>>(MaxHealth);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetMaxHealth(this IEntity obj, out IValue<int> value) => obj.TryGetValue(MaxHealth, out value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddMaxHealth(this IEntity obj, IValue<int> value) => obj.AddValue(MaxHealth, value);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasMaxHealth(this IEntity obj) => obj.HasValue(MaxHealth);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelMaxHealth(this IEntity obj) => obj.DelValue(MaxHealth);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetMaxHealth(this IEntity obj, IValue<int> value) => obj.SetValue(MaxHealth, value);
+		public static void SetHealth(this IEntity obj, Health value) => obj.SetValue(Health, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cooldown GetLifetime(this IEntity obj) => obj.GetValue<Cooldown>(Lifetime);
