@@ -38,6 +38,7 @@ namespace SampleGame
 		public const int Health = -915003867; // Health
 		public const int Lifetime = -997109026; // Cooldown
 		public const int DestroyAction = 85938956; // IAction
+		public const int DeathEvent = -1096613677; // BaseEvent
 		public const int CurrentWeapon = -205032771; // IReactiveVariable<IEntity>
 		public const int Damage = 375673178; // IReactiveVariable<int>
 		public const int ExtraDamage = -530877775; // IExpression<int>
@@ -352,6 +353,24 @@ namespace SampleGame
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetDestroyAction(this IEntity obj, IAction value) => obj.SetValue(DestroyAction, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static BaseEvent GetDeathEvent(this IEntity obj) => obj.GetValue<BaseEvent>(DeathEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetDeathEvent(this IEntity obj, out BaseEvent value) => obj.TryGetValue(DeathEvent, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddDeathEvent(this IEntity obj, BaseEvent value) => obj.AddValue(DeathEvent, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasDeathEvent(this IEntity obj) => obj.HasValue(DeathEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelDeathEvent(this IEntity obj) => obj.DelValue(DeathEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetDeathEvent(this IEntity obj, BaseEvent value) => obj.SetValue(DeathEvent, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IReactiveVariable<IEntity> GetCurrentWeapon(this IEntity obj) => obj.GetValue<IReactiveVariable<IEntity>>(CurrentWeapon);

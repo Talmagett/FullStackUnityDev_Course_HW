@@ -5,40 +5,37 @@ using Modules.Gameplay;
 using SampleGame;
 using UnityEngine;
 
+using Game.Scripts.Gameplay.Context;
 namespace Game.UI
 {
     public class HealthPresenter : MonoBehaviour
     {
-        [SerializeField] private HealthScreen healthScreen;
-        [SerializeField] private SceneEntity playerEntity;
+        [SerializeField] private StatView healthStatView;
         private Health _health;
         
         private void Awake()
         {
-            _health = playerEntity.GetHealth();
+            GameContext gameContext = GameContext.Instance;
+            _health = gameContext.GetPlayerCharacter().GetHealth();
+            OnStateChanged();
         }
 
         private void OnEnable()
         {
             _health.OnStateChanged+=OnStateChanged;
-            _health.OnHealthChanged+=OnHealthChanged;
         }
 
         private void OnDisable()
         {
             _health.OnStateChanged-=OnStateChanged;
-            _health.OnHealthChanged-=OnHealthChanged;
-        }
-
-        private void OnHealthChanged(int health)
-        {
-            healthScreen.TakeDamage(health);
         }
 
         private void OnStateChanged()
         {
             var healthPercent = _health.GetPercent();
-            healthScreen.ChangePercent(healthPercent);
+            healthStatView.SetProgress(healthPercent);
+            healthStatView.SetText(_health.GetCurrent().ToString());
+            healthStatView.SetVisible(!_health.IsEmpty());
         }
     }
 }

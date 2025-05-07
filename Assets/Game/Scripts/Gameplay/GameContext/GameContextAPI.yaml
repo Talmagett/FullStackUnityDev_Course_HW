@@ -17,3 +17,5 @@ values:
 - BulletPool: IEntityPool
 - WorldTransform: Transform
 - EntityPool: GenericSceneEntityPool
+- PlayerCharacter: IEntity
+- KillScore: ReactiveInt

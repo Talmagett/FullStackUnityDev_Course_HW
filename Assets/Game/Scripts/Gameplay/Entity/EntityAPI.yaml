@@ -45,6 +45,7 @@ values:
 - Health: Health
 - Lifetime: Cooldown
 - DestroyAction: IAction
+- DeathEvent: BaseEvent
 
 #Combat
 - CurrentWeapon: IReactiveVariable<IEntity>
@@ -79,4 +80,3 @@ values:
 
 #Visual
 - Animator: Animator
-  

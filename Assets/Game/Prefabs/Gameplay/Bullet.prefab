@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a256bb734c1f44f7869a3b249c1b4fd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 4.5
   damage: 1
   trigger: {fileID: 7006393198650432515}
   lifetime: 3

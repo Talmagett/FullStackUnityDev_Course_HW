@@ -1,9 +1,5 @@
-using System;
-using Atomic.Elements;
 using Atomic.Entities;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+using Modules.Gameplay;
 
 namespace SampleGame
 {
@@ -12,6 +8,14 @@ namespace SampleGame
         public static bool IsAlive(in IEntity entity)
         {
             return !entity.GetHealth().IsEmpty();
+        }
+        
+        public static bool Heal(in IEntity target, in int healAmount)
+        {
+            if (!target.TryGetHealth(out Health health))
+                return false;
+            
+            return health.Add(healAmount);
         }
     }
 }

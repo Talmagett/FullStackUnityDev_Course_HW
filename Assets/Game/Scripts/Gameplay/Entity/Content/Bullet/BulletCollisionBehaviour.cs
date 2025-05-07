@@ -29,7 +29,6 @@ namespace SampleGame
 
         private void OnCollisionEntered(Collision collision)
         {
-            Debug.Log($"BulletCollisionBehaviour: {collision.gameObject.name}");
             if(collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
             {
                 _destroyAction.Invoke();

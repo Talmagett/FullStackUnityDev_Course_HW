@@ -42,6 +42,7 @@ namespace Game.Gameplay
         {
             entity.AddDamageableTag();
             entity.AddHealth(new Health(health,health));
+            entity.AddDeathEvent(new BaseEvent());
             entity.AddBehaviour<DeathBehaviour>();
         }
 

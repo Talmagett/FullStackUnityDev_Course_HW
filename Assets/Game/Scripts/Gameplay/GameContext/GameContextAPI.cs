@@ -20,6 +20,8 @@ namespace SampleGame
 		public const int BulletPool = 1915726678; // IEntityPool
 		public const int WorldTransform = -486031409; // Transform
 		public const int EntityPool = 1931115573; // GenericSceneEntityPool
+		public const int PlayerCharacter = -1319565175; // IEntity
+		public const int KillScore = 1932538908; // ReactiveInt
 
 
 		///Value Extensions
@@ -77,5 +79,41 @@ namespace SampleGame
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetEntityPool(this IContext obj, GenericSceneEntityPool value) => obj.SetValue(EntityPool, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IEntity GetPlayerCharacter(this IContext obj) => obj.GetValue<IEntity>(PlayerCharacter);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetPlayerCharacter(this IContext obj, out IEntity value) => obj.TryGetValue(PlayerCharacter, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddPlayerCharacter(this IContext obj, IEntity value) => obj.AddValue(PlayerCharacter, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasPlayerCharacter(this IContext obj) => obj.HasValue(PlayerCharacter);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelPlayerCharacter(this IContext obj) => obj.DelValue(PlayerCharacter);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetPlayerCharacter(this IContext obj, IEntity value) => obj.SetValue(PlayerCharacter, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static ReactiveInt GetKillScore(this IContext obj) => obj.GetValue<ReactiveInt>(KillScore);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetKillScore(this IContext obj, out ReactiveInt value) => obj.TryGetValue(KillScore, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddKillScore(this IContext obj, ReactiveInt value) => obj.AddValue(KillScore, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasKillScore(this IContext obj) => obj.HasValue(KillScore);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelKillScore(this IContext obj) => obj.DelValue(KillScore);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetKillScore(this IContext obj, ReactiveInt value) => obj.SetValue(KillScore, value);
     }
 }

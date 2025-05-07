@@ -10,14 +10,14 @@ namespace SampleGame
     {
         private Health _health;
         private GameObject _gameObject;
-        
+        private BaseEvent _deathEvent;
         public void Init(in IEntity entity)
         {
             _gameObject = entity.GetGameObject();
             _health = entity.GetHealth();
+            _deathEvent = entity.GetDeathEvent();
             _health.OnHealthEmpty+=OnHealthEmpty;
         }
-
 
         public void Dispose(in IEntity entity)
         {
@@ -26,7 +26,8 @@ namespace SampleGame
     
         private void OnHealthEmpty()
         {
-                _gameObject.SetActive(false);
+            _deathEvent?.Invoke();
+            _gameObject.SetActive(false);
         }
     }
 }

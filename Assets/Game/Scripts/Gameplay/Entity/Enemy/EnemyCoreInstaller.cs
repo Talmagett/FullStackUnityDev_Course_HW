@@ -1,5 +1,6 @@
 using Atomic.Elements;
 using Atomic.Entities;
+using Game.Scripts.Gameplay.Context;
 using Modules.Gameplay;
 using SampleGame;
 using UnityEngine;
@@ -40,9 +41,12 @@ namespace Game.Gameplay
 
         private void InstallLife(IEntity entity)
         {
+            GameContext gameContext = GameContext.Instance;
             entity.AddDamageableTag();
             entity.AddHealth(new Health(health,health));
+            entity.AddDeathEvent(new BaseEvent());
             entity.AddBehaviour<DeathBehaviour>();
+            entity.AddBehaviour(new KillScoreBehaviour(gameContext));
         }
 
         private void InstallCombat(IEntity entity)
@@ -56,7 +60,7 @@ namespace Game.Gameplay
                     return weapon != null && weapon.GetFireCondition().Invoke();
                 }
             ));
-
+            entity.AddTarget(new ReactiveVariable<IEntity>());
             entity.AddFireAction(new BaseAction(() =>
             {
                 if (entity.GetFireCondition().Invoke())
