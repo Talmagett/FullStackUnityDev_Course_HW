@@ -21,11 +21,14 @@ namespace Game.Gameplay
             entity.AddTriggerReceiver(triggerEventReceiver);
             
             entity.AddInteractibleTag();
+            entity.AddItemPickUpEvent(new BaseEvent());
             entity.AddBehaviour<ItemPickUpBehaviour>();
             entity.AddInteractAction(new BaseAction<IEntity>(character => 
                  {
                     if(HealthUseCase.Heal(character, healAmount))
-                        gameContext.GetEntityPool().Return(entity);
+                        {//{gameContext.GetEntityPool().Return(entity);
+                        entity.GetItemPickUpEvent().Invoke();
+                        }
                 }));
         }
     }

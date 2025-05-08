@@ -67,9 +67,9 @@ values:
 - FireRequest: IEvent
 - FireCondition: IExpression<bool>
 
-#Interact
+#Item
 - InteractAction: IAction<IEntity> #IEntity — Character
-- TargetInteractible: IReactiveVariable<IEntity> #Entity — current interactible item
+- ItemPickUpEvent: IEvent
 
 #Other
 - Owner: IReactiveVariable<IEntity>

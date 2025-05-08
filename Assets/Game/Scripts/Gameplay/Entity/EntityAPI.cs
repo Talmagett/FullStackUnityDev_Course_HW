@@ -54,7 +54,7 @@ namespace SampleGame
 		public const int FireRequest = 1469079819; // IEvent
 		public const int FireCondition = -280402907; // IExpression<bool>
 		public const int InteractAction = -1026843572; // IAction<IEntity>
-		public const int TargetInteractible = 21081601; // IReactiveVariable<IEntity>
+		public const int ItemPickUpEvent = -971391619; // IEvent
 		public const int Owner = 245483896; // IReactiveVariable<IEntity>
 		public const int TriggerReceiver = 1006843418; // TriggerEventReceiver
 		public const int ColliderReceiver = -765766545; // CollisionEventReceiver
@@ -643,22 +643,22 @@ namespace SampleGame
 		public static void SetInteractAction(this IEntity obj, IAction<IEntity> value) => obj.SetValue(InteractAction, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IReactiveVariable<IEntity> GetTargetInteractible(this IEntity obj) => obj.GetValue<IReactiveVariable<IEntity>>(TargetInteractible);
+		public static IEvent GetItemPickUpEvent(this IEntity obj) => obj.GetValue<IEvent>(ItemPickUpEvent);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetTargetInteractible(this IEntity obj, out IReactiveVariable<IEntity> value) => obj.TryGetValue(TargetInteractible, out value);
+		public static bool TryGetItemPickUpEvent(this IEntity obj, out IEvent value) => obj.TryGetValue(ItemPickUpEvent, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddTargetInteractible(this IEntity obj, IReactiveVariable<IEntity> value) => obj.AddValue(TargetInteractible, value);
+		public static bool AddItemPickUpEvent(this IEntity obj, IEvent value) => obj.AddValue(ItemPickUpEvent, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasTargetInteractible(this IEntity obj) => obj.HasValue(TargetInteractible);
+		public static bool HasItemPickUpEvent(this IEntity obj) => obj.HasValue(ItemPickUpEvent);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelTargetInteractible(this IEntity obj) => obj.DelValue(TargetInteractible);
+		public static bool DelItemPickUpEvent(this IEntity obj) => obj.DelValue(ItemPickUpEvent);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetTargetInteractible(this IEntity obj, IReactiveVariable<IEntity> value) => obj.SetValue(TargetInteractible, value);
+		public static void SetItemPickUpEvent(this IEntity obj, IEvent value) => obj.SetValue(ItemPickUpEvent, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IReactiveVariable<IEntity> GetOwner(this IEntity obj) => obj.GetValue<IReactiveVariable<IEntity>>(Owner);

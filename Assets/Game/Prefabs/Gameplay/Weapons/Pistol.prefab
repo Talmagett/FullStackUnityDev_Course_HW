@@ -650,9 +650,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2679439196154746750}
   ammo:
-    count: 10
+    count: 8
   pickupPrefab: {fileID: 4656717400620619387}
-  fireCooldown: 0.5
+  fireCooldown: 1
 --- !u!1 &3618244528254723884
 GameObject:
   m_ObjectHideFlags: 0
