@@ -77,14 +77,14 @@ namespace Game.Gameplay
             entity.AddMoveSpeed(new ReactiveFloat(moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
             entity.AddMoveCondition(new AndExpression(() => HealthUseCase.IsAlive(entity)));
-            entity.AddBehaviour<MoveTowardsBehaviour>();
+            entity.AddBehaviour<MoveToTargetBehaviour>();
         }
 
         private void InstallRotate(IEntity entity)
         {
             entity.AddAngularSpeed(new Const<float>(angularSpeed));
             entity.AddAngularDirection(new ReactiveVector3());
-            entity.AddBehaviour<RotateTowardsBehaviour>();
+            entity.AddBehaviour<RotateToTargetBehaviour>();
         }
 
         private void InstallWeapon(IEntity entity)

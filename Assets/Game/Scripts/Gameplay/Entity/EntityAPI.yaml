@@ -38,6 +38,7 @@ values:
 
 #Rotation
 - AngularSpeed: IValue<float>
+- RotateCondition: IExpression<bool>
 - AngularDirection: IReactiveVariable<Vector3>
 - TurnDirection: IReactiveVariable<float>
   

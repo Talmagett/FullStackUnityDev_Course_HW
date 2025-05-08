@@ -1,3 +1,4 @@
+using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ namespace SampleGame
             if (direction == Vector3.zero)
                 return;
 
+            if (entity.TryGetRotateCondition(out IExpression<bool> condition) && !condition.Value)
+                return;
+                
             Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
             RotateTowards(entity, targetRotation, deltaTime);
         }

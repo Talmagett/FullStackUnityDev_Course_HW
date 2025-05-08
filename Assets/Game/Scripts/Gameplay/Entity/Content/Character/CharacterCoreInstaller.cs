@@ -81,6 +81,7 @@ namespace Game.Gameplay
         {
             entity.AddAngularSpeed(new Const<float>(angularSpeed));
             entity.AddAngularDirection(new ReactiveVector3());
+            entity.AddRotateCondition(new AndExpression(() => HealthUseCase.IsAlive(entity)));
             entity.AddBehaviour<RotateTowardsBehaviour>();
         }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SampleGame
 {
-    public sealed class MoveToTargetBehaviour : IEntityInit, IEntityFixedUpdate, IEntityDispose
+    public sealed class RotateToTargetBehaviour : IEntityInit, IEntityFixedUpdate, IEntityDispose
     {
         private  IReactiveVariable<IEntity> _targetEntity;
 
@@ -20,7 +20,7 @@ namespace SampleGame
 
         public void OnFixedUpdate(in IEntity entity, in float deltaTime)
         {
-            IReactiveVariable<Vector3> direction = entity.GetMoveDirection();
+            IReactiveVariable<Vector3> direction = entity.GetAngularDirection();
             if(_targetEntity.Value==null)
             {
                 direction.Value = Vector3.zero;
@@ -28,7 +28,7 @@ namespace SampleGame
             }
             direction.Value = _targetEntity.Value.GetTransform().position - entity.GetTransform().position;
             direction.Value.Normalize();
-            MoveUseCase.MoveTowards(entity, direction.Value, deltaTime);
+            RotateUseCase.RotateTowards(entity, direction.Value, deltaTime);
         }
     }
 }

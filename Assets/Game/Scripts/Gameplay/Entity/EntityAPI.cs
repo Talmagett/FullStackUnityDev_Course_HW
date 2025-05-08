@@ -33,6 +33,7 @@ namespace SampleGame
 		public const int MoveDirection = -721923052; // IReactiveVariable<Vector3>
 		public const int ForwardDirection = -597461024; // IReactiveVariable<float>
 		public const int AngularSpeed = -1089183267; // IValue<float>
+		public const int RotateCondition = 1109699557; // IExpression<bool>
 		public const int AngularDirection = -1725439556; // IReactiveVariable<Vector3>
 		public const int TurnDirection = 1232893390; // IReactiveVariable<float>
 		public const int Health = -915003867; // Health
@@ -263,6 +264,24 @@ namespace SampleGame
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetAngularSpeed(this IEntity obj, IValue<float> value) => obj.SetValue(AngularSpeed, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IExpression<bool> GetRotateCondition(this IEntity obj) => obj.GetValue<IExpression<bool>>(RotateCondition);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetRotateCondition(this IEntity obj, out IExpression<bool> value) => obj.TryGetValue(RotateCondition, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddRotateCondition(this IEntity obj, IExpression<bool> value) => obj.AddValue(RotateCondition, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasRotateCondition(this IEntity obj) => obj.HasValue(RotateCondition);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelRotateCondition(this IEntity obj) => obj.DelValue(RotateCondition);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetRotateCondition(this IEntity obj, IExpression<bool> value) => obj.SetValue(RotateCondition, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IReactiveVariable<Vector3> GetAngularDirection(this IEntity obj) => obj.GetValue<IReactiveVariable<Vector3>>(AngularDirection);

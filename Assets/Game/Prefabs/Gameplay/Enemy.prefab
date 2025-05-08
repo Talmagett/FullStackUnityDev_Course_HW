@@ -1746,7 +1746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 8179233504444308434}
-  moveSpeed: 3
+  moveSpeed: 1
   angularSpeed: 15
   health: 3
   initialWeapon: {fileID: 8403819236202397066}
@@ -2060,7 +2060,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: cb7def12ed591468ebdc46c5accc3cdb, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
