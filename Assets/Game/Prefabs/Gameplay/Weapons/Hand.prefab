@@ -80,3 +80,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireCooldown: 1
+  damage: 1

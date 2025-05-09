@@ -471,13 +471,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136375040396124517}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0025743465, y: -0.000002691522, z: 0.0010472125, w: 0.9999962}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.0749, z: 0.3332}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3115307619230652578}
-  m_LocalEulerAnglesHint: {x: 0.295, y: 0, z: 0.12}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2231213578826899231
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +577,7 @@ GameObject:
   - component: {fileID: 4656717400620619387}
   - component: {fileID: 4240314496273823543}
   - component: {fileID: 5272003924135280755}
+  - component: {fileID: 3400637871601849110}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Range
@@ -620,6 +621,7 @@ MonoBehaviour:
   disposeValues: 1
   installers:
   - {fileID: 5272003924135280755}
+  - {fileID: 3400637871601849110}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
 --- !u!114 &4240314496273823543
@@ -652,7 +654,22 @@ MonoBehaviour:
   ammo:
     count: 8
   pickupPrefab: {fileID: 4656717400620619387}
+  fireSpreadAngle: 10
   fireCooldown: 1
+--- !u!114 &3400637871601849110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555051196878869353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b924e77714705d4f90622fcd1570aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vfx: {fileID: 5064070444613506116}
+  _audioSource: {fileID: 2458806991490565756}
 --- !u!1 &3618244528254723884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,6 +1292,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83fb3ef04bb383408bb2064b89690b2, type: 3}
+--- !u!198 &5064070444613506116 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19801142, guid: c83fb3ef04bb383408bb2064b89690b2, type: 3}
+  m_PrefabInstance: {fileID: 5064070444627275890}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5064070444627696756 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 437254, guid: c83fb3ef04bb383408bb2064b89690b2, type: 3}

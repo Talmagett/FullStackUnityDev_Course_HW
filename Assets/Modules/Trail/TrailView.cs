@@ -47,9 +47,14 @@ namespace Modules.Gameplay
 
         private async UniTaskVoid UnspawnTrail(TrailRenderer trail)
         {
+            //иначе оно вызывает ошибку, что нельзя ставить родителя когда оно setactive true/false
+            await UniTask.Yield();
             trail.transform.parent = null;
             await UniTask.Delay(TimeSpan.FromSeconds(trail.time), DelayType.DeltaTime);
-            Destroy(trail.gameObject);
+            if(trail != null)
+            {
+                Destroy(trail.gameObject);
+            }
         }
     }
 }

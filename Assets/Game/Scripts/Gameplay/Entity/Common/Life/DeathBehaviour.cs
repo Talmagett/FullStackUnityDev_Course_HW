@@ -27,7 +27,7 @@ namespace SampleGame
         private void OnHealthEmpty()
         {
             _deathEvent?.Invoke();
-            _gameObject.SetActive(false);
+            //_gameObject.SetActive(false);
         }
     }
 }

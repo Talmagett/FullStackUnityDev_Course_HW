@@ -62,7 +62,7 @@ MonoBehaviour:
   trailPrefab: {fileID: 5190615940939624485, guid: 034704f5139d94360bb441f0e3d7c2b5, type: 3}
   trailParent: {fileID: 6795422085097260040}
   trailScale: {x: 5, y: 5, z: 2.5}
-  trailOffset: {x: 0, y: 0, z: -1.5}
+  trailOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &8829669804357326195
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +178,7 @@ MonoBehaviour:
   disposeValues: 1
   installers:
   - {fileID: -5149204581181652171}
+  - {fileID: 486307684219909320}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
 --- !u!114 &568802334536153743

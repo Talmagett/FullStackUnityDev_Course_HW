@@ -11,6 +11,8 @@ namespace Game.Scripts.Gameplay.Entity.Weapons
     {        
         [SerializeField] private float fireCooldown=0.5f;
         [SerializeField] private int damage;
+        [SerializeField] private float attackRadius=0.2f;
+
         public override void Install(IEntity entity)
         {
             GameContext gameContext = GameContext.Instance;

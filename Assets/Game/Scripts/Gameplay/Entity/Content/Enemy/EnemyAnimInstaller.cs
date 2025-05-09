@@ -11,6 +11,9 @@ namespace Game.Gameplay
 
         [SerializeField]
         private string _isMovingKey = "IsMoving";
+        
+        [SerializeField]
+        private string _deathKey = "Death";
 
         [SerializeField]
         private Animator _animator;
@@ -23,6 +26,7 @@ namespace Game.Gameplay
             entity.AddAnimator(_animator);
             
             entity.AddBehaviour(new MoveAnimBehaviour(_isMovingKey));
+            entity.AddBehaviour(new DeathAnimBehaviour(_deathKey));
         }
     }
 }
