@@ -8,7 +8,8 @@ using UnityEngine;
 namespace Game.Scripts.Gameplay.Entity.Weapons
 {
     public class HandInstaller : SceneEntityInstaller
-    {        
+    {
+        [SerializeField] private Transform firePoint;
         [SerializeField] private float fireCooldown=0.5f;
         [SerializeField] private int damage;
         [SerializeField] private float attackRadius=0.2f;
@@ -30,13 +31,17 @@ namespace Game.Scripts.Gameplay.Entity.Weapons
             entity.WhenFixedUpdate(cooldown.Tick);
             
             entity.AddDamage(new ReactiveInt(damage));
+            
+            entity.AddFirePoint(firePoint);
             entity.AddFireEvent(new BaseEvent());
+            entity.AddAttackRadius(new BaseVariable<float>(attackRadius));
             entity.AddFireCondition(new AndExpression(cooldown.IsExpired));
+            entity.AddOwner(new ReactiveVariable<IEntity>(entity));
             entity.AddFireAction(new BaseAction(() =>
             {
                 if (entity.GetFireCondition().Invoke())
                 {
-                    //FireBulletUseCase.FireBullet(entity, gameContext);
+                    AttackUseCase.Attack(entity, gameContext);
                     entity.GetFireEvent().Invoke();
                     cooldown.Reset();
                 }

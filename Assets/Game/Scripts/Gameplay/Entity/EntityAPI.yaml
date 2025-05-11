@@ -60,6 +60,7 @@ values:
 - PickUpPrefab: SceneEntity
 - WeaponPrefab: SceneEntity
 - WeaponContainer: Transform
+- AttackRadius : IVariable<float>
 
 #Fire  
 - FireCooldown: Cooldown

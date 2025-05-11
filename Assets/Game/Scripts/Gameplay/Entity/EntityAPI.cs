@@ -49,6 +49,7 @@ namespace SampleGame
 		public const int PickUpPrefab = 1763436596; // SceneEntity
 		public const int WeaponPrefab = 504707019; // SceneEntity
 		public const int WeaponContainer = -1841125489; // Transform
+		public const int AttackRadius = 1888868620; // IVariable<float>
 		public const int FireCooldown = 695041130; // Cooldown
 		public const int FirePoint = 397255013; // Transform
 		public const int FireEvent = -1683597082; // IEvent
@@ -554,6 +555,24 @@ namespace SampleGame
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetWeaponContainer(this IEntity obj, Transform value) => obj.SetValue(WeaponContainer, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IVariable<float> GetAttackRadius(this IEntity obj) => obj.GetValue<IVariable<float>>(AttackRadius);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetAttackRadius(this IEntity obj, out IVariable<float> value) => obj.TryGetValue(AttackRadius, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddAttackRadius(this IEntity obj, IVariable<float> value) => obj.AddValue(AttackRadius, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasAttackRadius(this IEntity obj) => obj.HasValue(AttackRadius);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelAttackRadius(this IEntity obj) => obj.DelValue(AttackRadius);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetAttackRadius(this IEntity obj, IVariable<float> value) => obj.SetValue(AttackRadius, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cooldown GetFireCooldown(this IEntity obj) => obj.GetValue<Cooldown>(FireCooldown);
