@@ -1,4 +1,5 @@
 using Atomic.Entities;
+using Game.Scripts.Gameplay.Entity.Common.TakeDamage;
 using Modules.Gameplay;
 using SampleGame;
 using UnityEngine;
@@ -11,6 +12,9 @@ namespace Game.Gameplay
         
         [SerializeField]
         private string _isMovingKey = "IsMoving";
+        
+        [SerializeField]
+        private string _takeDamageKey = "TakeDamage";
         [SerializeField]
         private string _deathKey = "Death";
         [SerializeField]
@@ -24,8 +28,11 @@ namespace Game.Gameplay
             entity.AddAnimator(_animator);
 
             entity.AddBehaviour(new MoveAnimBehaviour(_isMovingKey));
+            
             //entity.AddBehaviour(new FireAnimBehaviour(fireEvent));
             entity.AddBehaviour(new DeathAnimBehaviour(_deathKey));
+            
+            entity.AddBehaviour(new TakeDamageAnimBehaviour(_takeDamageKey));
         }
     }
 }

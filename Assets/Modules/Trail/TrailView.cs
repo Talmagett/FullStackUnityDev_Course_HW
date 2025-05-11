@@ -49,6 +49,8 @@ namespace Modules.Gameplay
         {
             //иначе оно вызывает ошибку, что нельзя ставить родителя когда оно setactive true/false
             await UniTask.Yield();
+            if (trail == null)
+                return;
             trail.transform.parent = null;
             await UniTask.Delay(TimeSpan.FromSeconds(trail.time), DelayType.DeltaTime);
             if(trail != null)

@@ -5,12 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9216e83d-f072-4350-b67a-fbad3afe3289" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Joystick/AttackJoystick.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI/Joystick/AttackJoystick.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/AssetPacks/Epic Toon FX/Upgrade/ETFX 2019.2.3f1 LWRP Upgrade.unitypackage.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/AssetPacks/Epic Toon FX/Upgrade/ETFX 2019.3 URP Fix.unitypackage.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/AssetPacks/Epic Toon FX/Upgrade/ETFX Standard Materials.unitypackage.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/TakeDamage/TakeDamageAnimBehaviour.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/TakeDamage/TakeDamageAnimBehaviour.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Plugins/Sirenix/Demos/Custom Attribute Processors.unitypackage.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Plugins/Sirenix/Demos/Custom Drawers.unitypackage.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Plugins/Sirenix/Demos/Editor Windows.unitypackage.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Plugins/Sirenix/Demos/Sample - RPG Editor.unitypackage.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FullStackUnityDev_Course_HW/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/Death/DeathAnimBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/Death/DeathAnimBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/Life/DeathBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/Life/DeathBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/Life/TakeDamageUseCase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/TakeDamage/TakeDamageUseCase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/Life/TakeDamageUseCase.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/TakeDamage/TakeDamageUseCase.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/TakeDamage/PainSoundBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/TakeDamage/PainSoundBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/TakeDamage/TakeDamageSoundBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Common/TakeDamage/TakeDamageSoundBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Character/CharacterAnimInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Character/CharacterAnimInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Character/CharacterAudioInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Character/CharacterAudioInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Character/CharacterCoreInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Character/CharacterCoreInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Character/CharacterVfxInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Character/CharacterVfxInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Enemy/EnemyAnimInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Enemy/EnemyAnimInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Enemy/EnemyAudioInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Enemy/EnemyAudioInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Enemy/EnemyCoreInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Enemy/EnemyCoreInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Items/AmmoPickUpInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Items/AmmoPickUpInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Items/HealthPickUpInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/Content/Items/HealthPickUpInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/EntityAPI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/EntityAPI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/EntityAPI.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Gameplay/Entity/EntityAPI.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Modules/Trail/TrailView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/Trail/TrailView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +143,8 @@
       <workItem from="1741668196322" duration="8873000" />
       <workItem from="1742448333495" duration="2556000" />
       <workItem from="1742537948834" duration="5885000" />
-      <workItem from="1744971308561" duration="626000" />
+      <workItem from="1744971308561" duration="819000" />
+      <workItem from="1746940936023" duration="4179000" />
     </task>
     <task id="LOCAL-00001" summary="init, making basic components">
       <option name="closed" value="true" />
@@ -162,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742462829942</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added joystick move, attack">
+      <option name="closed" value="true" />
+      <created>1744972128448</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1744972128448</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,6 +210,7 @@
     <MESSAGE value="made snake,spider,animations, take damage. need to fix push, move" />
     <MESSAGE value="finished toss &amp; push" />
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="added joystick move, attack" />
+    <option name="LAST_COMMIT_MESSAGE" value="added joystick move, attack" />
   </component>
 </project>

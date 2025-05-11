@@ -46,8 +46,9 @@ values:
 - Health: Health
 - Lifetime: Cooldown
 - DestroyAction: IAction
-- DeathEvent: BaseEvent
-
+- DeathEvent: IEvent
+- DamageTakenEvent: IEvent<TakeDamageArgs>
+  
 #Combat
 - CurrentWeapon: IReactiveVariable<IEntity>
 - Damage: IReactiveVariable<int>
@@ -81,3 +82,5 @@ values:
 
 #Visual
 - Animator: Animator
+- AudioSource : AudioSource
+  

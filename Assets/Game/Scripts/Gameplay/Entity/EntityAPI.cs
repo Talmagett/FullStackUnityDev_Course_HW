@@ -39,7 +39,8 @@ namespace SampleGame
 		public const int Health = -915003867; // Health
 		public const int Lifetime = -997109026; // Cooldown
 		public const int DestroyAction = 85938956; // IAction
-		public const int DeathEvent = -1096613677; // BaseEvent
+		public const int DeathEvent = -1096613677; // IEvent
+		public const int DamageTakenEvent = -647889767; // IEvent<TakeDamageArgs>
 		public const int CurrentWeapon = -205032771; // IReactiveVariable<IEntity>
 		public const int Damage = 375673178; // IReactiveVariable<int>
 		public const int ExtraDamage = -530877775; // IExpression<int>
@@ -60,6 +61,7 @@ namespace SampleGame
 		public const int TriggerReceiver = 1006843418; // TriggerEventReceiver
 		public const int ColliderReceiver = -765766545; // CollisionEventReceiver
 		public const int Animator = -1714818978; // Animator
+		public const int AudioSource = 907064781; // AudioSource
 
 
 		///Tag Extensions
@@ -374,13 +376,13 @@ namespace SampleGame
 		public static void SetDestroyAction(this IEntity obj, IAction value) => obj.SetValue(DestroyAction, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static BaseEvent GetDeathEvent(this IEntity obj) => obj.GetValue<BaseEvent>(DeathEvent);
+		public static IEvent GetDeathEvent(this IEntity obj) => obj.GetValue<IEvent>(DeathEvent);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetDeathEvent(this IEntity obj, out BaseEvent value) => obj.TryGetValue(DeathEvent, out value);
+		public static bool TryGetDeathEvent(this IEntity obj, out IEvent value) => obj.TryGetValue(DeathEvent, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool AddDeathEvent(this IEntity obj, BaseEvent value) => obj.AddValue(DeathEvent, value);
+		public static bool AddDeathEvent(this IEntity obj, IEvent value) => obj.AddValue(DeathEvent, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasDeathEvent(this IEntity obj) => obj.HasValue(DeathEvent);
@@ -389,7 +391,25 @@ namespace SampleGame
 		public static bool DelDeathEvent(this IEntity obj) => obj.DelValue(DeathEvent);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetDeathEvent(this IEntity obj, BaseEvent value) => obj.SetValue(DeathEvent, value);
+		public static void SetDeathEvent(this IEntity obj, IEvent value) => obj.SetValue(DeathEvent, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IEvent<TakeDamageArgs> GetDamageTakenEvent(this IEntity obj) => obj.GetValue<IEvent<TakeDamageArgs>>(DamageTakenEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetDamageTakenEvent(this IEntity obj, out IEvent<TakeDamageArgs> value) => obj.TryGetValue(DamageTakenEvent, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddDamageTakenEvent(this IEntity obj, IEvent<TakeDamageArgs> value) => obj.AddValue(DamageTakenEvent, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasDamageTakenEvent(this IEntity obj) => obj.HasValue(DamageTakenEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelDamageTakenEvent(this IEntity obj) => obj.DelValue(DamageTakenEvent);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetDamageTakenEvent(this IEntity obj, IEvent<TakeDamageArgs> value) => obj.SetValue(DamageTakenEvent, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IReactiveVariable<IEntity> GetCurrentWeapon(this IEntity obj) => obj.GetValue<IReactiveVariable<IEntity>>(CurrentWeapon);
@@ -750,5 +770,23 @@ namespace SampleGame
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetAnimator(this IEntity obj, Animator value) => obj.SetValue(Animator, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static AudioSource GetAudioSource(this IEntity obj) => obj.GetValue<AudioSource>(AudioSource);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetAudioSource(this IEntity obj, out AudioSource value) => obj.TryGetValue(AudioSource, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddAudioSource(this IEntity obj, AudioSource value) => obj.AddValue(AudioSource, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasAudioSource(this IEntity obj) => obj.HasValue(AudioSource);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelAudioSource(this IEntity obj) => obj.DelValue(AudioSource);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetAudioSource(this IEntity obj, AudioSource value) => obj.SetValue(AudioSource, value);
     }
 }

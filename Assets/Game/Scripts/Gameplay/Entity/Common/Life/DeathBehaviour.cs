@@ -10,7 +10,8 @@ namespace SampleGame
     {
         private Health _health;
         private GameObject _gameObject;
-        private BaseEvent _deathEvent;
+        private IEvent _deathEvent;
+        
         public void Init(in IEntity entity)
         {
             _gameObject = entity.GetGameObject();

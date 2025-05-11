@@ -26,10 +26,11 @@ namespace Game.Gameplay
             entity.AddInteractAction(new BaseAction<IEntity>(character =>
             {
                 if (CurrentWeaponUseCase.AddClips(character, ammoAmount))
-                    {
-                        //gameContext.GetEntityPool().Return(entity);
-                        entity.GetItemPickUpEvent().Invoke();
-                    }
+                {
+                    //gameContext.GetEntityPool().Return(entity);
+                    entity.GetItemPickUpEvent().Invoke();
+                    entity.DelInteractibleTag();
+                }
             }));
         }        
     }

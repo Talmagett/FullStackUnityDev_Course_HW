@@ -1,4 +1,5 @@
 using Atomic.Entities;
+using SampleGame;
 using UnityEngine;
 
 namespace Game.Gameplay
@@ -28,7 +29,8 @@ namespace Game.Gameplay
         
         public override void Install(IEntity entity)
         {
-            //TODO
+            entity.AddAudioSource(_audioSource);
+            entity.AddBehaviour(new TakeDamageSoundBehaviour(_damageClips));
         }
     }
 }

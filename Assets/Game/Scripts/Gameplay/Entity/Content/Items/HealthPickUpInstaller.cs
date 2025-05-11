@@ -26,10 +26,12 @@ namespace Game.Gameplay
             entity.AddInteractAction(new BaseAction<IEntity>(character => 
                  {
                     if(HealthUseCase.Heal(character, healAmount))
-                        {//{gameContext.GetEntityPool().Return(entity);
+                    {
+                        //{gameContext.GetEntityPool().Return(entity);
                         entity.GetItemPickUpEvent().Invoke();
-                        }
-                }));
+                        entity.DelInteractibleTag();
+                    }
+                 }));
         }
     }
 }

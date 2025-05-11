@@ -1,4 +1,5 @@
 using Atomic.Entities;
+using SampleGame;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -30,8 +31,7 @@ namespace Game.Gameplay
         
         public override void Install(IEntity entity)
         {
-            // TODO
-
+            entity.AddAudioSource(_audioSource);
         }
     }
 }
