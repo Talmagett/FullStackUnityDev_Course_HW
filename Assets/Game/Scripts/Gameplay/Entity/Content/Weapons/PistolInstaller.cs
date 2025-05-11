@@ -41,7 +41,7 @@ namespace Game.Scripts.Gameplay.Entity.Weapons
                 if (entity.GetFireCondition().Invoke())
                 {
                     var angle = Random.Range(-fireSpreadAngle, fireSpreadAngle)/2;
-                    entity.GetFirePoint().transform.eulerAngles = new Vector3(0, Random.Range(-angle,angle), 0);
+                    entity.GetFirePoint().transform.localEulerAngles = new Vector3(0, Random.Range(-angle,angle), 0);
                     FireBulletUseCase.FireBullet(entity, gameContext);
                     ammo.Spend();
                     entity.GetFireEvent().Invoke();

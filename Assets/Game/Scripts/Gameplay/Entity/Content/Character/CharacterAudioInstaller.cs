@@ -32,6 +32,7 @@ namespace Game.Gameplay
         public override void Install(IEntity entity)
         {
             entity.AddAudioSource(_audioSource);
+            entity.AddBehaviour(new DeathSoundBehaviour(_deathClips));
         }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using Atomic.Elements;
 using Atomic.Entities;
 using Game.Scripts.Gameplay.Context;

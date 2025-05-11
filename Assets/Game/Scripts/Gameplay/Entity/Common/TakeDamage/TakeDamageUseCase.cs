@@ -29,11 +29,21 @@ namespace SampleGame
         public readonly IEntity target;
         public readonly int damage;
         public readonly IEntity source;
-        public TakeDamageArgs(in IEntity target, in int damage, IEntity source)
+        public readonly DamageType type;
+
+        public enum DamageType
+        {
+            None,
+            Bullet,
+            Melee,
+            Explosion
+        }
+        public TakeDamageArgs(in IEntity target, in int damage, IEntity source, DamageType type = DamageType.None)
         {
             this.target = target;
             this.damage = damage;
             this.source = source;
+            this.type = type;
         }
     }
 }

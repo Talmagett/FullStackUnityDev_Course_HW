@@ -15,8 +15,12 @@ namespace Game.Gameplay
         
         [SerializeField]
         private string _takeDamageKey = "TakeDamage";
+        
         [SerializeField]
         private string _deathKey = "Death";
+
+        [SerializeField]
+        private string _fireKey = "Fire";
         [SerializeField]
         private Animator _animator;
 
@@ -29,7 +33,7 @@ namespace Game.Gameplay
 
             entity.AddBehaviour(new MoveAnimBehaviour(_isMovingKey));
             
-            //entity.AddBehaviour(new FireAnimBehaviour(fireEvent));
+            entity.AddBehaviour(new FireAnimBehaviour(_fireKey));
             entity.AddBehaviour(new DeathAnimBehaviour(_deathKey));
             
             entity.AddBehaviour(new TakeDamageAnimBehaviour(_takeDamageKey));

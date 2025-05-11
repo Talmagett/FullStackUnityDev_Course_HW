@@ -29,7 +29,7 @@ namespace Game.Gameplay
                     {
                         //{gameContext.GetEntityPool().Return(entity);
                         entity.GetItemPickUpEvent().Invoke();
-                        entity.DelInteractibleTag();
+                        entity.DelTriggerReceiver();
                     }
                  }));
         }
