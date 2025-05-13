@@ -45,11 +45,13 @@ namespace SampleGame
 		public const int Damage = 375673178; // IReactiveVariable<int>
 		public const int ExtraDamage = -530877775; // IExpression<int>
 		public const int Target = 1103309514; // IReactiveVariable<IEntity>
+		public const int TeamType = -1033762529; // TeamType
 		public const int Ammo = 1337839892; // Ammo
 		public const int PickUpPrefab = 1763436596; // SceneEntity
 		public const int WeaponPrefab = 504707019; // SceneEntity
 		public const int WeaponContainer = -1841125489; // Transform
 		public const int AttackRadius = 1888868620; // IVariable<float>
+		public const int AttackDistance = -1518989931; // IVariable<float>
 		public const int FireCooldown = 695041130; // Cooldown
 		public const int FirePoint = 397255013; // Transform
 		public const int FireEvent = -1683597082; // IEvent
@@ -485,6 +487,24 @@ namespace SampleGame
 		public static void SetTarget(this IEntity obj, IReactiveVariable<IEntity> value) => obj.SetValue(Target, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static TeamType GetTeamType(this IEntity obj) => obj.GetValue<TeamType>(TeamType);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetTeamType(this IEntity obj, out TeamType value) => obj.TryGetValue(TeamType, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddTeamType(this IEntity obj, TeamType value) => obj.AddValue(TeamType, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasTeamType(this IEntity obj) => obj.HasValue(TeamType);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelTeamType(this IEntity obj) => obj.DelValue(TeamType);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetTeamType(this IEntity obj, TeamType value) => obj.SetValue(TeamType, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Ammo GetAmmo(this IEntity obj) => obj.GetValue<Ammo>(Ammo);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -573,6 +593,24 @@ namespace SampleGame
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetAttackRadius(this IEntity obj, IVariable<float> value) => obj.SetValue(AttackRadius, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IVariable<float> GetAttackDistance(this IEntity obj) => obj.GetValue<IVariable<float>>(AttackDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetAttackDistance(this IEntity obj, out IVariable<float> value) => obj.TryGetValue(AttackDistance, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddAttackDistance(this IEntity obj, IVariable<float> value) => obj.AddValue(AttackDistance, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasAttackDistance(this IEntity obj) => obj.HasValue(AttackDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelAttackDistance(this IEntity obj) => obj.DelValue(AttackDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetAttackDistance(this IEntity obj, IVariable<float> value) => obj.SetValue(AttackDistance, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cooldown GetFireCooldown(this IEntity obj) => obj.GetValue<Cooldown>(FireCooldown);

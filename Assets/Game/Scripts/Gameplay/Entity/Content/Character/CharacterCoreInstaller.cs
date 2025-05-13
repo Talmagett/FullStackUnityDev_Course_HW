@@ -50,6 +50,7 @@ namespace Game.Gameplay
         private void InstallCombat(IEntity entity)
         {
             entity.AddFireEvent(new BaseEvent());
+            entity.AddTeamType(TeamType.Player);
             entity.AddFireCondition(new AndExpression(
                 () => HealthUseCase.IsAlive(entity),
                 () =>
@@ -90,6 +91,8 @@ namespace Game.Gameplay
         {
             entity.AddWeaponContainer(weaponContainer);
             entity.AddCurrentWeapon(new ReactiveVariable<IEntity>(initialWeapon));
+            entity.GetCurrentWeapon().Value.AddOwner(new ReactiveVariable<IEntity>(entity));
+            entity.GetCurrentWeapon().Value.AddTeamType(entity.GetTeamType());
         }
     }
 }

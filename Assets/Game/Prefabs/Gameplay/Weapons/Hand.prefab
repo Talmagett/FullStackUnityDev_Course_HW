@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1416792984943742102}
   - component: {fileID: -4578189441851463464}
-  - component: {fileID: 6438479791164755228}
   - component: {fileID: -3357039072019406909}
   m_Layer: 0
   m_Name: Hand
@@ -53,20 +52,6 @@ MonoBehaviour:
   - {fileID: -3357039072019406909}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
---- !u!114 &6438479791164755228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7223745350942996134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603a745f80e14d1d8cd57cf70a50187f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entities:
-  - {fileID: -4578189441851463464}
 --- !u!114 &-3357039072019406909
 MonoBehaviour:
   m_ObjectHideFlags: 0

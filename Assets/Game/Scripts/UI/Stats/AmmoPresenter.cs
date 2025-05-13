@@ -4,24 +4,25 @@ using Game.Scripts.Gameplay.Context;
 using Atomic.Elements;
 using SampleGame;
 using Modules.Gameplay;
+using Atomic.Presenters;
 
 namespace Game.UI
 {
-    public class AmmoPresenter : MonoBehaviour
+    public class AmmoPresenter : Presenter
     {
         [SerializeField] private StatView ammoStat;
         private Ammo _ammo;
-        private void Awake()
+        protected override void OnCreate()
         {
             GameContext gameContext = GameContext.Instance;
             _ammo = gameContext.GetPlayerCharacter().GetCurrentWeapon().Value.GetAmmo();
             OnStateChanged();
         }
-        void OnEnable()
+        protected override void OnInit()
         {
             _ammo.OnStateChanged += OnStateChanged;
         }
-        void OnDisable()
+        protected override void OnDispose()
         {            
             _ammo.OnStateChanged -= OnStateChanged;
 

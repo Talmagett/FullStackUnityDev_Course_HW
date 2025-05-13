@@ -12,7 +12,8 @@ namespace Game.Scripts.Gameplay.Entity.Weapons
         [SerializeField] private Transform firePoint;
         [SerializeField] private float fireCooldown=0.5f;
         [SerializeField] private int damage;
-        [SerializeField] private float attackRadius=0.2f;
+        [SerializeField] private float attackRadius=1f;
+        [SerializeField] private float attackDistance=0.5f;
 
         public override void Install(IEntity entity)
         {
@@ -31,9 +32,9 @@ namespace Game.Scripts.Gameplay.Entity.Weapons
             entity.WhenFixedUpdate(cooldown.Tick);
             
             entity.AddDamage(new ReactiveInt(damage));
-            
             entity.AddFirePoint(firePoint);
             entity.AddFireEvent(new BaseEvent());
+            entity.AddAttackDistance(new BaseVariable<float>(attackDistance));
             entity.AddAttackRadius(new BaseVariable<float>(attackRadius));
             entity.AddFireCondition(new AndExpression(cooldown.IsExpired));
             entity.AddOwner(new ReactiveVariable<IEntity>(entity));

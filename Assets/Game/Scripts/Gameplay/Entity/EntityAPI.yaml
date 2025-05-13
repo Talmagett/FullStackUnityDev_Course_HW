@@ -53,7 +53,8 @@ values:
 - CurrentWeapon: IReactiveVariable<IEntity>
 - Damage: IReactiveVariable<int>
 - ExtraDamage: IExpression<int>
-- Target: IReactiveVariable<IEntity>  
+- Target: IReactiveVariable<IEntity>
+- TeamType: TeamType
 
 #Weapon
 - Ammo: Ammo
@@ -61,6 +62,7 @@ values:
 - WeaponPrefab: SceneEntity
 - WeaponContainer: Transform
 - AttackRadius : IVariable<float>
+- AttackDistance: IVariable<float>
 
 #Fire  
 - FireCooldown: Cooldown

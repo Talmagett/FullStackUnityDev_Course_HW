@@ -4,28 +4,29 @@ using Modules.Common;
 using Modules.Gameplay;
 using SampleGame;
 using UnityEngine;
+using Atomic.Presenters;
 
 using Game.Scripts.Gameplay.Context;
 namespace Game.UI
 {
-    public class HealthPresenter : MonoBehaviour
+    public class HealthPresenter : Presenter
     {
         [SerializeField] private StatView healthStatView;
         private Health _health;
         
-        private void Awake()
+        protected override void OnCreate()
         {
             GameContext gameContext = GameContext.Instance;
             _health = gameContext.GetPlayerCharacter().GetHealth();
             OnStateChanged();
         }
 
-        private void OnEnable()
+        protected override void OnInit()
         {
             _health.OnStateChanged+=OnStateChanged;
         }
 
-        private void OnDisable()
+        protected override void OnDispose()
         {
             _health.OnStateChanged-=OnStateChanged;
         }

@@ -1,3 +1,4 @@
+using System;
 using Atomic.Elements;
 using Atomic.Entities;
 using Game.Scripts.Gameplay.Context;
@@ -26,9 +27,21 @@ namespace Game.Gameplay
             InstallMove(entity);
             InstallRotate(entity);
             InstallWeapon(entity);
-            
+            InstallAI(entity);
             entity.AddPlayerTag();
             entity.AddMoveableTag();
+        }
+
+        private void InstallAI(IEntity entity)
+        {
+            float attackDistance = entity.GetCurrentWeapon().Value.GetAttackDistance().Value;
+            entity.AddMoveCondition(new AndExpression(() => 
+                {
+                    return HealthUseCase.IsAlive(entity)
+                    && entity.GetTarget().Value != null
+                    && entity.GetTarget().Value.GetHealth().GetCurrent() > 0
+                    && Vector3.SqrMagnitude(entity.GetTarget().Value.GetTransform().position - entity.GetTransform().position) > (attackDistance*attackDistance);
+                    }));
         }
 
         private void InstallMain(IEntity entity)
@@ -53,6 +66,8 @@ namespace Game.Gameplay
         private void InstallCombat(IEntity entity)
         {
             entity.AddFireEvent(new BaseEvent());
+            
+            entity.AddTeamType(TeamType.Enemy);
             entity.AddFireCondition(new AndExpression(
                 () => HealthUseCase.IsAlive(entity),
                 () =>
@@ -62,6 +77,7 @@ namespace Game.Gameplay
                 }
             ));
             entity.AddTarget(new ReactiveVariable<IEntity>());
+            entity.AddFireRequest(new BaseEvent());
             entity.AddFireAction(new BaseAction(() =>
             {
                 if (entity.GetFireCondition().Invoke())
@@ -70,6 +86,7 @@ namespace Game.Gameplay
                     entity.GetFireEvent().Invoke();
                 }
             }));
+            entity.AddBehaviour<EnemyAttackBehaviour>();
         }
 
         private void InstallMove(IEntity entity)
@@ -77,7 +94,6 @@ namespace Game.Gameplay
             entity.AddMoveableTag();
             entity.AddMoveSpeed(new ReactiveFloat(moveSpeed));
             entity.AddMoveDirection(new ReactiveVector3());
-            entity.AddMoveCondition(new AndExpression(() => HealthUseCase.IsAlive(entity)));
             entity.AddBehaviour<MoveToTargetBehaviour>();
         }
 
@@ -93,6 +109,9 @@ namespace Game.Gameplay
         {
             entity.AddWeaponContainer(weaponContainer);
             entity.AddCurrentWeapon(new ReactiveVariable<IEntity>(initialWeapon));
+            entity.GetCurrentWeapon().Value.AddOwner(new ReactiveVariable<IEntity>(entity));
+            
+            entity.GetCurrentWeapon().Value.AddTeamType(entity.GetTeamType());
         }
     }
 }

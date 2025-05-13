@@ -3,26 +3,31 @@ using UnityEngine;
 using TMPro;
 using Game.Scripts.Gameplay.Context;
 using Atomic.Elements;
+using Atomic.Presenters;
 
 namespace Game.UI
 {
-    public class KillScorePresenter : MonoBehaviour
+    public class KillScorePresenter : Presenter
     {
         [SerializeField] private TMP_Text killScoreText;
         private IReactiveVariable<int> killScore;
-        private void Awake()
+        
+        protected override void OnCreate()
         {
             GameContext gameContext = GameContext.Instance;
             killScore = gameContext.GetKillScore();
         }
-        void OnEnable()
+        
+        protected override void OnInit()
         {
             killScore.Observe(OnKillScoreChanged);
         }
-        void OnDisable()
+
+        protected override void OnDispose()
         {
             killScore.Unsubscribe(OnKillScoreChanged);
         }
+        
         private void OnKillScoreChanged(int newValue)
         {
             killScoreText.text = newValue.ToString();
