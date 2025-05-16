@@ -67,4 +67,5 @@ MonoBehaviour:
   firePoint: {fileID: 1416792984943742102}
   fireCooldown: 1
   damage: 1
-  attackRadius: 1
+  attackRadius: 2
+  attackDistance: 0.8

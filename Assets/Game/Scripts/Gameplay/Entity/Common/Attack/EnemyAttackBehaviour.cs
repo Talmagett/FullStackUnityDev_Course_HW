@@ -7,7 +7,7 @@ namespace SampleGame
     {
         public void OnFixedUpdate(in IEntity entity, in float deltaTime)
         {
-            if(!entity.HasTarget())
+            if(entity.GetTarget().Value==null)
                 return;
             IEntity target = entity.GetTarget().Value;
 

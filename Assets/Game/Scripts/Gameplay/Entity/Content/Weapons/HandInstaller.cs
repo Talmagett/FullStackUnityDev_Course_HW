@@ -1,3 +1,4 @@
+using System;
 using Atomic.Elements;
 using Atomic.Entities;
 using Game.Scripts.Gameplay.Context;
@@ -47,6 +48,12 @@ namespace Game.Scripts.Gameplay.Entity.Weapons
                     cooldown.Reset();
                 }
             }));
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(firePoint.position,attackRadius);
         }
     }
 }

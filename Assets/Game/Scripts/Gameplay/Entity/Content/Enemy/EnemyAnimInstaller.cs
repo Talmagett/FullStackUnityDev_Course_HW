@@ -35,6 +35,12 @@ namespace Game.Gameplay
             entity.AddBehaviour(new MoveAnimBehaviour(_isMovingKey));
             entity.AddBehaviour(new DeathAnimBehaviour(_deathKey));
             entity.AddBehaviour(new TakeDamageAnimBehaviour(_takeDamageKey));
+            entity.GetFireRequest().Subscribe(()=>
+            {
+                entity.GetAnimator().SetTrigger(_attack);
+            });
+            _animationReceiver.Subscribe(fireEvent,
+                () => entity.GetFireAction().Invoke());
         }
     }
 }
