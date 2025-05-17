@@ -20,7 +20,7 @@ namespace Game.Gameplay
         private string _deathKey = "Death";
 
         [SerializeField]
-        private string _fireKey = "Fire";
+        private string _attack = "Attack";
         [SerializeField]
         private Animator _animator;
 
@@ -33,9 +33,16 @@ namespace Game.Gameplay
 
             entity.AddBehaviour(new MoveAnimBehaviour(_isMovingKey));
             
-            entity.AddBehaviour(new FireAnimBehaviour(_fireKey));
+            entity.AddBehaviour(new FireAnimBehaviour(_attack));
             entity.AddBehaviour(new DeathAnimBehaviour(_deathKey));
-            
+            entity.GetFireRequest().Subscribe(()=>
+            {
+                if (!entity.GetCurrentWeapon().Value.GetFireCondition().Invoke())
+                    return;
+                entity.GetAnimator().SetTrigger(_attack);
+            });
+            _animationReceiver.Subscribe(fireEvent,
+                () => entity.GetFireAction().Invoke());
             entity.AddBehaviour(new TakeDamageAnimBehaviour(_takeDamageKey));
         }
     }

@@ -51,6 +51,7 @@ namespace Game.Gameplay
         {
             entity.AddFireEvent(new BaseEvent());
             entity.AddTeamType(TeamType.Player);
+            entity.AddFireRequest(new BaseEvent());
             entity.AddFireCondition(new AndExpression(
                 () => HealthUseCase.IsAlive(entity),
                 () =>

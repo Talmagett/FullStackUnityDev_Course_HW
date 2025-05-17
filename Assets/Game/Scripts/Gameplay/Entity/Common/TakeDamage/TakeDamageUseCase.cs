@@ -7,7 +7,7 @@ namespace SampleGame
 {
     public static class TakeDamageUseCase
     {
-        public static bool TakeDamage(in IEntity target, in int damage, IEntity source)
+        public static bool TakeDamage(in IEntity target, in int damage, IEntity source, TakeDamageArgs.DamageType damageType= TakeDamageArgs.DamageType.None)
         {
             if (!target.HasDamageableTag())
                 return false;
@@ -19,7 +19,7 @@ namespace SampleGame
                 return false;
 
             health.Reduce(damage);
-            target.GetDamageTakenEvent().Invoke(new TakeDamageArgs(target,damage,source));
+            target.GetDamageTakenEvent().Invoke(new TakeDamageArgs(target,damage,source,damageType));
             return true;
         }
     }

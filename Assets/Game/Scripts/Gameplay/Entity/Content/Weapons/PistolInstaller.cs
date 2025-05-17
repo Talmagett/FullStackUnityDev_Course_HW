@@ -14,6 +14,8 @@ namespace Game.Scripts.Gameplay.Entity.Weapons
         [SerializeField] private SceneEntity pickupPrefab;
         [SerializeField] private float fireSpreadAngle = 0.25f;
         [SerializeField] private float fireCooldown=0.5f;
+        [SerializeField] private float attackDistance = 4;
+        
         public override void Install(IEntity entity)
         {
             GameContext gameContext = GameContext.Instance;
@@ -34,6 +36,7 @@ namespace Game.Scripts.Gameplay.Entity.Weapons
             entity.WhenFixedUpdate(cooldown.Tick);
             
             entity.AddFirePoint(firePoint);
+            entity.AddAttackDistance(new BaseVariable<float>(attackDistance));
             entity.AddFireEvent(new BaseEvent());
             entity.AddFireCondition(new AndExpression(ammo.Exists, cooldown.IsExpired));
             entity.AddFireAction(new BaseAction(() =>

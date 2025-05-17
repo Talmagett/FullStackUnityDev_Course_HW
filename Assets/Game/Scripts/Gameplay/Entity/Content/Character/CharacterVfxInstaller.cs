@@ -23,10 +23,24 @@ namespace Game.Gameplay
 
         public override void Install(IEntity entity)
         {
+            entity.GetDamageTakenEvent().OnEvent += OnDamageTaken;
             entity.GetDeathEvent().OnEvent += () =>
             {
                 _deadBlood.Play();
             };
+        }
+
+        private void OnDamageTaken(TakeDamageArgs takeDamageArgs)
+        {
+            print("TakeDamage"+takeDamageArgs.type);
+            if (takeDamageArgs.type == TakeDamageArgs.DamageType.Bullet)
+            {
+                _bulletBlood.Play();
+            }
+            else if (takeDamageArgs.type == TakeDamageArgs.DamageType.Melee)
+            {
+                _meleeBlood.Play();
+            }
         }
     }
 }

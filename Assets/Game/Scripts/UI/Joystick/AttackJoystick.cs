@@ -16,7 +16,7 @@ namespace Game.Scripts.UI
         private void Awake()
         {
             _playerEntity = GameContext.Instance.GetPlayerCharacter();
-            _fireRequest = _playerEntity.GetFireAction();
+            _fireRequest = _playerEntity.GetFireRequest();
         }
 
         private void Update()

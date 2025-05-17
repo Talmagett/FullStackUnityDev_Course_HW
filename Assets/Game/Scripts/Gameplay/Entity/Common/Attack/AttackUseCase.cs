@@ -13,13 +13,12 @@ namespace SampleGame
             var hits = Physics.OverlapSphere(firePoint.position, attackRadius.Value);
             var damage = weapon.GetDamage();
             var owner = weapon.GetOwner();
-            Debug.Log(hits.Length);
             foreach (var hit in hits)
             {
                 if(!hit.TryGetEntity(out IEntity target)) continue;
                 if(!target.HasDamageableTag()) continue;
                 if(target.GetTeamType()==owner.Value.GetTeamType()) continue;
-                TakeDamageUseCase.TakeDamage(target, damage.Value, owner.Value);
+                TakeDamageUseCase.TakeDamage(target, damage.Value, owner.Value, TakeDamageArgs.DamageType.Melee);
                 return;
             }
         }

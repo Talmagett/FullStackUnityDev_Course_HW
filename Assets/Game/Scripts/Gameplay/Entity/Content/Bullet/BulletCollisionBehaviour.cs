@@ -44,7 +44,7 @@ namespace SampleGame
             if (owner != null && owner.TryGetExtraDamage(out IExpression<int> extraDamage))
                 damage += extraDamage.Value;
             
-            if (target!=owner && TakeDamageUseCase.TakeDamage(target, damage, owner))
+            if (target!=owner && TakeDamageUseCase.TakeDamage(target, damage, owner,TakeDamageArgs.DamageType.Bullet))
                 _destroyAction.Invoke();
         }
     }
