@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8177112671454083022}
   - component: {fileID: -5912649511651168220}
   - component: {fileID: 2323826902369725697}
+  - component: {fileID: 3217170209058120025}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Untagged
@@ -79,6 +80,7 @@ MonoBehaviour:
   _installers:
   - {fileID: 8177112671454083022}
   - {fileID: 7923442310532633305}
+  - {fileID: 3217170209058120025}
 --- !u!114 &7923442310532633305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderers:
   - {fileID: 1870072544963146254}
+  - {fileID: 1870072544955971606}
 --- !u!114 &-5912649511651168220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +134,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e888545f5540c6857303355e58365f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3217170209058120025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870072543877420731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6cc841fe5164deb8ec3f2c89005902b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1870072544967355838}
 --- !u!1 &1984023710938929677
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,6 +469,12 @@ PrefabInstance:
       addedObject: {fileID: 7613732901427579877}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04c79b5f6e9ebab48af48fdcf7b6d570, type: 3}
+--- !u!23 &1870072544955971606 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2308382, guid: 04c79b5f6e9ebab48af48fdcf7b6d570,
+    type: 3}
+  m_PrefabInstance: {fileID: 1870072544957858056}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1870072544957759088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 425848, guid: 04c79b5f6e9ebab48af48fdcf7b6d570,
@@ -468,6 +490,12 @@ Transform:
 --- !u!137 &1870072544963146254 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 13742854, guid: 04c79b5f6e9ebab48af48fdcf7b6d570,
+    type: 3}
+  m_PrefabInstance: {fileID: 1870072544957858056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1870072544967355838 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9563318, guid: 04c79b5f6e9ebab48af48fdcf7b6d570,
     type: 3}
   m_PrefabInstance: {fileID: 1870072544957858056}
   m_PrefabAsset: {fileID: 0}

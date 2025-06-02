@@ -16,9 +16,10 @@ namespace SampleGame
         [SerializeField]
         private float _rotationSpeed = 0.2f;
 
-        [SerializeField]
-        private float3 _fireOffset = new(0, 1, 1);
-
+        [SerializeField] private float _attackDistance=3;
+        [SerializeField] private float _attackCooldown = 1;
+        [SerializeField] private int _damage=1;
+        
         [SerializeField]
         private int _health = 5;
         
@@ -27,21 +28,24 @@ namespace SampleGame
             world.GetPool<SwordmanTag>().Add(entity);
             world.GetPool<DeathableTag>().Add(entity);
             world.GetPool<UnitDirection>().Add(entity);
-            world.GetPool<UnitFireRequired>().Add(entity);
+            world.GetPool<UnitAttackRequired>().Add(entity);
             
             //Move
             world.GetPool<MoveableTag>().Add(entity);
             world.GetPool<MoveSpeed>().Add(entity).value = _moveSpeed;
-            world.GetPool<MoveDirection>().Add(entity).value = new float3(0, 0, 1);
+            world.GetPool<MoveDirection>().Add(entity);
 
             //Rotate
             world.GetPool<RotatableTag>().Add(entity);
-            world.GetPool<RotateDirection>().Add(entity).value = new float3(0, 0, -1);
+            world.GetPool<RotateDirection>().Add(entity);
             world.GetPool<RotationSpeed>().Add(entity).value = _rotationSpeed;
             
-            //Fire
-            world.GetPool<FireOffset>().Add(entity).value = _fireOffset;
-            
+            //Attack
+            world.GetPool<AttackableTag>().Add(entity);
+            world.GetPool<Damage>().Add(entity).value = _damage;
+            world.GetPool<AttackDistance>().Add(entity).value = _attackDistance;
+            world.GetPool<AttackCooldown>().Add(entity).max = _attackCooldown;
+
             //Health
             world.GetPool<Health>().Add(entity) = new Health
             {

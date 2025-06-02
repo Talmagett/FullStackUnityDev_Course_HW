@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 5692553891080636125}
   - component: {fileID: 1607533136925295576}
   - component: {fileID: 8982640583995581156}
+  - component: {fileID: 5741879664069579283}
   m_Layer: 0
   m_Name: Swordman
   m_TagString: Untagged
@@ -270,6 +271,7 @@ MonoBehaviour:
   _installers:
   - {fileID: 5692553891080636125}
   - {fileID: 8424424545680411354}
+  - {fileID: 5741879664069579283}
 --- !u!114 &8424424545680411354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderers:
   - {fileID: 8692576747533439705}
+  - {fileID: 8692576747532525789}
 --- !u!114 &1607533136925295576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,6 +325,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e888545f5540c6857303355e58365f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5741879664069579283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692576747330127513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6cc841fe5164deb8ec3f2c89005902b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 8692576747537636603}
 --- !u!1001 &3699895201114397584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -614,9 +630,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8692576747530256569}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &8692576747532525789 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2334820, guid: bcc60fdbd3a37b44cbc0cb99db483477,
+    type: 3}
+  m_PrefabInstance: {fileID: 8692576747530256569}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &8692576747533439705 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 13734496, guid: bcc60fdbd3a37b44cbc0cb99db483477,
+    type: 3}
+  m_PrefabInstance: {fileID: 8692576747530256569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8692576747537636603 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9542722, guid: bcc60fdbd3a37b44cbc0cb99db483477,
     type: 3}
   m_PrefabInstance: {fileID: 8692576747530256569}
   m_PrefabAsset: {fileID: 0}

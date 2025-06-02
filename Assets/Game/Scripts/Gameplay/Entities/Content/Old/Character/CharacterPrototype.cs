@@ -27,7 +27,7 @@ namespace SampleGame
             world.GetPool<CharacterTag>().Add(entity);
             world.GetPool<DeathableTag>().Add(entity);
             world.GetPool<UnitDirection>().Add(entity);
-            world.GetPool<UnitFireRequired>().Add(entity);
+            world.GetPool<UnitAttackRequired>().Add(entity);
             
             //Move
             world.GetPool<MoveableTag>().Add(entity);

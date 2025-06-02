@@ -1,10 +1,10 @@
 using System;
 
 namespace SampleGame
-{
+{    
     [Serializable]
-    public struct UnitFireRequired
+    public struct AttackDistance
     {
-        public bool value;
+        public float value;
     }
 }

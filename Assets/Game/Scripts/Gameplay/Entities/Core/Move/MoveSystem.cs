@@ -11,7 +11,7 @@ namespace SampleGame
         private readonly EcsPoolInject<Position> _positions;
         private readonly EcsPoolInject<MoveDirection> _moveDirections;
         private readonly EcsPoolInject<MoveSpeed> _moveSpeeds;
-
+        
         public void Run(IEcsSystems systems)
         {
             float deltaTime = Time.deltaTime;

@@ -30,6 +30,7 @@ namespace SampleGame
 
                 //Game Logic
                 .Add(new TargetSystem())
+                .Add(new MoveToTargetSystem())
                 .Add(new MoveSystem())
                 .Add(new RotationSystem())
                 .Add(new BaseSpawnSystem(_prefabCatalog))
@@ -40,14 +41,17 @@ namespace SampleGame
                 .Add(new DeathSystem())
                 .Add(new DestroySystem())
                 
-                // .Add(new CharacterMoveSystem())
-                // .Add(new CharacterRotateSystem())
+                .Add(new AttackSystem())
                 //.Add(new CharacterFireSystem(_bulletPrefab))
-
+                .Add(new SwordmanAttackSystem())
+                .Add(new ArcherAttackSystem())
+                
+                .Add(new AttackCooldownSystem())
                 //Rendering:
                 .Add(new TransformViewSystem())
                 .Add(new TeamViewSystem(_teamViewConfig))
                 .Add(new FireAnimSystem())
+                .Add(new AttackAnimSystem())
                 .Add(new TakeDamageAnimSystem())
                 .Add(new MoveAnimSystem())
 

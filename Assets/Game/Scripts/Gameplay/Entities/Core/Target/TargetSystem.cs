@@ -19,12 +19,11 @@ namespace SampleGame
         {
             foreach (int entity in _filter.Value)
             {
-                // if(_targets.Value.Get(entity).value != -1)
+                ref var myTarget = ref _targets.Value.Get(entity);
+                // if(myTarget.value != -1)
                 //     continue;
-                Debug.Log("TargetSystem: has no enemy");
-                // if(_healthUseCase.Value.Exists(entity))
+                // if(_healthUseCase.Value.Exists(myTarget.value))
                 //     continue;
-                Debug.Log("TargetSystem: searching enemy");
                 ref Position myPos  = ref _positions.Value.Get(entity);
                 ref TeamType myTeam = ref _teamTypes.Value.Get(entity);
                 
@@ -36,9 +35,9 @@ namespace SampleGame
                     _teamTypes.Value,
                     _healths.Value
                 );
-
                 ref var target = ref _targets.Value.Get(entity);
                 target.value = closest;
+                if(target.value!=-1)
                 Debug.DrawLine(_positions.Value.Get(entity).value,
                     _positions.Value.Get(closest).value,
                     Color.red, 0.1f, false);

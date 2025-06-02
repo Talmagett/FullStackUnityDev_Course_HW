@@ -10,7 +10,6 @@ namespace SampleGame
         
         private void OnTriggerEnter(Collider other)
         {
-            
             if (!other.TryGetComponent(out EcsView target)) 
                 return;
             

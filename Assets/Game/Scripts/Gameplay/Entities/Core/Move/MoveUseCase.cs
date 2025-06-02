@@ -13,7 +13,7 @@ namespace SampleGame
         {
             return math.any(_moveDirections.Value.Get(entity).value != float3.zero);
         }
-
+        
         [BurstCompile]
         public static void MoveStep(
             ref Position position,

@@ -18,7 +18,6 @@ namespace SampleGame
                 return;
             
             _gameCycle.Value.isGameOver = true;
-            Time.timeScale = 0;
             Debug.Log("Game Over");
         }
     }

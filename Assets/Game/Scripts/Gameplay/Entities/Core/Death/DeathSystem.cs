@@ -13,8 +13,10 @@ namespace SampleGame
         {
             foreach (int entity in _deathables.Value)
             {
+                if(!_healths.Value.Has(entity)) 
+                    continue;
                 Health health = _healths.Value.Get(entity);
-                if (health.current == 0) 
+                if (health.current <= 0) 
                     _destroyRequest.Value.Fire(new DestroyRequest() {entity = entity});
             }
         }

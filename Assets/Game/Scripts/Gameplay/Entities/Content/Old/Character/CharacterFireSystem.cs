@@ -9,7 +9,7 @@ namespace SampleGame
         private readonly EcsPrototype _bulletPrefab;
         
         private readonly EcsFilterInject<Inc<CharacterTag>> _characters;
-        private readonly EcsPoolInject<UnitFireRequired> _fireRequires;
+        private readonly EcsPoolInject<UnitAttackRequired> _fireRequires;
         private readonly EcsPoolInject<Position> _positions;
         private readonly EcsPoolInject<Rotation> _rotations;
         private readonly EcsPoolInject<TeamType> _teamTypes;
@@ -18,7 +18,6 @@ namespace SampleGame
         private readonly EcsEventInject<BulletSpawnRequest> _spawnRequests;
         private readonly EcsEventInject<FireEvent> _fireEvents;
         private readonly EcsWorldInject _world;
-
 
         public CharacterFireSystem(EcsPrototype bulletPrefab)
         {
@@ -29,8 +28,8 @@ namespace SampleGame
         {
             foreach (int entity in _characters.Value)
             {
-                ref UnitFireRequired fireRequired = ref _fireRequires.Value.Get(entity);
-                if (!fireRequired.value) 
+                ref UnitAttackRequired attackRequired = ref _fireRequires.Value.Get(entity);
+                if (!attackRequired.value) 
                     continue;
 
                 float3 position = _positions.Value.Get(entity).value;

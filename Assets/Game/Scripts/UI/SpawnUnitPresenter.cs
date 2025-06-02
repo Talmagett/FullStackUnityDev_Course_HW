@@ -10,10 +10,10 @@ namespace SampleGame
         private Button _spawnUnitButton;
 
         [SerializeField]
-        private TeamType _teamType;
+        private UnitSpawnType _unitSpawnType;
 
         [SerializeField]
-        private UnitSpawnType _unitSpawnType;
+        private TeamType _teamType;
 
         private void Awake()
         {
@@ -31,18 +31,7 @@ namespace SampleGame
         
         private void OnSpawnUnitButtonClick()
         {
-            var world = EcsAdmin.Systems.GetWorld();
-            var filter = world.Filter<BaseTag>().End();
-            var unitSpawnRequiredPool = world.GetPool<UnitSpawnRequired>();
-            var team = world.GetPool<TeamType>();
-            foreach (int entity in filter)
-            {
-                if(team.Get(entity) != _teamType)
-                    continue;
-                ref UnitSpawnRequired required = ref unitSpawnRequiredPool.Get(entity);
-                required.value = true;
-                required.type = _unitSpawnType;
-            }
+            UnitSpawnUseCase.SpawnUnit(_unitSpawnType, _teamType);
         }
     }
 }

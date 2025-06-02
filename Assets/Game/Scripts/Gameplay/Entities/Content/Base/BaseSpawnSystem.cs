@@ -1,6 +1,7 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Unity.Mathematics;
+using Random = UnityEngine.Random;
 
 namespace SampleGame
 {
@@ -34,11 +35,12 @@ namespace SampleGame
                 float3 position = _positions.Value.Get(entity).value;
                 quaternion rotation = _rotations.Value.Get(entity).value;
                 float3 offset = _fireOffsets.Value.Get(entity).value;
-
+                var offsetZ = Random.Range(-2, 2);
+                
                 _spawnRequests.Value.Fire(new UnitSpawnRequest
                 {
                     prefab = _prototypeCatalog.GetPrototype(fireRequired.type.ToString()),
-                    position = position + math.mul(rotation, offset),
+                    position = position + math.mul(rotation, offset)+ new float3(0, 0, offsetZ),
                     rotation = rotation,
                     team = _teamTypes.Value.Get(entity)
                 });

@@ -34,7 +34,8 @@ namespace SampleGame
             {
                 ref var othTeam = ref teamPool.Get(other);
                 if (othTeam == myTeam) continue;
-
+                if (!healthPool.Has(other)) continue;
+                
                 ref var otherHealth = ref healthPool.Get(other);
                 if (otherHealth.current <= 0) continue;
 
