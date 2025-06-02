@@ -19,18 +19,17 @@ namespace SampleGame
         public IEcsSystems Create()
         {
             EcsWorld world = new EcsWorld();
-            world.AddSingleton(new InputData());
+            world.AddSingleton(new GameCycleData(2));
             
             EcsSystems systems = new EcsSystems(world);
             systems.AddWorld(new EcsWorld(), EcsConsts.EventWorld);
 
             systems
-
-                //Input:
-                //.Add(new PlayerMoveController())
-                .Add(new PlayerFireController())
+                //Game Cycle:
+                .Add(new GameOverSystem())
 
                 //Game Logic
+                .Add(new TargetSystem())
                 .Add(new MoveSystem())
                 .Add(new RotationSystem())
                 .Add(new BaseSpawnSystem(_prefabCatalog))

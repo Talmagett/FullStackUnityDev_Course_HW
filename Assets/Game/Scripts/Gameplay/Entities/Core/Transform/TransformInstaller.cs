@@ -9,6 +9,7 @@ namespace SampleGame
         {
             world.GetPool<Position>().Add(entity).value = this.transform.position;
             world.GetPool<Rotation>().Add(entity).value = this.transform.rotation;
+            //world.GetPool<MoveDirection>().Get(entity).value = transform.forward;
         }
     }
 }

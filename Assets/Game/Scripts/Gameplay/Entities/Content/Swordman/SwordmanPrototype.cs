@@ -48,6 +48,10 @@ namespace SampleGame
                 current = _health,
                 max = _health
             };
+            world.GetPool<Target>().Add(entity) = new Target
+            {
+                value = -1 // No target initially
+            };
         }
     }
 }
