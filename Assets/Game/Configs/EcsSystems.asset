@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4095a1fd4e4142fbb8b341ef4d38bfb5, type: 3}
   m_Name: EcsSystems
   m_EditorClassIdentifier: 
-  _inputMap: {fileID: 11400000, guid: 4645a1612e8bb984d8c056c669eeea8b, type: 2}
+  _bulletPrefab: {fileID: 11400000, guid: 0fa368c5cc7e3cc43b46b050b1dfd59f, type: 2}
+  takeDamageAudioClip: {fileID: 8300000, guid: 99e01eb694cf5b04c85a0b0d9794150b, type: 3}
   _teamViewConfig: {fileID: 11400000, guid: 4f56caba0d264e940ae691709bf0fcbc, type: 2}
   _prefabCatalog: {fileID: 11400000, guid: bb62ac03b558dbb4f884bac66a6e30a8, type: 2}

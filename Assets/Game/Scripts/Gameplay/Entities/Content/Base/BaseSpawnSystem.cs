@@ -13,7 +13,7 @@ namespace SampleGame
         private readonly EcsPoolInject<Position> _positions;
         private readonly EcsPoolInject<Rotation> _rotations;
         private readonly EcsPoolInject<TeamType> _teamTypes;
-        private readonly EcsPoolInject<FireOffset> _fireOffsets;
+        private readonly EcsPoolInject<SpawnPoints> _spawnPoints;
 
         private readonly EcsEventInject<UnitSpawnRequest> _spawnRequests;
         private readonly EcsEventInject<FireEvent> _fireEvents;
@@ -34,13 +34,12 @@ namespace SampleGame
 
                 float3 position = _positions.Value.Get(entity).value;
                 quaternion rotation = _rotations.Value.Get(entity).value;
-                float3 offset = _fireOffsets.Value.Get(entity).value;
-                var offsetZ = Random.Range(-2, 2);
-                
+                var points = _spawnPoints.Value.Get(entity);
+                var randomIndex = Random.Range(0, points.values.Length);
                 _spawnRequests.Value.Fire(new UnitSpawnRequest
                 {
                     prefab = _prototypeCatalog.GetPrototype(fireRequired.type.ToString()),
-                    position = position + math.mul(rotation, offset)+ new float3(0, 0, offsetZ),
+                    position = position+ math.mul(rotation, points.values[randomIndex]),//position + math.mul(rotation, offset)+ new float3(0, 0, offsetZ),
                     rotation = rotation,
                     team = _teamTypes.Value.Get(entity)
                 });

@@ -9,7 +9,9 @@ namespace SampleGame
         menuName = "SampleGame/New EcsSystems"
     )]
     public sealed class EcsSystemsFactory : ScriptableObject
-    {        
+    {
+        [SerializeField] private EcsPrototype _bulletPrefab;
+        
         [SerializeField]
         private TeamViewConfig _teamViewConfig;
 
@@ -36,7 +38,7 @@ namespace SampleGame
                 .Add(new BaseSpawnSystem(_prefabCatalog))
                 .Add(new UnitSpawnSystem())
                 .Add(new BulletSpawnSystem())
-                // .Add(new BulletCollisionSystem())
+                .Add(new BulletCollisionSystem())
                 .Add(new LifetimeSystem())
                 .Add(new DeathSystem())
                 .Add(new DestroySystem())
@@ -44,7 +46,7 @@ namespace SampleGame
                 .Add(new AttackSystem())
                 //.Add(new CharacterFireSystem(_bulletPrefab))
                 .Add(new SwordmanAttackSystem())
-                .Add(new ArcherAttackSystem())
+                .Add(new ArcherAttackSystem(_bulletPrefab))
                 
                 .Add(new AttackCooldownSystem())
                 //Rendering:
@@ -55,7 +57,14 @@ namespace SampleGame
                 .Add(new TakeDamageAnimSystem())
                 .Add(new MoveAnimSystem())
 
+                //Audio:
+                .Add(new TakeDamageAudioSystem())
+                
+                //Vfx:
+                .Add(new TakeDamageVfxSystem())
+                
                 //Clear:
+                .ClearEvents<AttackEvent>()
                 .ClearEvents<FireEvent>()
                 .ClearEvents<TakeDamageEvent>()
                 // .Add(new ClearEventSystem<FireEvent>(world))

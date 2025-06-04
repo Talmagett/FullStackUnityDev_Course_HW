@@ -34,6 +34,7 @@ namespace SampleGame
             
             //Move
             world.GetPool<MoveableTag>().Add(entity);
+            world.GetPool<MoveableToTargetTag>().Add(entity);
             world.GetPool<MoveSpeed>().Add(entity).value = _moveSpeed;
             world.GetPool<MoveDirection>().Add(entity);
 

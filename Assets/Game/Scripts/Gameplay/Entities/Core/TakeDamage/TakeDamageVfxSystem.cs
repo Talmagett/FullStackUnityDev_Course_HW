@@ -1,15 +1,13 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using UnityEngine;
 
 namespace SampleGame
 {
-    public sealed class TakeDamageAnimSystem : IEcsRunSystem
+    public class TakeDamageVfxSystem : IEcsRunSystem
     {
         private readonly EcsEventInject<TakeDamageEvent> _events;
-        private readonly EcsPoolInject<AnimatorView> _animators;
         private readonly EcsWorldInject _world;
-        private static readonly int TakeDamage = Animator.StringToHash("Take Damage");
+        private readonly EcsPoolInject<VfxView> _vfxPool;
 
         void IEcsRunSystem.Run(IEcsSystems systems)
         {
@@ -18,11 +16,8 @@ namespace SampleGame
                 if (!damageEvent.target.Unpack(_world.Value, out int target))
                     continue;
 
-                if (!_animators.Value.Has(target)) 
-                    continue;
-
-                Animator animator = _animators.Value.Get(target).value;
-                animator.SetTrigger(TakeDamage);
+                if(_vfxPool.Value.Has(target))
+                    _vfxPool.Value.Get(target).value.Play();
             }
         }
     }

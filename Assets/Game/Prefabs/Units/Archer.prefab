@@ -81,6 +81,7 @@ MonoBehaviour:
   - {fileID: 8177112671454083022}
   - {fileID: 7923442310532633305}
   - {fileID: 3217170209058120025}
+  - {fileID: 8208509174401949910}
 --- !u!114 &7923442310532633305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2247993790520778751}
   - component: {fileID: 5267704122201970571}
+  - component: {fileID: 8208509174401949910}
   m_Layer: 0
   m_Name: <Audio>
   m_TagString: Untagged
@@ -220,7 +222,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 80b1313dc59709e4591e7700b3974be8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.35
   m_Pitch: 1
@@ -306,6 +308,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8208509174401949910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129963944772965696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c120989dafa4435e8477403b05a3c637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 5267704122201970571}
 --- !u!1 &6231758569029621406
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +482,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7613732901427579877}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 179124, guid: 04c79b5f6e9ebab48af48fdcf7b6d570,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2269475817332908035}
   m_SourcePrefab: {fileID: 100100000, guid: 04c79b5f6e9ebab48af48fdcf7b6d570, type: 3}
 --- !u!23 &1870072544955971606 stripped
 MeshRenderer:
@@ -487,6 +506,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1870072544957858056}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1870072544957971132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 179124, guid: 04c79b5f6e9ebab48af48fdcf7b6d570,
+    type: 3}
+  m_PrefabInstance: {fileID: 1870072544957858056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2269475817332908035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870072544957971132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 578691dcbb0c448abdd7cdf8bfc71fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &1870072544963146254 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 13742854, guid: 04c79b5f6e9ebab48af48fdcf7b6d570,

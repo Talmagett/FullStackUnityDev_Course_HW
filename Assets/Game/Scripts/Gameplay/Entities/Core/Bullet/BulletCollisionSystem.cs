@@ -1,5 +1,6 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 
 namespace SampleGame
 {
@@ -12,8 +13,11 @@ namespace SampleGame
         public void Run(IEcsSystems systems)
         {
             foreach (BulletCollisionRequest request in _collisionRequests.Value)
-                if (_takeDamageUseCase.Value.TakeDamage(request.bullet, request.target))
+            {
+                if (_takeDamageUseCase.Value.TakeDamage(request.bullet, request.target)) 
                     _destroyRequests.Value.Fire(new DestroyRequest {entity = request.bullet.Id});
+                
+            }
         }
     }
 }

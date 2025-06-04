@@ -1,6 +1,5 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using Unity.Mathematics;
 
 namespace SampleGame
 {
@@ -13,7 +12,7 @@ namespace SampleGame
         private readonly EcsPoolInject<Damage> _damage;
         private readonly EcsEventInject<AttackEvent> _attackEvents;
         private readonly EcsWorldInject _world;
-
+        private readonly EcsUseCaseInject<TakeDamageUseCase> _takeDamageUseCase;
         void IEcsRunSystem.Run(IEcsSystems systems)
         {
             foreach (int entity in _characters.Value)
@@ -30,8 +29,11 @@ namespace SampleGame
                 ref Damage damage = ref _damage.Value.Get(entity);
                 ref Health health = ref _rotations.Value.Get(target.value);
                 health.current -= damage.value;
-                
-                _attackEvents.Value.Fire(new AttackEvent{entity = _world.Value.PackEntity(entity)});
+
+                var myViewPack = _world.Value.PackEntity(entity);
+                var targetPack = _world.Value.PackEntity(target.value);
+                if (_takeDamageUseCase.Value.TakeDamage(myViewPack, targetPack))
+                    _attackEvents.Value.Fire(new AttackEvent{entity = myViewPack});
             }
         }
     }

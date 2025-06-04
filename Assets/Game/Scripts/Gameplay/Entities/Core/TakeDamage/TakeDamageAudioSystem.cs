@@ -1,28 +1,22 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using UnityEngine;
 
 namespace SampleGame
 {
-    public sealed class TakeDamageAnimSystem : IEcsRunSystem
+    public class TakeDamageAudioSystem : IEcsRunSystem
     {
         private readonly EcsEventInject<TakeDamageEvent> _events;
-        private readonly EcsPoolInject<AnimatorView> _animators;
         private readonly EcsWorldInject _world;
-        private static readonly int TakeDamage = Animator.StringToHash("Take Damage");
-
+        private readonly EcsPoolInject<AudioSourceView> _audioSourcePool;
+        
         void IEcsRunSystem.Run(IEcsSystems systems)
         {
             foreach (TakeDamageEvent damageEvent in _events.Value)
             {
                 if (!damageEvent.target.Unpack(_world.Value, out int target))
                     continue;
-
-                if (!_animators.Value.Has(target)) 
-                    continue;
-
-                Animator animator = _animators.Value.Get(target).value;
-                animator.SetTrigger(TakeDamage);
+                if(_audioSourcePool.Value.Has(target))
+                    _audioSourcePool.Value.Get(target).value.Play();
             }
         }
     }

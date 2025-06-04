@@ -1,5 +1,6 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 
 namespace SampleGame
 {
@@ -20,7 +21,6 @@ namespace SampleGame
 
             if (!_healthUseCase.Value.Reduce(targetId, damage))
                 return false;
-
             _takeDamageEvents.Value.Fire(new TakeDamageEvent
             {
                 source = source,

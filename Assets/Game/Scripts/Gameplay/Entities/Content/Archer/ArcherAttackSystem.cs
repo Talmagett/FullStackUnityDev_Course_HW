@@ -1,18 +1,34 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using Unity.Mathematics;
 
 namespace SampleGame
 {
     public sealed class ArcherAttackSystem : IEcsRunSystem
     {
+        private readonly EcsPrototype _bulletPrefab;
+
         private readonly EcsFilterInject<Inc<ArcherTag>> _characters;
         private readonly EcsPoolInject<UnitAttackRequired> _fireRequires;
-        private readonly EcsPoolInject<Target> _positions;
-        private readonly EcsPoolInject<Health> _rotations;
+        
+        private readonly EcsPoolInject<Target> _targets;
+        private readonly EcsPoolInject<Health> _healths;
         private readonly EcsPoolInject<Damage> _damage;
+        
+        private readonly EcsPoolInject<Position> _positions;
+        private readonly EcsPoolInject<Rotation> _rotations;
+        private readonly EcsPoolInject<TeamType> _teamTypes;
+        private readonly EcsPoolInject<FireOffset> _fireOffsets;
+
+        private readonly EcsEventInject<BulletSpawnRequest> _spawnRequests;
         private readonly EcsEventInject<AttackEvent> _attackEvents;
         private readonly EcsWorldInject _world;
 
+        public ArcherAttackSystem(EcsPrototype bulletPrefab)
+        {
+            _bulletPrefab = bulletPrefab;
+        }
+        
         void IEcsRunSystem.Run(IEcsSystems systems)
         {
             foreach (int entity in _characters.Value)
@@ -21,15 +37,22 @@ namespace SampleGame
                 if (!attackRequired.value) 
                     continue;
 
-                ref Target target = ref _positions.Value.Get(entity);
+                ref Target target = ref _targets.Value.Get(entity);
                 attackRequired.value = false;
                 if (target.value == -1)
                     continue;
-
-                ref Damage damage = ref _damage.Value.Get(entity);
-                ref Health health = ref _rotations.Value.Get(target.value);
-                health.current -= damage.value;
                 
+                float3 position = _positions.Value.Get(entity).value;
+                quaternion rotation = _rotations.Value.Get(entity).value;
+                float3 offset = _fireOffsets.Value.Get(entity).value;
+
+                _spawnRequests.Value.Fire(new BulletSpawnRequest
+                {
+                    prefab = _bulletPrefab,
+                    position = position + math.mul(rotation, offset),
+                    rotation = rotation,
+                    team = _teamTypes.Value.Get(entity)
+                });
                 _attackEvents.Value.Fire(new AttackEvent{entity = _world.Value.PackEntity(entity)});
             }
         }

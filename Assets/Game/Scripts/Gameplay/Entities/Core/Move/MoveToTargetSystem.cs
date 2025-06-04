@@ -7,7 +7,7 @@ namespace SampleGame
 {
     public sealed class MoveToTargetSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<MoveableTag>> _filter;
+        private readonly EcsFilterInject<Inc<MoveableTag, Target>> _filter;
         
         private readonly EcsPoolInject<Position> _positions;
         private readonly EcsPoolInject<UnitDirection> _unitDirections;
