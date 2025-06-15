@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Cysharp.Threading.Tasks;
+using Modules.Ecryption;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -48,9 +50,14 @@ namespace SampleGame.App
             gameState[SAVE_TIME_KEY] = time.TotalSeconds.ToString("F0");
 
             string json = JsonConvert.SerializeObject(gameState);
-            await File.WriteAllTextAsync(GetVersionedPath(version), json);
+
+            byte[] bytes = Encoding.UTF8.GetBytes(json);
+            byte[] encryptedBytes = AesEncryptor.Encrypt(bytes, _aesPassword, _aesSalt);
+            string base64Encrypted = Convert.ToBase64String(encryptedBytes);
+
+            await File.WriteAllTextAsync(GetVersionedPath(version), base64Encrypted);
             Debug.Log($"Saved version {version} locally");
-            var success = await _client.Save(version, json);
+            var success = await _client.Save(version, base64Encrypted);
             if (success)
                 Debug.Log($"Saved version {version} remotely");
         }
@@ -58,15 +65,24 @@ namespace SampleGame.App
         public async UniTask<Dictionary<string, string>> GetVersionedState(int version)
         {
             string path = GetVersionedPath(version);
-            
-            //Get remote state:
-            Dictionary<string, string> remoteState;
-            var (success, remoteJson) = await _client.Load(version);
+
+            var (success, remoteEncryptedBase64) = await _client.Load(version);
             if (success)
             {
-                remoteState = JsonConvert.DeserializeObject<Dictionary<string, string>>(remoteJson);
-                Debug.Log($"Loaded version {version} remotely");
-                return remoteState;
+                try
+                {
+                    byte[] encryptedBytes = Convert.FromBase64String(remoteEncryptedBase64);
+                    byte[] decryptedBytes = AesEncryptor.Decrypt(encryptedBytes, _aesPassword, _aesSalt);
+                    string decryptedJson = Encoding.UTF8.GetString(decryptedBytes);
+
+                    var remoteState = JsonConvert.DeserializeObject<Dictionary<string, string>>(decryptedJson);
+                    Debug.Log($"Loaded version {version} remotely (AES)");
+                    return remoteState ?? new Dictionary<string, string>();
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"AES Decryption failed from remote: {e}");
+                }
             }
 
             if (!File.Exists(path))
@@ -75,13 +91,22 @@ namespace SampleGame.App
                 return new Dictionary<string, string>();
             }
 
-            string json = await File.ReadAllTextAsync(path);
-            if (string.IsNullOrEmpty(json))
-                return new Dictionary<string, string>();
-            Debug.Log($"Loaded version {version} locally");
+            try
+            {
+                string localBase64 = await File.ReadAllTextAsync(path);
+                byte[] encryptedBytes = Convert.FromBase64String(localBase64);
+                byte[] decryptedBytes = AesEncryptor.Decrypt(encryptedBytes, _aesPassword, _aesSalt);
+                string decryptedJson = Encoding.UTF8.GetString(decryptedBytes);
 
-            return JsonConvert.DeserializeObject<Dictionary<string, string>>(json)
-                ?? new Dictionary<string, string>();
+                var localState = JsonConvert.DeserializeObject<Dictionary<string, string>>(decryptedJson);
+                Debug.Log($"Loaded version {version} locally (AES)");
+                return localState ?? new Dictionary<string, string>();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"AES Decryption failed from local: {e}");
+                return new Dictionary<string, string>();
+            }
         }
 
         public UniTask<Dictionary<string, string>> GetLastState()
@@ -90,32 +115,3 @@ namespace SampleGame.App
         }
     }
 }
-
-
-//
-// public Dictionary<string, string> GetState()
-// {
-//     if (!File.Exists(_filePath))
-//         return new Dictionary<string, string>();
-//
-//     byte[] encryptedBytes = File.ReadAllBytes(_filePath);
-//     byte[] bytes = AesEncryptor.Decrypt(encryptedBytes, _aesPassword, _aesSalt);
-//     string json = Encoding.UTF8.GetString(bytes);
-//     Debug.Log($"Loaded state: {json}");
-//
-//     var result = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-//     if (result == null)
-//         return new Dictionary<string, string>();
-//     
-//     return result;
-// }
-//
-// public void SetState(Dictionary<string, string> gameState)
-// {
-//     string json = JsonConvert.SerializeObject(gameState);
-//     Debug.Log($"Save state: {json}");
-//
-//     byte[] bytes = Encoding.UTF8.GetBytes(json);
-//     byte[] encryptedBytes = AesEncryptor.Encrypt(bytes, _aesPassword, _aesSalt);
-//     File.WriteAllBytes(_filePath, encryptedBytes);
-// }
