@@ -18,8 +18,6 @@ namespace SampleGame.App
             // this.Container.BindInterfacesTo<GameSaveController>().AsSingle().WithArguments(_savePeriod);
             
             this.Container.BindInterfacesTo<EntityWorldSerializer>().AsSingle();
-            // this.Container.BindInterfacesTo<InventorySerializer>().AsSingle();
-            // this.Container.BindInterfacesTo<EquipmentSerializer>().AsSingle();
         }
     }
 }

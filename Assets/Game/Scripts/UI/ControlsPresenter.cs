@@ -27,7 +27,11 @@ namespace Game.Gameplay
                 callback.Invoke(false, -1);
                 return;
             }
-            _gameSaveLoader.Load().Forget();
+
+            if (int.TryParse(versionText, out int version))
+                _gameSaveLoader.Load(version).Forget();
+            else
+                _gameSaveLoader.Load().Forget();
         }
     }
 }

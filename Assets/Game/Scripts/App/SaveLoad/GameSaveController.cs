@@ -41,7 +41,7 @@ namespace SampleGame.App
 
         private void Save()
         {
-            _saveLoader.Save();
+            _saveLoader.Save().Forget();
             _remainingSeconds = _savePeriod;
         }
     }

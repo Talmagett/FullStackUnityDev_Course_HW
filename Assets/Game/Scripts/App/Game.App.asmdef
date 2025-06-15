@@ -7,8 +7,7 @@
         "Modules.Encryption",
         "UniTask",
         "Game.Common",
-        "Modules.Entities",
-        "Unity.Mathematics"
+        "Modules.Entities"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
