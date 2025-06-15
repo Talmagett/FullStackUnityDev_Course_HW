@@ -1,0 +1,22 @@
+{
+    "name": "Game.App",
+    "rootNamespace": "",
+    "references": [
+        "Game.Gameplay",
+        "Zenject",
+        "Modules.Encryption",
+        "UniTask",
+        "Game.Common",
+        "Modules.Entities",
+        "Unity.Mathematics"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

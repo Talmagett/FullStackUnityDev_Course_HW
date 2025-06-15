@@ -76,6 +76,16 @@ namespace Modules.Entities
             if (id == -1)
                 id = this.NextId();
 
+
+            if (_recycledIds.Contains(id))
+            {
+                var list = _recycledIds.ToList();
+                list.Remove(id);
+                _recycledIds.Clear();
+                foreach (var recycledId in list)
+                    _recycledIds.Enqueue(recycledId);
+            }
+
             entity.Id = id;
             _entities.Add(id, entity);
         }
