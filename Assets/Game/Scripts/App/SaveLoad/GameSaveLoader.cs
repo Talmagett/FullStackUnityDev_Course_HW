@@ -32,14 +32,5 @@ namespace SampleGame.App
             foreach (var serializer in _serializers)
                     serializer.Deserialize(gameState);
         }
-
-        // public async UniTaskVoid Load()
-        // {
-        //     Dictionary<string, string> gameState = await _repository.GetState();
-        //     Debug.Log("Loaded");
-
-        //     foreach (IGameSerializer serializer in _serializers)
-        //         serializer.Deserialize(gameState);
-        // }
     }
 }

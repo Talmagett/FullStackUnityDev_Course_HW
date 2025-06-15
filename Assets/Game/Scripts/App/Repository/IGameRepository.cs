@@ -7,7 +7,6 @@ namespace SampleGame.App
     public interface IGameRepository
     {
         UniTask SetState(Dictionary<string, string> gameState);
-        UniTask<Dictionary<string, string>> GetState();
         UniTask<Dictionary<string, string>> GetVersionedState(int version);
         UniTask<Dictionary<string, string>> GetLastState();
 

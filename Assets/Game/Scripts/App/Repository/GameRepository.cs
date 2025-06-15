@@ -16,10 +16,15 @@ namespace SampleGame.App
         private readonly string _filePath;
         private const string VERSION_KEY = "CurrentSaveVersion";
 
-        public GameRepository(GameClient client, string filePath)
+        private readonly string _aesPassword;
+        private readonly byte[] _aesSalt;
+
+        public GameRepository(GameClient client, string filePath, string aesPassword, byte[] aesSalt)
         {
             _client = client;
             _filePath = filePath;
+            _aesPassword = aesPassword;
+            _aesSalt = aesSalt;
         }
         private string GetVersionedPath(int version) =>
             $"{Path.GetDirectoryName(_filePath)}/GameState_v{version}.json";
@@ -44,14 +49,26 @@ namespace SampleGame.App
 
             string json = JsonConvert.SerializeObject(gameState);
             await File.WriteAllTextAsync(GetVersionedPath(version), json);
-            //await File.WriteAllTextAsync(_filePath, json); // optional: overwrite latest
-            await _client.Save(json);
-            Debug.Log($"Saved version {version}");
+            Debug.Log($"Saved version {version} locally");
+            var success = await _client.Save(version, json);
+            if (success)
+                Debug.Log($"Saved version {version} remotely");
         }
 
         public async UniTask<Dictionary<string, string>> GetVersionedState(int version)
         {
             string path = GetVersionedPath(version);
+            
+            //Get remote state:
+            Dictionary<string, string> remoteState;
+            var (success, remoteJson) = await _client.Load(version);
+            if (success)
+            {
+                remoteState = JsonConvert.DeserializeObject<Dictionary<string, string>>(remoteJson);
+                Debug.Log($"Loaded version {version} remotely");
+                return remoteState;
+            }
+
             if (!File.Exists(path))
             {
                 Debug.LogError($"Save file for version {version} not found.");
@@ -61,77 +78,10 @@ namespace SampleGame.App
             string json = await File.ReadAllTextAsync(path);
             if (string.IsNullOrEmpty(json))
                 return new Dictionary<string, string>();
-            Debug.Log($"Loaded version {version}");
+            Debug.Log($"Loaded version {version} locally");
+
             return JsonConvert.DeserializeObject<Dictionary<string, string>>(json)
                 ?? new Dictionary<string, string>();
-        }
-
-        public async UniTask<Dictionary<string, string>> GetState()
-        {
-            //Get local state:
-            long localSaveTime = -1;
-            Dictionary<string, string> localState;
-
-            if (File.Exists(_filePath))
-            {
-                string json = await File.ReadAllTextAsync(_filePath);
-                if (json == null)
-                {
-                    localState = new Dictionary<string, string>();
-                }
-                else
-                {
-                    localState = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-                    if (localState == null)
-                    {
-                        localState = new Dictionary<string, string>();
-                    }
-                    else
-                    {
-                        string saveTimeString = localState[SAVE_TIME_KEY];
-                        localSaveTime = long.Parse(saveTimeString);
-                    }
-                }
-            }
-            else
-            {
-                localState = new Dictionary<string, string>();
-            }
-
-            //Get remote state:
-            long remoteSaveTime = -1;
-            Dictionary<string, string> remoteState;
-
-            var (success, remoteJson) = await _client.Load();
-            if (success)
-            {
-                remoteState = JsonConvert.DeserializeObject<Dictionary<string, string>>(remoteJson);
-                if (remoteState != null)
-                {
-                    remoteSaveTime = long.Parse(remoteState[SAVE_TIME_KEY]);
-                }
-                else
-                {
-                    remoteState = new Dictionary<string, string>();
-                }
-            }
-            else
-            {
-                remoteState = new Dictionary<string, string>();
-            }
-
-
-            //Compare:
-            if (localSaveTime >= remoteSaveTime)
-            {
-                Debug.Log("Select local state");
-                return localState;
-            }
-            else
-            {
-                Debug.Log("Select remote state");
-                return remoteState;
-            }
         }
 
         public UniTask<Dictionary<string, string>> GetLastState()
@@ -141,28 +91,7 @@ namespace SampleGame.App
     }
 }
 
-// UnityWebRequest request = UnityWebRequest.Get($"{_uri}/load");
-// await request.SendWebRequest();
-//
-// if (request.result != UnityWebRequest.Result.Success)
-//     return (false, null);
-//
-// string json = request.downloadHandler.text;
-// var dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(json)
-//                  ?? new Dictionary<string, string>();
-// return (true, dictionary);
 
-
-// private readonly string _filePath;
-// private readonly string _aesPassword;
-// private readonly byte[] _aesSalt;
-//
-// public GameRepository(string filePath, string aesPassword, byte[] aesSalt)
-// {
-//     _filePath = filePath;
-//     _aesPassword = aesPassword;
-//     _aesSalt = aesSalt;
-// }
 //
 // public Dictionary<string, string> GetState()
 // {

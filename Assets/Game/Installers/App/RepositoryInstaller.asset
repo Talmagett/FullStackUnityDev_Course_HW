@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177c79c70d5c497faaf0a74cf0d1b361, type: 3}
   m_Name: RepositoryInstaller
   m_EditorClassIdentifier: 
-  _fileName: GameState.txt
+  _fileName: GameState.json
   _aesPassword: 123
   _aesSalt: 5241167986649722
-  _uri: http://127.0.0.1:8080
+  _uri: http://127.0.0.1:8888

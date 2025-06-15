@@ -3,15 +3,22 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using Modules.Entities;
 using UnityEngine;
+using Zenject;
 
 namespace SampleGame.App
 {
     public sealed class EntityWorldSerializer : GameSerializer<EntityWorld, EntityWorldData>
     {
+        private DiContainer _diContainer;
+        [Inject]
+        public EntityWorldSerializer(DiContainer diContainer)
+        {
+            _diContainer = diContainer;
+        }
+
         protected override EntityWorldData Serialize(EntityWorld world) =>
         new()
         {
-            version = 1, // Increment this when the serialization format changes
             entities = world.GetAll().Select(entity =>
             {
                 var transform = entity.transform;
@@ -36,15 +43,13 @@ namespace SampleGame.App
 
         protected override void Deserialize(EntityWorld world, EntityWorldData data)
         {
-            if (data.version != 1)
-                throw new System.Exception($"Unsupported version: {data.version}");
             world.DestroyAll();
             foreach (var ed in data.entities)
             {
                 var pos = new Vector3(ed.position.x, ed.position.y, ed.position.z);
                 var rot = Quaternion.Euler(ed.rotation.x, ed.rotation.y, ed.rotation.z);
                 var entity = world.Spawn(ed.name, pos, rot, ed.id);
-
+                _diContainer.InjectGameObject(entity.gameObject);
                 entity.gameObject.name = ed.name;
 
                 //Debug.Log($"[Serializer] Loading entity '{ed.name}' (ID: {ed.id}) with {ed.components.Count} components.");
