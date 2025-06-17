@@ -1,0 +1,58 @@
+header: EntityAPI
+entityType: IEntity
+aggressiveInlining: true
+
+namespace: Game.Gameplay
+className: EntityAPI
+directory: Assets/Game/Scripts/Gameplay/Entity/
+ 
+imports:
+- UnityEngine
+- Atomic.Entities
+- System
+- Atomic.Elements
+
+tags:
+- Damageable
+- Character
+
+values:
+
+# Main
+- GameObject: GameObject
+- Transform: Transform
+  
+#Movement  
+- MoveRequest: IRequest<Vector3>
+- MoveEvent: IEvent<Vector3>
+- MoveSpeed: IValue<float>
+
+#Rotation
+- LookRequest: IRequest<Vector3>
+- RotateSpeed: IValue<float>
+
+#Life
+- Health: Health
+- Lifetime: Cooldown
+- TakeDamageEvent: IEvent<DamageArgs>
+- TakeDeathEvent: IEvent<DamageArgs>
+- DestroyAction: IAction
+  
+#Team
+- Team: IReactiveVariable<TeamType>
+  
+#Combat
+- Weapon: IEntity
+- Damage: IValue<int>
+- Target: IReactiveVariable<IEntity>  
+- FirePoint: Transform
+- FireRequest: IRequest
+- FireCondition: IFunction<bool>
+- FireEvent: IEvent
+
+#Physics
+- Trigger: TriggerEventReceiver
+  
+#Visual
+- MeshRenderer: Renderer
+- Animator: Animator

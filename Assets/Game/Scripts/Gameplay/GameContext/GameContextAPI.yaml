@@ -1,0 +1,23 @@
+header: ContextAPI
+contextType: IGameContext
+aggressiveInlining: true
+
+namespace: Game.Gameplay
+className: GameContextAPI
+directory: Assets/Game/Scripts/Gameplay/GameContext/
+
+imports:
+  - UnityEngine
+  - Atomic.Entities
+  - Atomic.Elements
+  - System.Collections.Generic
+
+values:
+  - BulletPool: IEntityPool
+  - WorldTransform: Transform
+  - InputMap: InputMap
+  - TeamConfig: TeamConfig
+  - Character: IEntity
+  - Camera: Camera
+  - CameraOffset: IValue<Vector3>
+  
