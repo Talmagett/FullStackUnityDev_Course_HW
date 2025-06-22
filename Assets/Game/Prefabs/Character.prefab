@@ -504,6 +504,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2121879629171288639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7768209155442619203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8282472478113010035}
+  - component: {fileID: 989987083637896121}
+  m_Layer: 0
+  m_Name: '[AI]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8282472478113010035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7768209155442619203}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4473757027215454236}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &989987083637896121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7768209155442619203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92282e235f578554fa2820db317e2e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7896759888454424343
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +587,7 @@ Transform:
   - {fileID: 6773970497479015313}
   - {fileID: 19450280462654253}
   - {fileID: 2121879629171288639}
+  - {fileID: 8282472478113010035}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7508520775225795682
@@ -608,12 +653,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   installOnAwake: 1
-  installInEditMode: 1
+  installInEditMode: 0
   disposeValues: 1
   installers:
   - {fileID: 2025560285788460330}
   - {fileID: 6620937699476238798}
-  - {fileID: 0}
+  - {fileID: 989987083637896121}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
   _tagCapacity: 2

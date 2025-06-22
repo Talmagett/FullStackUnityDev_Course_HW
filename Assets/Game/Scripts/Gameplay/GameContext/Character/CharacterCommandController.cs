@@ -23,13 +23,13 @@ namespace Game.Gameplay
 
             if (Input.GetKeyDown(_inputMap.Stop))
             {
-                // CommandUseCase.Stop(_character);
+                CommandUseCase.Stop(_character);
                 return;
             }
 
             if (Input.GetKeyDown(_inputMap.Hold))
             {
-                // CommandUseCase.Hold(_character, additive);
+                CommandUseCase.Hold(_character, additive);
                 return;
             }
 
@@ -42,19 +42,19 @@ namespace Game.Gameplay
             
             if (Input.GetKey(_inputMap.Move))
             {
-                // CommandUseCase.Move(_character, raycastHit, additive);
+                CommandUseCase.Move(_character, raycastHit, additive);
             }
             else if (Input.GetKey(_inputMap.Patrol))
             {
-                // CommandUseCase.Patrol(_character, raycastHit, additive);
+                CommandUseCase.Patrol(_character, raycastHit, additive);
             }
             else if (Input.GetKey(_inputMap.Attack))
             {
-                // CommandUseCase.Attack(_character, raycastHit, additive);
+                CommandUseCase.Attack(_character, raycastHit, additive);
             }
             else if (Input.GetKey(_inputMap.Follow))
             {
-                // CommandUseCase.Follow(_character, raycastHit, additive);
+                CommandUseCase.Follow(_character, raycastHit, additive);
             }
         }
     }
