@@ -202,17 +202,24 @@ namespace Game.UI.Game.Match3
          {
              var matchedItems = matches as Item[] ?? matches.ToArray();
              var itemPresenters = _itemRepository.GetItems(matchedItems);
+             BundleData bundleData = new BundleData(_levelGrid, _quest);
+             bundleData.Items = matchedItems.ToList();
+             
+             
+             // Destroy items and handle quest items
+            var destroyTilesCommand = new DestroyTilesCommand();
 
-             var questItems = _match3Logic.RemoveMatches(matchedItems);
-    
-             List<ItemView> itemViews = new();
+            destroyTilesCommand.Execute(bundleData);
+            //_match3Logic.RemoveMatches(matchedItems);
+
+            List<ItemView> itemViews = new();
              List<ItemPresenter> questItemViews = new();
 
              foreach (var itemPresenter in itemPresenters)
              {
                  itemViews.Add(itemPresenter.ItemView);
                  
-                 if (questItems.Contains(itemPresenter.Item))
+                 if (bundleData.Items.Contains(itemPresenter.Item))
                      questItemViews.Add(itemPresenter);
              }
 
