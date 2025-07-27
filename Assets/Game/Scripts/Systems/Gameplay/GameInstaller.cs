@@ -1,5 +1,6 @@
-using Game.App.Map;
+using Game.App.Levels;
 using Game.Gameplay.Items;
+using Game.Gameplay.Quests;
 using Game.UI.Game.Items;
 using UnityEngine;
 using Zenject;
@@ -14,7 +15,8 @@ namespace Game.Gameplay
         
         public override void InstallBindings()
         {
-            MapInstaller.Install(Container);
+            Container.BindInterfacesAndSelfTo<LevelService>().AsSingle().NonLazy();
+            Container.Bind<Quest>().AsSingle().NonLazy();
             Container.BindInstance(itemSpriteMap).AsSingle();
             Container.BindInstance(itemView).AsSingle();
         }

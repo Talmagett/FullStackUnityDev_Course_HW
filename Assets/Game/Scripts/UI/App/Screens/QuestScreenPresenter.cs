@@ -1,7 +1,7 @@
 using Atomic.UI;
 using Cysharp.Threading.Tasks;
 using Game.App.Audio.Music;
-using Game.App.Map;
+using Game.App.Levels;
 using Game.App.Scene;
 using Game.Gameplay.Items;
 using Game.UI.App.Background;
@@ -14,6 +14,9 @@ namespace Game.UI.App.Screens
 {
     public class QuestScreenPresenter : Presenter
     {
+        private const string QuestTargetFormat = "YOU NEED TO COLLECT {0} CANDIES OF THIS TYPE";
+
+
         [SerializeField] private Sprite backgroundImage;
         [SerializeField] private Image questTargetImage;
         [SerializeField] private Text questTargetText;
@@ -24,9 +27,8 @@ namespace Game.UI.App.Screens
         [Inject] private SceneNavigator sceneNavigator;
         [Inject] private BackgroundView backgroundView;
         [Inject] private MusicPlayer musicPlayer;
-        [Inject] private IMap map;
+        [Inject] private ILevelService map;
         [Inject] private ItemSpriteMap itemSpriteMap;
-        private const string QuestTargetText = "YOU NEED TO COLLECT [x] CANDIES OF THIS TYPE";
         protected override void OnInit()
         {
             startButton.onClick.AddListener(OnPlayButtonClicked);
@@ -59,7 +61,7 @@ namespace Game.UI.App.Screens
         {
             var level = map.CurrentLevel;
             questTargetImage.sprite = itemSpriteMap.GetQuestSprite(level.GoalType);
-            var targetText =QuestTargetText.Replace("[x]", level.GoalCount.ToString());
+            var targetText = string.Format(QuestTargetFormat, level.GoalCount);
             questTargetText.text = targetText;
         }
     }

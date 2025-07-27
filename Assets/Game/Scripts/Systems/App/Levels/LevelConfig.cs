@@ -12,7 +12,7 @@ namespace Game.App.Levels
     {
         public int Number => number;
         public int GoalCount => goalCount;
-        public ItemType GoalType => goalType;
+        public ItemColor GoalType => goalType;
 
         public LevelSnapshot Field => field;
 
@@ -32,7 +32,7 @@ namespace Game.App.Levels
         private int goalCount;
 
         [SerializeField]
-        private ItemType goalType;
+        private ItemColor goalType;
 
         [SerializeField]
         private Sprite numberIcon;

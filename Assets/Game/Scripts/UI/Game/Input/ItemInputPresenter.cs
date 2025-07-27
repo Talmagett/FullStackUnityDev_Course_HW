@@ -3,13 +3,13 @@ using Game.UI.Game.Items;
 using Modules.Inputs;
 using UnityEngine;
 
-namespace Game.Gameplay.Items
+namespace Match3.UI
 {
-    public class ItemInputHandler : IDisposable
+    public class ItemInputPresenter : IDisposable
     {
         private readonly SwipeInput _swipeInput;
         public event Action<ItemView, Vector2Int> OnItemSwipe;
-        public ItemInputHandler(SwipeInput swipeInput)
+        public ItemInputPresenter(SwipeInput swipeInput)
         {
             _swipeInput = swipeInput;
             _swipeInput.OnSwipe += OnSwipe;

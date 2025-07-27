@@ -3,9 +3,9 @@ using Game.App.Levels;
 using Game.Gameplay.Quests;
 using UnityEngine;
 
-namespace Game.App.Map
+namespace Game.App.Levels
 {
-    public class Map : IMap
+    public class LevelService : ILevelService
     {
         private readonly LevelCatalog _catalog;
         public int MaxLevel => _maxLevel;
@@ -13,7 +13,7 @@ namespace Game.App.Map
         private int _currentLevel;
         private readonly Quest _quest;
         
-        public Map(LevelCatalog catalog, Quest quest)
+        public LevelService(LevelCatalog catalog, Quest quest)
         {
             _catalog = catalog;
             _quest = quest;
@@ -45,7 +45,7 @@ namespace Game.App.Map
         }
     }
 
-    public interface IMap
+    public interface ILevelService
     {
         int MaxLevel { get; }
         LevelConfig CurrentLevel { get; }

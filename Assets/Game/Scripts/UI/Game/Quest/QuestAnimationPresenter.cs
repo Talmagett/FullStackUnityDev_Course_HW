@@ -16,7 +16,7 @@ namespace Game.UI.Game.Quest
         [Inject] private QuestView questView;
         [Inject] private RectTransform particleParent;
         
-        public async UniTask CreateItem(ItemType type, Vector2 position)
+        public async UniTask CreateItem(ItemColor type, Vector2 position)
         {
             var itemParticle = pool.Spawn();
             var pos = camera.WorldToScreenPoint(position);

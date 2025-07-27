@@ -23,9 +23,9 @@ namespace Game.App.Levels
             public Vector2Int point;
 
             [HorizontalGroup]
-            public ItemType type;
+            public ItemColor type;
 
-            public Item(Vector2Int point, ItemType type)
+            public Item(Vector2Int point, ItemColor type)
             {
                 this.point = point;
                 this.type = type;

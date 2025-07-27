@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swipeInput: {fileID: 1805608859}
-  levelGridView: {fileID: 1040703108}
+  ItemGridView: {fileID: 1040703108}
   itemView: {fileID: 4850200992621651959, guid: 5e0fb7b9c1de544449b0c3d61f28ccc9,
     type: 3}
   questItemParticleView: {fileID: 8338726603116933173, guid: 51dbef150564c45f087647bac6dcfc00,

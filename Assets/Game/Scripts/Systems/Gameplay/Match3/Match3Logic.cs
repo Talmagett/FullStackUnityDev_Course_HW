@@ -7,10 +7,10 @@ namespace Game.Gameplay.Match3
 {
     public class Match3Logic
     {
-        private readonly LevelGrid _grid;
+        private readonly ItemGrid _grid;
         private readonly Quest _questTracker;
 
-        public Match3Logic(LevelGrid grid, Quest questTracker)
+        public Match3Logic(ItemGrid grid, Quest questTracker)
         {
             _grid = grid;
             _questTracker = questTracker;

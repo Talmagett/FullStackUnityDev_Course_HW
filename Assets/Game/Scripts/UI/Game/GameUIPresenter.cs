@@ -1,6 +1,6 @@
 using System;
 using Game.App.Audio.Music;
-using Game.App.Map;
+using Game.App.Levels;
 using Game.App.Scene;
 using Game.Gameplay.Items;
 using Game.UI.App.Background;
@@ -14,7 +14,7 @@ namespace Game.UI.Game
 {
     public class GameUIPresenter : IInitializable, IDisposable
     {
-        [Inject] private IMap _map;
+        [Inject] private ILevelService _map;
         [Inject] private ItemSpriteMap _itemSpriteMap;
         [Inject] private Gameplay.Quests.Quest _quest;
         [Inject] private LevelNumberView levelNumberView;

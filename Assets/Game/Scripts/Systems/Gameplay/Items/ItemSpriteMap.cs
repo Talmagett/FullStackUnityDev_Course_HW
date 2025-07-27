@@ -14,7 +14,7 @@ namespace Game.Gameplay.Items
         [SerializeField]
         private Item[] _items = Array.Empty<Item>();
 
-        public Sprite GetBaseSprite(ItemType type)
+        public Sprite GetBaseSprite(ItemColor type)
         {
             for (int i = 0, count = _items.Length; i < count; i++)
             {
@@ -26,7 +26,7 @@ namespace Game.Gameplay.Items
             throw new KeyNotFoundException($"Sprite of type {type} is not found!");
         }
 
-        public Sprite GetItemSprite(ItemType type)
+        public Sprite GetItemSprite(ItemColor type)
         {
             for (int i = 0, count = _items.Length; i < count; i++)
             {
@@ -38,7 +38,7 @@ namespace Game.Gameplay.Items
             throw new KeyNotFoundException($"Sprite of type {type} is not found!");
         }
 
-        public Sprite GetQuestSprite(ItemType type)
+        public Sprite GetQuestSprite(ItemColor type)
         {
             for (int i = 0, count = _items.Length; i < count; i++)
             {
@@ -53,7 +53,7 @@ namespace Game.Gameplay.Items
         [Serializable]
         private struct Item
         {
-            public ItemType type;
+            public ItemColor type;
 
             public Sprite baseSprite;
             

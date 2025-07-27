@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Game.App.Levels;
-using Game.App.Map;
+
 using Game.Gameplay.Items;
 using Game.Gameplay.Quests;
 using JetBrains.Annotations;
@@ -12,17 +12,17 @@ using Random = UnityEngine.Random;
 namespace Game.Gameplay.Match3
 {
     [UsedImplicitly]
-    public class LevelGrid : ILevelGrid, IInitializable
+    public class ItemGrid : Grid<ItemColor>, IItemGrid, IInitializable
     {
         public event Action<IEnumerable<Item>> OnGridChanged;
         public Vector2Int GridSize { get; private set; }
         
-        [Inject] private IMap _map;
+        [Inject] private ILevelService _map;
         
         private readonly LevelConfig _currentLevel;
         private readonly Dictionary<Vector2Int, Item> _gridItems = new();
         
-        public LevelGrid(IMap map, Quest quest)
+        public ItemGrid(ILevelService map, Quest quest): base(0, 0)
         {
             _map = map;
             _currentLevel = _map.CurrentLevel;
@@ -100,7 +100,7 @@ namespace Game.Gameplay.Match3
                     if (!_gridItems.ContainsKey(pos)) continue;
                     if (_gridItems[pos] != null) continue;
                     
-                    var randomType = (ItemType)Random.Range(1, 7);
+                    var randomType = (ItemColor)Random.Range(1, 7);
                     var newItem = CreateItem(randomType, new Vector2Int(x, y));
                     newItems.Add(newItem);
                 }
@@ -109,7 +109,7 @@ namespace Game.Gameplay.Match3
             return newItems;
         }
 
-        private Item CreateItem(ItemType type, Vector2Int pos)
+        private Item CreateItem(ItemColor type, Vector2Int pos)
         {
             var item = new Item(type);
             _gridItems[pos] = item;
@@ -118,7 +118,7 @@ namespace Game.Gameplay.Match3
         }
     }
 
-    public interface ILevelGrid
+    public interface IItemGrid
     {
         Item GetItem(Vector2Int pos);
         void MoveItem(Vector2Int pos, Item item);

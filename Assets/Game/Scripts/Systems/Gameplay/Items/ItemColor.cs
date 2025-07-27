@@ -1,6 +1,6 @@
 namespace Game.Gameplay.Items
 {
-    public enum ItemType
+    public enum ItemColor
     {
         None = 0,
         Blue = 1,

@@ -25,6 +25,7 @@ namespace Game.UI.Game.Animations
                 tasks.Add(item.FadeOut(FadeDuration));
                 tasks.Add(item.Scale(Vector3.one*1.5f,ScaleDuration));
             }
+            
             await UniTask.WhenAll(tasks);
             //_soundPlayer.Play(SoundName.Collect);
         }

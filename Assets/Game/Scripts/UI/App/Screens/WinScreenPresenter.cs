@@ -1,7 +1,7 @@
 using Atomic.UI;
 using Game.App.Audio.Music;
 using Game.App.Audio.Sound;
-using Game.App.Map;
+using Game.App.Levels;
 using Game.Gameplay.Items;
 using Game.Gameplay.Quests;
 using Game.UI.App.Background;
@@ -21,7 +21,7 @@ namespace Game.UI.App.Screens
         [SerializeField] private Image questTarget;
         [SerializeField] private Button nextButton;
         
-        [Inject] private IMap _map;
+        [Inject] private ILevelService _map;
         [Inject] private ItemSpriteMap _itemSpriteMap;
         [Inject] private Quest _quest;//change?
         [Inject] private BackgroundView backgroundView;

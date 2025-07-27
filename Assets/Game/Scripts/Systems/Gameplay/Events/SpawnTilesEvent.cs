@@ -4,8 +4,8 @@ using UnityEngine;
 public struct SpawnTilesEvent
 {
     public Vector2Int[] TilePositions { get; }
-    public ItemType[] ItemTypes { get; }
-    public SpawnTilesEvent(Vector2Int[] tilePositions, ItemType[] itemTypes)
+    public ItemColor[] ItemTypes { get; }
+    public SpawnTilesEvent(Vector2Int[] tilePositions, ItemColor[] itemTypes)
     {
         TilePositions = tilePositions;
         ItemTypes = itemTypes;

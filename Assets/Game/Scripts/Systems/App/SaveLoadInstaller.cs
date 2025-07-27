@@ -1,4 +1,4 @@
-using Game.App.Map;
+using Game.App.Levels;
 using SampleGame.App;
 using UnityEngine;
 using Zenject;
@@ -19,7 +19,7 @@ namespace Game.App
             Container.Bind<GameSaveLoader>().AsSingle().OnInstantiated<GameSaveLoader>((ctx,t)=>t.Load());
             Container.BindInterfacesTo<GameSaveController>().AsSingle().WithArguments(_savePeriod);
 
-            Container.BindInterfacesTo<MapSerializer>().AsSingle();
+            Container.BindInterfacesTo<LevelSerializer>().AsSingle();
         }
     }
 }

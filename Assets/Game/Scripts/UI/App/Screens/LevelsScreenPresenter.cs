@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Atomic.UI;
 using Game.App.Audio.Music;
 using Game.App.Levels;
-using Game.App.Map;
 using Game.UI.App.Background;
 using Game.UI.App.Level;
 using Game.UI.App.Screens.Manager;
@@ -15,10 +14,11 @@ namespace Game.UI.App.Screens
     public class LevelsScreenPresenter : Presenter
     {
         [SerializeField] private Sprite backgroundImage;
-        [SerializeField] private LevelView[] levelView;
+        [SerializeField] private LevelPresenter[] levelPresenters;
+
         [SerializeField] private MusicName musicName;
         
-        [Space] 
+        [Space]
         [SerializeField] private Sprite openedLevelSprite;
         [SerializeField] private Sprite lockedLevelSprite;
         
@@ -29,20 +29,32 @@ namespace Game.UI.App.Screens
         [Inject] private BackgroundView backgroundView;
         [Inject] private LevelCatalog levelCatalog;
         [Inject] private MusicPlayer musicPlayer;
-        [Inject] private IMap map;
-        private readonly List<LevelPresenter> _levelPresenters = new();
+        [Inject] private ILevelService map;
+        
         
         protected override void OnInit()
         {
-            for (int i = 0; i < levelView.Length; i++)
+            for (int i = 0; i < levelPresenters.Length; i++)
             {
                 if (i >= levelCatalog.LevelCount) return;
-                
-                var levelConfig = levelCatalog.FindLevel(i+1);
-                
-                var presenter = new LevelPresenter(levelConfig, levelView[i],this);
-                _levelPresenters.Add(presenter);
+
+                var levelConfig = levelCatalog.FindLevel(i + 1);
+                levelPresenters[i].LevelConfig = levelConfig;
+                levelPresenters[i].InitImages(
+                    openedLevelSprite, lockedLevelSprite,
+                    completedStarSprite, emptyStarSprite);
+                levelPresenters[i].OnLevelSelected += LoadLevel;
                 UpdateLevelViews();
+            }
+        }
+
+        protected override void OnDispose()
+        {
+            for (int i = 0; i < levelPresenters.Length; i++)
+            {
+                if (i >= levelCatalog.LevelCount) return;
+
+                levelPresenters[i].OnLevelSelected -= LoadLevel;
             }
         }
 
@@ -56,16 +68,15 @@ namespace Game.UI.App.Screens
 
         private void UpdateLevelViews()
         {
-            for (int i = 0; i < levelView.Length; i++)
+            for (int i = 0; i < levelPresenters.Length; i++)
             {
                 if (i >= levelCatalog.LevelCount) return;
-                
-                var levelConfig = levelCatalog.FindLevel(i+1);
-                bool isOpened = map.MaxLevel > levelConfig.Number - 2;
-                levelView[i].SetInteractable(isOpened);
-                levelView[i].PlayBounce(map.MaxLevel==levelConfig.Number - 1);
-                levelView[i].SetLevelImage( isOpened? openedLevelSprite : lockedLevelSprite);
-                levelView[i].SetStarImage(map.MaxLevel>levelConfig.Number-1?completedStarSprite:emptyStarSprite);
+
+                var levelConfig = levelCatalog.FindLevel(i + 1);
+                bool isInteractable = map.MaxLevel > levelConfig.Number - 2;
+                bool isCurrent = map.MaxLevel == levelConfig.Number - 1;
+
+                levelPresenters[i].SetState(isInteractable, isCurrent);
             }
         }
         
@@ -73,32 +84,6 @@ namespace Game.UI.App.Screens
         {
             map.SetCurrentLevel(levelConfig.Number);
             screenNavigator.ChangeScreen(ScreenName.Quest);
-        }
-    }
-
-    public class LevelPresenter : IDisposable
-    {
-        private readonly LevelConfig _levelConfig;
-        private readonly LevelView _levelView;
-        private readonly LevelsScreenPresenter _levelsScreenPresenter;
-
-        public LevelPresenter(LevelConfig levelConfig, LevelView levelView,
-            LevelsScreenPresenter levelsScreenPresenter)
-        {
-            this._levelConfig = levelConfig;
-            this._levelView = levelView;
-            this._levelsScreenPresenter = levelsScreenPresenter;
-            _levelView.OnLevelButtonClicked += OnLevelButtonClicked;
-        }
-
-        public void Dispose()
-        {
-            _levelView.OnLevelButtonClicked -= OnLevelButtonClicked;
-        }
-        
-        private void OnLevelButtonClicked()
-        {
-            _levelsScreenPresenter.LoadLevel(_levelConfig);
         }
     }
 }

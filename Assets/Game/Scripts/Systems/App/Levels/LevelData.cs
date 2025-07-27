@@ -1,9 +1,9 @@
 using System;
 
-namespace Game.App.Map
+namespace Game.App.Levels
 {
     [Serializable]
-    public struct MapData
+    public struct LevelData
     {
         public int MaxLevel;
     }
